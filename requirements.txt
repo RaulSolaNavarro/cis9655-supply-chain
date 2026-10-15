@@ -1,0 +1,6 @@
+pandas>=2.2
+requests>=2.32
+xlrd>=2.0        # GSCPI file is legacy .xls despite the .xlsx extension
+openpyxl>=3.1
+python-dotenv>=1.0
+truststore>=0.10   # use the OS certificate store (fixes SSL errors behind proxies/AV)
