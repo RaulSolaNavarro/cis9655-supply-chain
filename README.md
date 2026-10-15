@@ -13,6 +13,14 @@ How have major disruptions (Red Sea rerouting, the Panama Canal drought, port co
 | [`q3-ports/`](q3-ports/) | Which US ports saw the worst congestion, and which recovered fastest? | BTS Supply Chain & Freight Indicators |
 | [`q4-synthesis/`](q4-synthesis/) | Combining Q1–Q3, which lanes came out more resilient, and why? | Outputs of Q1–Q3 |
 
+## Project plan (team decisions, Oct 2026)
+
+- **Framing:** centered on the ongoing 2026 disruption, with the 2021–2024 events (pandemic congestion, Red Sea, Panama drought) as comparison episodes.
+- **Shared timeline:** monthly, **January 2019 through the latest available month**, across all three sources. Weekly BTS series get rolled up to monthly.
+- **Q2 lane definition:** trade by US port, from the Census `imports/porths` endpoint. For imports, Census defines the port as the **port of unlading** (where the ship or plane is unloaded), not where goods clear customs. If port-level data turns out to be unusable, fall back to country-level comparison (`imports/hs`).
+- **Q3 port selection:** use the same ports Q2 ends up using.
+- **Q4:** start building the combined chart skeleton now, in parallel with Q1–Q3, and fill it in as their outputs land.
+
 ## Repo layout
 
 ```
@@ -49,6 +57,7 @@ Each script pulls a sample, saves it to `data/raw/`, and prints the date range, 
 python scripts/validate_gscpi.py    # no key needed
 python scripts/validate_bts.py      # no key needed
 python scripts/validate_census.py   # needs CENSUS_API_KEY
+python scripts/validate_census_porths.py [YYYY-MM] [CTY_CODE]   # imports by port, default 2026-01 China
 ```
 
 ## Data snapshots (`data/processed/`)
@@ -84,6 +93,14 @@ Census files keep monthly (`_MO`) fields only, renamed to `total_value_usd`, `ve
 - Multi-year requests are slow (80–120s+) and can time out, so pull one year per request.
 - Without a `COMM_LVL` filter, results mix HS2/4/6/10 rows. Always filter to one level before summing.
 - Mexico trade is mostly truck/rail (vessel ≈ 10% of export value), so it isn't a Panama Canal lane.
+
+**Census imports by port (`porths`):** `https://api.census.gov/data/timeseries/intltrade/imports/porths`
+- One row per port × country × HS code × month. Commodity detail goes down to HS6, and `time` is required.
+- Import port = **port of unlading**. Census may combine ports under one code to protect confidentiality.
+- Every response includes a `PORT == "-"` "TOTAL FOR ALL PORTS" row. **Exclude it before summing**, or totals double.
+- `7070 LOW VALUE` is a pseudo-port for low-value shipments, not a place. Some ports have no name (e.g. `1791`), and the list of ports varies month to month.
+- All-commodity totals (`I_COMMODITY=-`) are fast: about 10s per month, about 16s per full year in one call. Per-port HS2 detail took 60–130s for a single month.
+- Matching BTS port names to Census port codes: NY-NJ ≈ 1003 Newark + 1001 New York; Sea-Tac = 3001 Seattle + 3002 Tacoma; Port of VA ≈ 1401 Norfolk.
 
 **BTS Supply Chain and Freight Indicators:** [data.bts.gov dataset `y5ut-ibwt`](https://data.bts.gov/d/y5ut-ibwt) (Socrata API, no key needed)
 - Long format: `date, indicator, measure1 (port/region), value1, units`. Updated weekly.
