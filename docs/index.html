@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Supply Chain Resilience</title>
+<meta name="description" content="CIS 9655 team pitch: tracking freight disruption and lane shifts, 2019-2026.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reset.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
+<style>
+  :root {
+    --navy: #0a1f33;
+    --navy-2: #102b45;
+    --navy-3: #16385a;
+    --teal: #0ea5a3;
+    --teal-soft: rgba(14, 165, 163, 0.18);
+    --orange: #ff6b35;
+    --orange-soft: rgba(255, 107, 53, 0.14);
+    --ink: #e9eff5;
+    --muted: #93a9be;
+    --rule: rgba(147, 169, 190, 0.22);
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  html, body, .reveal-viewport { background: var(--navy); --r-background-color: #0a1f33; }
+  .reveal { font-family: var(--sans); font-size: 32px; color: var(--ink); }
+  /* Content area below the manifest header, vertically centered */
+  .stage { position: absolute; top: 84px; bottom: 76px; left: 72px; right: 72px; display: flex; flex-direction: column; justify-content: center; }
+  .reveal .slides { text-align: left; }
+  .reveal .slides section { height: 100%; box-sizing: border-box; padding: 64px 72px 56px; }
+  .reveal h1, .reveal h2, .reveal h3 { font-family: var(--sans); color: var(--ink); margin: 0; text-transform: none; letter-spacing: -0.01em; line-height: 1.12; }
+  .reveal h2 { font-size: 1.75em; font-weight: 700; margin-bottom: 0.55em; }
+  .reveal h2 em { font-style: normal; color: var(--orange); }
+  .reveal p { margin: 0 0 0.6em; line-height: 1.45; }
+  .reveal a { color: var(--teal); text-decoration: none; border-bottom: 2px solid var(--teal-soft); }
+  .reveal a:hover { color: var(--ink); border-bottom-color: var(--orange); }
+  .reveal strong { color: var(--ink); font-weight: 700; }
+  .lede { font-size: 0.92em; color: var(--ink); max-width: 30em; }
+  .muted { color: var(--muted); }
+  .accent { color: var(--orange); }
+  .teal { color: var(--teal); }
+
+  /* ---- Manifest header: slide number + section tag, stencil style ---- */
+  .manifest {
+    position: absolute; top: 26px; left: 72px; right: 72px;
+    display: flex; justify-content: space-between; align-items: center;
+    font-family: var(--mono); font-size: 0.42em; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--muted); border-bottom: 1px dashed var(--rule); padding-bottom: 8px;
+  }
+  .manifest .no { color: var(--orange); font-weight: 700; }
+  .manifest .no::before { content: "\25A0\00a0"; color: var(--teal); }
+  .tag {
+    display: inline-block; font-family: var(--mono); font-size: 0.42em; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--teal); border: 1px solid var(--teal); padding: 3px 10px; margin-bottom: 18px;
+  }
+  .tag.orange { color: var(--orange); border-color: var(--orange); }
+  .label { font-family: var(--mono); font-size: 0.5em; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); }
+
+  /* ---- Corner accent on data slides: small container stack + hazard strip ---- */
+  /* Scoped to .slides: reveal copies slide classes onto its full-screen background layer too */
+  .reveal .slides section.data::after {
+    content: ""; position: absolute; left: 72px; bottom: 22px; width: 92px; height: 48px; opacity: 0.5;
+    background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 62'%3E%3Cg fill='none' stroke-width='2'%3E%3Crect x='2' y='32' width='54' height='28' stroke='%230ea5a3'/%3E%3Crect x='62' y='32' width='54' height='28' stroke='%23ff6b35'/%3E%3Crect x='32' y='2' width='54' height='28' stroke='%230ea5a3'/%3E%3C/g%3E%3Cg stroke='%2393a9be' stroke-width='1.2' opacity='.7'%3E%3Cpath d='M12 36v20M22 36v20M32 36v20M42 36v20M72 36v20M82 36v20M92 36v20M102 36v20M42 6v20M52 6v20M62 6v20M72 6v20'/%3E%3C/g%3E%3C/svg%3E");
+  }
+  .reveal .slides section.data::before {
+    content: ""; position: absolute; left: 0; top: 64px; width: 8px; height: 120px;
+    background: repeating-linear-gradient(-45deg, var(--orange) 0 8px, var(--navy) 8px 16px);
+  }
+
+  /* ---- Title / close slides: full background motif ---- */
+  .bg-motif { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; opacity: 0.16; }
+  .hero { position: absolute; z-index: 1; top: 84px; bottom: 76px; left: 72px; right: 72px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  .hero h1 { font-size: 2.6em; font-weight: 800; letter-spacing: -0.02em; max-width: 13em; }
+  .hero h1 span { color: var(--orange); }
+  .hero .sub { font-size: 1.05em; color: var(--teal); margin: 0.45em 0 1.4em; }
+  .course { font-family: var(--mono); font-size: 0.5em; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); margin-bottom: 0.9em; }
+  .crew { display: flex; flex-wrap: wrap; gap: 10px 14px; }
+  .crew span {
+    font-size: 0.6em; padding: 6px 14px; border: 1px solid var(--rule); background: rgba(16, 43, 69, 0.75);
+  }
+
+  /* ---- Layout helpers ---- */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: start; }
+  .cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .cols-2x2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 22px; }
+
+  /* Container-door card: the main repeated unit */
+  .box {
+    position: relative; background: var(--navy-2); border: 1px solid var(--rule); border-top: 4px solid var(--teal);
+    padding: 18px 22px 18px; font-size: 0.66em; line-height: 1.42;
+  }
+  .box.hot { border-top-color: var(--orange); background: linear-gradient(180deg, var(--orange-soft), var(--navy-2) 60%); }
+  .box .id { font-family: var(--mono); font-size: 0.72em; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 6px; }
+  .box.hot .id { color: var(--orange); }
+  .box h3 { font-size: 1.12em; margin-bottom: 6px; }
+  .box p { margin: 0; color: #c9d6e2; }
+  .box .ribs { position: absolute; right: 14px; top: 14px; width: 26px; height: 18px; opacity: 0.35;
+    background: repeating-linear-gradient(90deg, var(--muted) 0 2px, transparent 2px 6px); }
+
+  /* Slide 2 */
+  .question { font-size: 2.2em; font-weight: 800; letter-spacing: -0.02em; line-height: 1.08; margin-bottom: 0.5em; max-width: 12em; }
+  .question span { color: var(--orange); }
+
+  /* Slide 4 persona */
+  .persona { display: grid; grid-template-columns: 220px 1fr; gap: 40px; align-items: center; }
+  .persona .who { font-size: 1.08em; font-weight: 700; line-height: 1.3; margin-bottom: 0.6em; }
+  .pain { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 0.4em; }
+  .pain span { font-family: var(--mono); font-size: 0.48em; letter-spacing: 0.14em; text-transform: uppercase;
+    border: 1px dashed var(--orange); color: var(--orange); padding: 6px 12px; }
+
+  /* Slide 6 lanes */
+  .lane-map { width: 100%; height: auto; display: block; margin: 4px 0 10px; }
+  .portlist { font-size: 0.62em; line-height: 1.55; }
+  .portlist b { font-family: var(--mono); font-size: 0.82em; letter-spacing: 0.16em; text-transform: uppercase; display: block; margin-bottom: 4px; }
+  .footnote { font-size: 0.5em; color: var(--muted); border-left: 3px solid var(--orange); padding: 4px 0 4px 12px; margin-top: 14px; }
+
+  /* Slide 7 finding rows */
+  .rows { display: grid; gap: 12px; }
+  .row { display: grid; grid-template-columns: 290px 60px 1fr; align-items: center; gap: 18px;
+    background: var(--navy-2); border: 1px solid var(--rule); padding: 14px 20px; font-size: 0.68em; }
+  .row .k { font-family: var(--mono); font-size: 0.74em; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
+  .row .arrow { font-size: 1.7em; font-weight: 800; text-align: center; line-height: 1; }
+  .row.up .arrow { color: var(--teal); }
+  .row.down .arrow { color: var(--orange); }
+  .row.flat .arrow { color: var(--muted); }
+  .row.now { border: 2px solid var(--orange); background: linear-gradient(90deg, var(--orange-soft), var(--navy-2) 70%); }
+  .row.now .k { color: var(--orange); }
+
+  /* Slide 8 correlation bars */
+  .bars { display: grid; gap: 26px; margin: 10px 0 26px; }
+  .bar .meta { display: flex; justify-content: space-between; font-size: 0.64em; margin-bottom: 8px; }
+  .bar .meta b { font-family: var(--mono); font-weight: 700; }
+  .track { position: relative; height: 34px; background: var(--navy-2); border: 1px solid var(--rule); }
+  .fill { position: absolute; left: 0; top: 0; bottom: 0; }
+  .fill.rate { background: var(--orange); }
+  .fill.gscpi { background: var(--teal); }
+  .fill.gscpi.ghost { background: transparent; border: 2px dashed var(--teal); box-sizing: border-box; }
+  .scale { display: flex; justify-content: space-between; font-family: var(--mono); font-size: 0.42em; color: var(--muted); margin-top: 4px; letter-spacing: 0.1em; }
+  .callout { font-size: 0.95em; font-weight: 700; border-left: 6px solid var(--orange); padding-left: 18px; line-height: 1.3; }
+
+  /* Slide 9 views */
+  .view svg { width: 100%; height: 110px; display: block; margin: 6px 0 12px; background: var(--navy); border: 1px solid var(--rule); }
+
+  /* Slide 10 limits */
+  .limit { display: grid; grid-template-columns: 54px 1fr; gap: 14px; align-items: start; font-size: 0.64em; line-height: 1.42; }
+  .limit .hz { width: 44px; height: 44px; }
+
+  /* Slide 11 AI */
+  .split .box ul { margin: 6px 0 0 1.05em; padding: 0; }
+  .split .box li { margin-bottom: 6px; color: #c9d6e2; }
+
+  /* Slide 12 close */
+  .links { display: grid; gap: 16px; margin: 0.8em 0 1.2em; max-width: 30em; }
+  .link-row { display: grid; grid-template-columns: 200px 1fr; gap: 18px; align-items: baseline; background: rgba(16, 43, 69, 0.85);
+    border: 1px solid var(--rule); border-left: 4px solid var(--teal); padding: 14px 20px; font-size: 0.66em; }
+  .link-row .label { font-size: 0.72em; }
+  .link-row a { justify-self: start; overflow-wrap: anywhere; }
+  .thanks { font-size: 1.9em; font-weight: 800; }
+  .thanks span { color: var(--orange); }
+
+  /* Reveal chrome */
+  .reveal .controls { color: var(--orange); }
+  .reveal .progress { color: var(--orange); height: 4px; }
+
+  /* Narrow screens: stack the grids */
+  @media (max-width: 700px) {
+    .cols, .cols-3, .cols-2x2, .persona { grid-template-columns: 1fr; }
+  }
+  /* Print/PDF (?print-pdf): keep colors */
+  /* Print/PDF (?view=print, then browser Print -> Save as PDF): navy page behind every slide.
+     Slides deliberately use no data-background-color: it blanks reveal's print layout. */
+  html.reveal-print body, html.reveal-print .pdf-page, html.reveal-print .scroll-page { background: var(--navy); }
+  @media print {
+    html, body, .reveal, .pdf-page { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+
+<!-- ======================= 01 TITLE ======================= -->
+<section class="title">
+  <svg class="bg-motif" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <defs>
+      <pattern id="ribs" width="8" height="10" patternUnits="userSpaceOnUse"><path d="M4 0v10" stroke="#e9eff5" stroke-width="1.4"/></pattern>
+    </defs>
+    <!-- dotted great-circle routes -->
+    <g fill="none" stroke="#0ea5a3" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round">
+      <path d="M-40 250 C 300 80, 700 90, 1320 230"/>
+      <path d="M-40 330 C 380 200, 820 230, 1320 360"/>
+      <path d="M-40 150 C 260 40, 980 10, 1320 120"/>
+    </g>
+    <!-- container stacks along the quay -->
+    <g stroke="#e9eff5" stroke-width="2">
+      <g fill="#0ea5a3"><rect x="760" y="560" width="120" height="56"/><rect x="890" y="560" width="120" height="56"/><rect x="1020" y="560" width="120" height="56"/><rect x="1150" y="560" width="120" height="56"/></g>
+      <g fill="#ff6b35"><rect x="825" y="498" width="120" height="56"/><rect x="955" y="498" width="120" height="56"/><rect x="1085" y="498" width="120" height="56"/></g>
+      <g fill="#0ea5a3"><rect x="890" y="436" width="120" height="56"/><rect x="1150" y="436" width="120" height="56"/></g>
+      <g fill="url(#ribs)" stroke="none" opacity=".5"><rect x="770" y="566" width="500" height="44"/><rect x="835" y="504" width="370" height="44"/></g>
+    </g>
+    <!-- gantry crane -->
+    <g fill="none" stroke="#e9eff5" stroke-width="5">
+      <path d="M700 616 V300 M780 616 V300 M660 300 H1180 M700 360 H780 M700 300 L780 360 M780 300 L700 360"/>
+      <path d="M1000 300 V380 M985 380 H1015"/>
+    </g>
+  </svg>
+  <div class="manifest"><span class="no">01 / 12</span><span>CIS-9655 · PITCH</span></div>
+  <div class="hero">
+    <div class="tag orange">Freight disruption · lane shifts</div>
+    <h1>Global Supply Chain <span>Resilience</span></h1>
+    <p class="sub">Tracking freight disruption and lane shifts, 2019&ndash;2026</p>
+    <p class="course">CIS 9655 &middot; Data Visualization &middot; Prof. Lisa Santa-Coloma</p>
+    <div class="crew"><span>Jason Braverman</span><span>Paven Oommen</span><span>Raul Sola Navarro</span><span>Supriya Singh</span></div>
+  </div>
+</section>
+
+<!-- ======================= 02 QUESTION ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">02 / 12</span><span>THE-QUESTION</span></div>
+  <div class="stage">
+    <p class="question">Is the supply chain crisis <span>actually over?</span></p>
+    <div class="cols" style="grid-template-columns: 1.15fr 1fr; gap: 44px;">
+      <p class="lede">The NY Fed's own pressure index (<strong>GSCPI</strong>) is <span class="accent">still elevated as of September 2026</span>, well above its 2023 low.</p>
+      <p class="lede muted" style="font-size:0.8em">We're asking whether today's pressure follows a pattern the data has already seen, and whether cargo actually <span class="teal">reroutes between shipping lanes</span> when a chokepoint breaks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 03 TEAM QUESTIONS ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">03 / 12</span><span>SUB-QUESTIONS</span></div>
+  <div class="stage">
+    <h2>Four questions, <em>one team</em></h2>
+    <div class="cols-2x2">
+      <div class="box"><span class="ribs"></span><div class="id">Q1 · Pressure</div><h3>Jason Braverman</h3><p>How has overall pressure moved across the three major disruptions, and what's driving the renewed 2026 pressure?</p></div>
+      <div class="box"><span class="ribs"></span><div class="id">Q2 · Lanes</div><h3>Paven Oommen</h3><p>Does cargo measurably shift between chokepoint-dependent ports and direct ports, and does that depend on the disruption type?</p></div>
+      <div class="box"><span class="ribs"></span><div class="id">Q3 · Ports</div><h3>Supriya Singh</h3><p>Which ports saw the worst congestion and fastest recovery?</p></div>
+      <div class="box hot"><span class="ribs"></span><div class="id">Q4 · Synthesis</div><h3>Raul Sola Navarro</h3><p>Combining all three, which lanes held up best against which disruptions?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 04 AUDIENCE ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">04 / 12</span><span>CONSIGNEE</span></div>
+  <div class="stage">
+    <h2>Who this is <em>for</em></h2>
+    <div class="persona">
+      <svg viewBox="0 0 220 220" aria-hidden="true">
+        <rect x="10" y="110" width="200" height="96" fill="#102b45" stroke="#0ea5a3" stroke-width="3"/>
+        <path d="M30 120v76M50 120v76M70 120v76M90 120v76M130 120v76M150 120v76M170 120v76M190 120v76" stroke="#93a9be" stroke-width="2" opacity=".6"/>
+        <path d="M110 112v94" stroke="#0ea5a3" stroke-width="3"/>
+        <circle cx="110" cy="52" r="26" fill="none" stroke="#ff6b35" stroke-width="4"/>
+        <path d="M66 108c4-20 22-30 44-30s40 10 44 30" fill="none" stroke="#ff6b35" stroke-width="4"/>
+      </svg>
+      <div>
+        <p class="who">A mid-market retailer's or manufacturer's <span class="accent">VP of Supply Chain or Sourcing Strategy</span>, deciding whether to diversify shipping lanes or supplier regions.</p>
+        <p class="muted" style="font-size:0.72em">Freight cost and lead-time volatility hits their inventory planning and working capital directly.</p>
+        <div class="pain"><span>Freight cost</span><span>Lead time</span><span>Inventory</span><span>Working capital</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 05 DATA ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">05 / 12</span><span>CARGO-MANIFEST</span></div>
+  <div class="stage">
+    <h2>Three validated <em>data sources</em></h2>
+    <div class="tag">Pulled and checked, not just proposed</div>
+    <div class="cols-3">
+      <div class="box"><span class="ribs"></span><div class="id">SRC-01 · NY Fed</div><h3>GSCPI</h3><p>Monthly, Jan 1998 to Sep 2026</p></div>
+      <div class="box"><span class="ribs"></span><div class="id">SRC-02 · US Census</div><h3>Trade-by-port API</h3><p>Monthly, Jan 2019 to Aug 2026, by port of unlading</p></div>
+      <div class="box"><span class="ribs"></span><div class="id">SRC-03 · BTS</div><h3>Supply Chain &amp; Freight Indicators</h3><p>Weekly updates, 9 major ports, ship-backlog counts and the Shanghai-to-LA freight rate</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 06 LANES ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">06 / 12</span><span>LANE-GROUP</span></div>
+  <div class="stage">
+    <h2>Defining a <em>lane</em></h2>
+    <svg class="lane-map" viewBox="0 0 1130 170" aria-label="Asia to West Coast directly across the Pacific; Asia to East and Gulf Coast via the Panama Canal">
+      <g font-family="ui-monospace, Consolas, monospace" font-size="15" letter-spacing="2" fill="#93a9be">
+        <text x="12" y="92">ASIA</text>
+        <text x="250" y="34" fill="#0ea5a3">PACIFIC-DIRECT</text>
+        <text x="455" y="160" fill="#ff6b35">PANAMA-DEPENDENT</text>
+        <text x="1010" y="40">WEST</text><text x="1010" y="58">COAST</text>
+        <text x="1010" y="142">EAST /</text><text x="1010" y="160">GULF</text>
+      </g>
+      <circle cx="90" cy="86" r="10" fill="#e9eff5"/>
+      <path d="M100 80 C 380 30, 700 30, 990 44" fill="none" stroke="#0ea5a3" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/>
+      <path d="M100 92 C 380 140, 600 140, 700 128 S 900 138, 990 140" fill="none" stroke="#ff6b35" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/>
+      <!-- canal lock marker -->
+      <g transform="translate(700 128)"><rect x="-16" y="-14" width="32" height="28" fill="#0a1f33" stroke="#ff6b35" stroke-width="3"/><path d="M-6 -14v28M6 -14v28" stroke="#ff6b35" stroke-width="2"/></g>
+      <text x="676" y="104" font-family="ui-monospace, Consolas, monospace" font-size="13" letter-spacing="2" fill="#ff6b35">PANAMA</text>
+      <!-- ship silhouette -->
+      <g transform="translate(640 30)" fill="#0ea5a3"><path d="M-30 4 h60 l-8 12 h-44z"/><rect x="-18" y="-8" width="10" height="12"/><rect x="-6" y="-8" width="10" height="12"/><rect x="6" y="-8" width="10" height="12"/></g>
+      <rect x="990" y="30" width="12" height="24" fill="#0ea5a3"/><rect x="990" y="128" width="12" height="24" fill="#ff6b35"/>
+    </svg>
+    <div class="cols">
+      <div class="portlist"><b class="accent">Panama-dependent</b>NY/NJ &middot; Savannah &middot; Port of Virginia &middot; Charleston &middot; Houston</div>
+      <div class="portlist"><b class="teal">Pacific-direct</b>Los Angeles &middot; Long Beach &middot; Oakland &middot; Seattle-Tacoma</div>
+    </div>
+    <p class="footnote">We dropped Mexico as a stand-in for Panama Canal trade once we found about 90% of it isn't ocean freight (mostly truck and rail).</p>
+  </div>
+</section>
+
+<!-- ======================= 07 FINDING ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">07 / 12</span><span>EARLY-FINDING</span></div>
+  <div class="stage">
+    <h2>The early <em>finding</em></h2>
+    <p style="font-size:0.7em" class="muted">Panama-dependent share of China's import value</p>
+    <div class="rows">
+      <div class="row flat"><span class="k">Baseline</span><span class="arrow">&#9644;</span><span>Runs about <strong>30%</strong></span></div>
+      <div class="row up"><span class="k">West Coast jammed</span><span class="arrow">&#9650;</span><span><strong>Rises</strong>: cargo reroutes away from the jam</span></div>
+      <div class="row down"><span class="k">Panama / Red Sea hit</span><span class="arrow">&#9660;</span><span><strong>Falls</strong>: the alternate route is what's broken</span></div>
+      <div class="row now down"><span class="k">2026 so far</span><span class="arrow">&#9660;</span><span><strong>Falling</strong>, matching the second pattern</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 08 CORRELATION ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">08 / 12</span><span>SIGNAL-CHECK</span></div>
+  <div class="stage">
+    <h2>What actually <em>moves together</em></h2>
+    <div class="bars">
+      <div class="bar">
+        <div class="meta"><span>Shanghai-to-LA freight rate, lagged six months</span><b class="accent">r &asymp; 0.45</b></div>
+        <div class="track"><div class="fill rate" style="width:45%"></div></div>
+      </div>
+      <div class="bar">
+        <div class="meta"><span>GSCPI, same month <span class="muted">(dashed: same six-month lag)</span></span><b class="teal">r &asymp; 0.05 <span class="muted">/ 0.25</span></b></div>
+        <div class="track"><div class="fill gscpi ghost" style="width:25%"></div><div class="fill gscpi" style="width:5%"></div></div>
+        <div class="scale"><span>0</span><span>0.25</span><span>0.50</span><span>0.75</span><span>1.0</span></div>
+      </div>
+    </div>
+    <p class="callout">Cost pressure, not the general pressure headline, predicts the reroute.</p>
+  </div>
+</section>
+
+<!-- ======================= 09 VIEWS ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">09 / 12</span><span>VIEW-PLAN</span></div>
+  <div class="stage">
+    <h2>Three views, <em>one shared timeline</em></h2>
+    <div class="cols-3">
+      <div class="box view"><div class="id">VIEW-01</div>
+        <svg viewBox="0 0 300 110" aria-hidden="true"><path d="M10 80 L60 76 L90 40 L120 30 L150 70 L190 92 L230 78 L260 60 L290 64" fill="none" stroke="#0ea5a3" stroke-width="3"/><g fill="#ff6b35"><circle cx="120" cy="30" r="5"/><circle cx="260" cy="60" r="5"/></g><path d="M120 30 V12 M260 60 V40" stroke="#ff6b35" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
+        <h3>Annotated GSCPI history</h3></div>
+      <div class="box view"><div class="id">VIEW-02</div>
+        <svg viewBox="0 0 300 110" aria-hidden="true"><path d="M10 90 H290" stroke="#93a9be" stroke-width="1"/><path d="M10 70 L50 72 L90 66 L120 46 L150 42 L180 58 L210 68 L240 56 L270 72 L290 68" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M10 70 L50 72 L90 66 L120 46 L150 42 L180 58 L210 68 L240 56 L270 72 L290 68 V90 H10z" fill="#ff6b35" opacity=".15"/></svg>
+        <h3>The lane-share chart</h3></div>
+      <div class="box view hot"><div class="id">VIEW-03 · Centerpiece</div>
+        <svg viewBox="0 0 300 110" aria-hidden="true"><g fill="none" stroke-width="2.5"><path d="M10 28 L80 22 L120 10 L170 26 L230 30 L290 22" stroke="#0ea5a3"/><path d="M10 64 L80 60 L120 46 L170 62 L230 50 L290 56" stroke="#e9eff5"/><path d="M10 98 L80 94 L120 88 L170 84 L230 96 L290 92" stroke="#ff6b35"/></g><path d="M10 38 H290 M10 74 H290" stroke="#93a9be" stroke-width="1" stroke-dasharray="2 4"/></svg>
+        <h3>Small-multiples synthesis</h3><p>GSCPI, freight rate, and lane share layered together</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 10 LIMITS ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">10 / 12</span><span>HANDLE-WITH-CARE</span></div>
+  <div class="stage">
+    <h2>Being honest about <em>the limits</em></h2>
+    <div class="cols-2x2" style="gap:22px 36px">
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Two disruptions are tangled in <strong>2023</strong>: the Panama drought vs. the 2022 West Coast congestion unwinding.</p></div>
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>China's import value <strong>roughly halved in 2025</strong> alongside new tariffs, making 2025&ndash;26 shares noisier.</p></div>
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Our data runs <strong>two to three months</strong> behind present.</p></div>
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p><strong>Four comparable disruption episodes</strong> is a pattern worth charting, not a proven causal result.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 11 AI ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">11 / 12</span><span>CREW-LOG</span></div>
+  <div class="stage">
+    <h2>Where <em>AI</em> fit in</h2>
+    <div class="cols split">
+      <div class="box"><div class="id">Claude Code</div><h3>Pulled and validated all three data sources</h3>
+        <ul><li>Caught a dataset that had gone stale</li><li>Caught a year-to-date vs. monthly field mixup in an early Census query</li><li>Flagged a dead-end idea: Mexico as a Panama proxy</li></ul></div>
+      <div class="box hot"><div class="id">The team</div><h3>Made every call</h3>
+        <ul><li>Framing</li><li>Lane definition</li><li>How to split the work</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= 12 CLOSE ======================= -->
+<section class="title">
+  <svg class="bg-motif" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#0ea5a3" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round">
+      <path d="M-40 520 C 300 380, 760 400, 1320 300"/><path d="M-40 600 C 420 470, 860 520, 1320 430"/>
+    </g>
+    <!-- cargo ship -->
+    <g transform="translate(880 470)">
+      <path d="M-20 60 H380 L340 120 H20z" fill="#16385a" stroke="#e9eff5" stroke-width="3"/>
+      <g stroke="#e9eff5" stroke-width="2"><g fill="#0ea5a3"><rect x="20" y="20" width="60" height="38"/><rect x="140" y="20" width="60" height="38"/><rect x="260" y="20" width="60" height="38"/></g><g fill="#ff6b35"><rect x="80" y="20" width="60" height="38"/><rect x="200" y="20" width="60" height="38"/><rect x="80" y="-20" width="60" height="38"/><rect x="200" y="-20" width="60" height="38"/></g></g>
+      <rect x="330" y="-30" width="34" height="88" fill="#16385a" stroke="#e9eff5" stroke-width="3"/>
+    </g>
+  </svg>
+  <div class="manifest"><span class="no">12 / 12</span><span>END-OF-MANIFEST</span></div>
+  <div class="hero">
+    <div class="tag orange">Full pitch and data</div>
+    <div class="links">
+      <div class="link-row"><span class="label">Repo &middot; public</span><a href="https://github.com/RaulSolaNavarro/cis9655-supply-chain">github.com/RaulSolaNavarro/cis9655-supply-chain</a></div>
+      <div class="link-row"><span class="label">Team email</span><span class="muted">[team emails to be added]</span></div>
+    </div>
+    <p class="thanks">Thank you. <span>Questions?</span></p>
+  </div>
+</section>
+
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script>
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0.04,
+    hash: true,
+    center: false,
+    controls: true,
+    progress: true,
+    slideNumber: false,        // each slide carries its own "NN / 12" manifest number
+    transition: "slide",
+    backgroundTransition: "none",
+    pdfMaxPagesPerSlide: 1     // print: open with ?view=print, then browser Print -> Save as PDF
+  });
+</script>
+</body>
+</html>
