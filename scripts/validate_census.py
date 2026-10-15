@@ -14,6 +14,7 @@ Output: data/raw/census_sample_*.csv
 """
 import os
 import sys
+from datetime import date
 from pathlib import Path
 
 import pandas as pd
@@ -27,7 +28,11 @@ BASE = "https://api.census.gov/data/timeseries/intltrade"
 ROOT = Path(__file__).resolve().parent.parent
 RAW_DIR = ROOT / "data" / "raw"
 
-# Census country codes: 5700 = China, 2010 = Mexico
+FIRST_YEAR = 2013  # HS-level timeseries starts Jan 2013
+
+# Census country codes: 5700 = China, 2010 = Mexico.
+# Queries without a "time"/"YEAR" param are monthly series pulled one year per
+# request: a single 2013-to-present request takes 80-120s+ and can time out.
 QUERIES = {
     "brief_example": ("exports/hs", {
         "get": "E_COMMODITY,E_COMMODITY_LDESC,ALL_VAL_YR,VES_VAL_YR,AIR_VAL_YR,CC_YR",
@@ -35,11 +40,11 @@ QUERIES = {
     }),
     "imports_china_hs2": ("imports/hs", {
         "get": "CTY_CODE,CTY_NAME,I_COMMODITY,GEN_VAL_MO,VES_VAL_MO,CNT_VAL_MO,AIR_VAL_MO,VES_WGT_MO",
-        "time": "from 2013-01", "CTY_CODE": "5700", "COMM_LVL": "HS2",
+        "CTY_CODE": "5700", "COMM_LVL": "HS2",
     }),
     "exports_mexico_hs2": ("exports/hs", {
         "get": "CTY_CODE,CTY_NAME,E_COMMODITY,ALL_VAL_MO,VES_VAL_MO,CNT_VAL_MO,AIR_VAL_MO,VES_WGT_MO",
-        "time": "from 2013-01", "CTY_CODE": "2010", "COMM_LVL": "HS2",
+        "CTY_CODE": "2010", "COMM_LVL": "HS2",
     }),
 }
 
@@ -54,8 +59,11 @@ def get_key() -> str:
 
 
 def fetch(endpoint: str, params: dict, key: str) -> pd.DataFrame:
-    resp = requests.get(f"{BASE}/{endpoint}", params={**params, "key": key},
-                        timeout=120, allow_redirects=False)
+    try:
+        resp = requests.get(f"{BASE}/{endpoint}", params={**params, "key": key},
+                            timeout=120, allow_redirects=False)
+    except requests.RequestException as e:
+        raise RuntimeError(f"Request failed: {e}") from e
     # Bad or missing keys come back as a redirect or an HTML page, not JSON
     if resp.status_code in (301, 302) or "html" in resp.headers.get("content-type", ""):
         raise RuntimeError(f"Key rejected (HTTP {resp.status_code}, {resp.headers.get('Location', 'HTML body')}). "
@@ -65,7 +73,21 @@ def fetch(endpoint: str, params: dict, key: str) -> pd.DataFrame:
     if resp.status_code != 200:
         raise RuntimeError(f"HTTP {resp.status_code}: {resp.text[:300]}")
     rows = resp.json()
-    return pd.DataFrame(rows[1:], columns=rows[0])
+    df = pd.DataFrame(rows[1:], columns=rows[0])
+    # Predicate fields (e.g. CTY_CODE) are echoed back even if already in "get"
+    return df.loc[:, ~df.columns.duplicated()]
+
+
+def fetch_by_year(endpoint: str, params: dict, key: str) -> pd.DataFrame:
+    frames = []
+    for year in range(FIRST_YEAR, date.today().year + 1):
+        try:
+            frames.append(fetch(endpoint, {**params, "time": str(year)}, key))
+        except RuntimeError as e:
+            print(f"  {endpoint} {year}: FAILED: {e}")
+    if not frames:
+        raise RuntimeError("no year returned data")
+    return pd.concat(frames, ignore_index=True)
 
 
 def summarize(name: str, df: pd.DataFrame) -> None:
@@ -77,7 +99,9 @@ def summarize(name: str, df: pd.DataFrame) -> None:
         df[c] = pd.to_numeric(df[c], errors="coerce")
     if "time" in df.columns:
         months = sorted(df["time"].unique())
-        print(f"Months: {months[0]} -> {months[-1]} ({len(months)} distinct)")
+        expected = pd.period_range(months[0], months[-1], freq="M").strftime("%Y-%m")
+        gaps = sorted(set(expected) - set(months))
+        print(f"Months: {months[0]} -> {months[-1]} ({len(months)} distinct, missing: {gaps or 'none'})")
         monthly = df.groupby("time")[num_cols].sum()
         print("Last 6 months, all HS2 chapters summed (USD; *_WGT_MO in kg):")
         print(monthly.tail(6).to_string(float_format=lambda v: f"{v:,.0f}"))
@@ -91,8 +115,12 @@ if __name__ == "__main__":
     key = get_key()
     RAW_DIR.mkdir(parents=True, exist_ok=True)
     for name, (endpoint, params) in QUERIES.items():
+        print(f"Fetching {name} ...")
         try:
-            df = fetch(endpoint, params, key)
+            if "time" in params or "YEAR" in params:
+                df = fetch(endpoint, params, key)
+            else:
+                df = fetch_by_year(endpoint, params, key)
         except RuntimeError as e:
             print(f"\n=== {name} === FAILED: {e}")
             continue

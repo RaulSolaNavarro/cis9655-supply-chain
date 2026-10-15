@@ -65,6 +65,9 @@ python scripts/validate_census.py   # needs CENSUS_API_KEY
 - Exports and imports use different field names (`E_COMMODITY`/`ALL_VAL_MO` vs `I_COMMODITY`/`GEN_VAL_MO`).
 - `*_YR` fields are year-to-date cumulative. Use `*_MO` fields for monthly series.
 - Requests without a key are rejected.
+- Multi-year requests are slow (80–120s+) and can time out, so pull one year per request.
+- Without a `COMM_LVL` filter, results mix HS2/4/6/10 rows. Always filter to one level before summing.
+- Mexico trade is mostly truck/rail (vessel ≈ 10% of export value), so it isn't a Panama Canal lane.
 
 **BTS Supply Chain and Freight Indicators:** [data.bts.gov dataset `y5ut-ibwt`](https://data.bts.gov/d/y5ut-ibwt) (Socrata API, no key needed)
 - Long format: `date, indicator, measure1 (port/region), value1, units`. Updated weekly.
