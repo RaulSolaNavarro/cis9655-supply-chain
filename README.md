@@ -71,6 +71,7 @@ The CSVs in `data/processed/` are **frozen snapshots for exploration, not live d
 | `census_exports_all_hs_2013-04_<date>.csv` | The brief's example call: all US exports, Apr 2013, every HS level (filter on `hs_level`) |
 | `census_imports_china_hs2_<date>.csv` | Monthly US imports from China by HS2 chapter, Jan 2013 onward |
 | `census_exports_mexico_hs2_<date>.csv` | Monthly US exports to Mexico by HS2 chapter, Jan 2013 onward |
+| `census_porths_5700_lanes_<date>.csv` | Monthly US imports from China by port of unlading, all commodities, Jan 2019 onward. `bts_port` maps Census port codes to the 9 BTS ports, and `lane_group` is `Panama-dependent` (NY-NJ, Savannah, Port of VA, Charleston, Houston), `Pacific-direct` (LA, Long Beach, Oakland, Sea-Tac), or `Other`. The all-ports total row and `7070 LOW VALUE` are excluded. Both stay in the git-ignored raw pull (`data/raw/census_porths_5700_<start>_<end>.csv`). Rebuild with `python scripts/pull_census_porths_history.py [CTY_CODE] [START_YEAR]`. |
 
 Census files keep monthly (`_MO`) fields only, renamed to `total_value_usd`, `vessel_value_usd`, `containerized_value_usd`, `air_value_usd`, `vessel_weight_kg`, and `shipment_count`. For imports, `total_value_usd` is the Census "general imports" value (`GEN_VAL_MO`).
 
