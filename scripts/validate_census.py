@@ -35,7 +35,9 @@ FIRST_YEAR = 2013  # HS-level timeseries starts Jan 2013
 # request: a single 2013-to-present request takes 80-120s+ and can time out.
 QUERIES = {
     "brief_example": ("exports/hs", {
-        "get": "E_COMMODITY,E_COMMODITY_LDESC,ALL_VAL_YR,VES_VAL_YR,AIR_VAL_YR,CC_YR",
+        # Brief's YTD fields plus their monthly (_MO) counterparts and the HS level
+        "get": "E_COMMODITY,E_COMMODITY_LDESC,COMM_LVL,ALL_VAL_YR,VES_VAL_YR,AIR_VAL_YR,CC_YR,"
+               "ALL_VAL_MO,VES_VAL_MO,AIR_VAL_MO,CC_MO",
         "YEAR": "2013", "MONTH": "04",
     }),
     "imports_china_hs2": ("imports/hs", {

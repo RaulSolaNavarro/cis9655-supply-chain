@@ -51,6 +51,22 @@ python scripts/validate_bts.py      # no key needed
 python scripts/validate_census.py   # needs CENSUS_API_KEY
 ```
 
+## Data snapshots (`data/processed/`)
+
+The CSVs in `data/processed/` are **frozen snapshots for exploration, not live data**. Each file name ends with the date it was pulled (e.g. `gscpi_2026-10-15.csv`), and the files are never updated in place. Use them to start exploring and charting without any setup or API key.
+
+| File | Contents |
+|---|---|
+| `gscpi_<date>.csv` | Full GSCPI series: `date` (month-end), `value` (std. deviations from average) |
+| `bts_port_indicators_<date>.csv` | The 7 port-related BTS indicators: `date, indicator, port_or_region, value, units, source` |
+| `census_exports_all_hs_2013-04_<date>.csv` | The brief's example call: all US exports, Apr 2013, every HS level (filter on `hs_level`) |
+| `census_imports_china_hs2_<date>.csv` | Monthly US imports from China by HS2 chapter, Jan 2013 onward |
+| `census_exports_mexico_hs2_<date>.csv` | Monthly US exports to Mexico by HS2 chapter, Jan 2013 onward |
+
+Census files keep monthly (`_MO`) fields only, renamed to `total_value_usd`, `vessel_value_usd`, `containerized_value_usd`, `air_value_usd`, `vessel_weight_kg`, and `shipment_count`. For imports, `total_value_usd` is the Census "general imports" value (`GEN_VAL_MO`).
+
+**For a different country, a different date range, or fresher data, run the scripts yourself** with your own Census API key (see Setup). Run the `validate_*.py` scripts to pull, then `python scripts/export_snapshots.py` to write new dated snapshots. Don't overwrite or hand-edit the existing snapshot files.
+
 ## Data sources and known quirks
 
 **NY Fed Global Supply Chain Pressure Index (GSCPI):** [download page](https://www.newyorkfed.org/research/policy/gscpi)
