@@ -213,6 +213,12 @@
     <p class="course">CIS 9655 &middot; Data Visualization &middot; Prof. Lisa Santa-Coloma</p>
     <div class="crew"><span>Jason Braverman</span><span>Paven Oommen</span><span>Raul Sola Navarro</span><span>Supriya Singh</span></div>
   </div>
+  <aside class="notes">
+    <p>This project is about one practical question: when global shipping breaks down, where does the cargo go, and which shipping routes hold up?</p>
+    <p>We're a four-person team, and we looked at 2019 through 2026, a period with several major shipping disruptions back to back.</p>
+    <p>Why it matters: imagine you run supply chain for a company that imports from Asia. You have to decide whether to keep bringing goods in through one coast or spread them across several routes. That costs real money, so you want evidence that it pays off.</p>
+    <p>Everything we use is free, public government data, so anyone can check our work.</p>
+  </aside>
 </section>
 
 <!-- ======================= 02 QUESTION ======================= -->
@@ -225,6 +231,13 @@
       <p class="lede muted" style="font-size:0.8em">We're asking whether today's pressure follows a pattern the data has already seen, and whether cargo actually <span class="teal">reroutes between shipping lanes</span> when a chokepoint breaks.</p>
     </div>
   </div>
+  <aside class="notes">
+    <p>The headline question: is the supply chain crisis actually over?</p>
+    <p>The New York Federal Reserve publishes a monthly score called the Global Supply Chain Pressure Index, or GSCPI. Think of it as a stress thermometer for global shipping. It rolls shipping costs, delivery delays, and order backlogs into one number, where zero means normal.</p>
+    <p>In September 2026 it read about 1.3. That's well above normal and far above its 2023 low. It's still nowhere near the record of about 4.4 in late 2021, but it's the first real rise since then.</p>
+    <p>For a supply chain leader, the question is whether this new spike looks like one we've seen before, and if so, what happened to cargo routes last time.</p>
+    <p>The number comes straight from the New York Fed, which updates it every month.</p>
+  </aside>
 </section>
 
 <!-- ======================= 03 TEAM QUESTIONS ======================= -->
@@ -239,6 +252,13 @@
       <div class="box hot"><span class="ribs"></span><div class="id">Q4 · Synthesis</div><h3>Raul Sola Navarro</h3><p>Combining all three, which lanes held up best against which disruptions?</p></div>
     </div>
   </div>
+  <aside class="notes">
+    <p>We split the big question into four smaller ones, one per team member.</p>
+    <p>Jason looked at overall pressure. The finding: the 2021 to 2022 spike was by far the biggest and longest. The 2023 to 2024 problems at the Panama Canal and in the Red Sea barely moved the overall index. And 2026 is the first real rise since, about 40 percent the size of the 2021 peak, and it hasn't faded yet.</p>
+    <p>Paven looked at whether cargo actually changes routes. It does, and which way it moves depends on what kind of disruption it is.</p>
+    <p>Supriya looked at individual ports. Los Angeles and Long Beach had the worst jam but bounced back fastest. Seattle-Tacoma still hasn't recovered, and Houston grew the most.</p>
+    <p>Raul pulled it all together to answer which routes held up best against which kind of disruption.</p>
+  </aside>
 </section>
 
 <!-- ======================= 04 AUDIENCE ======================= -->
@@ -261,6 +281,12 @@
       </div>
     </div>
   </div>
+  <aside class="notes">
+    <p>This is who we built it for: a vice president of supply chain or sourcing at a mid-sized retailer or manufacturer.</p>
+    <p>That person lives with two pains. Shipping costs that swing wildly, and delivery times nobody can predict. Both hit how much inventory they have to hold and how much cash gets tied up waiting for goods.</p>
+    <p>Their decision is whether to spread imports across more shipping routes, or more supplier countries. Diversifying isn't free: it means new contracts, new warehouses, and new carriers. So they need to know when it would actually have protected them.</p>
+    <p>Every chart in this project is meant to answer that person's question, not an academic one.</p>
+  </aside>
 </section>
 
 <!-- ======================= 05 DATA ======================= -->
@@ -275,6 +301,13 @@
       <div class="box"><span class="ribs"></span><div class="id">SRC-03 · BTS</div><h3>Supply Chain &amp; Freight Indicators</h3><p>Weekly updates, 9 major ports, ship-backlog counts and the Shanghai-to-LA freight rate</p></div>
     </div>
   </div>
+  <aside class="notes">
+    <p>We use three public data sources, and we actually pulled and checked each one instead of just listing it in a proposal.</p>
+    <p>First, the New York Fed's pressure index, monthly, going back to 1998.</p>
+    <p>Second, the US Census Bureau's trade records, which show the value of goods arriving at each US port every month.</p>
+    <p>Third, the Bureau of Transportation Statistics, which tracks how many ships are waiting outside major ports, how many containers each port handles, and what it costs to ship one container from Shanghai to Los Angeles.</p>
+    <p>Why these: they're official, free, updated regularly, and anyone can verify them. "Validated" means we checked the dates, the units, and the gaps in each one before trusting it.</p>
+  </aside>
 </section>
 
 <!-- ======================= 06 LANES ======================= -->
@@ -306,6 +339,14 @@
     </div>
     <p class="footnote">We dropped Mexico as a stand-in for Panama Canal trade once we found about 90% of it isn't ocean freight (mostly truck and rail).</p>
   </div>
+  <aside class="notes">
+    <p>Here's what we mean by a lane. Goods from Asia reach the US one of two ways.</p>
+    <p>The short way goes straight across the Pacific to West Coast ports like Los Angeles, Long Beach, Oakland, and Seattle-Tacoma. We call that Pacific-direct.</p>
+    <p>The long way goes through the Panama Canal to East and Gulf Coast ports like New York-New Jersey, Savannah, Virginia, Charleston, and Houston. We call that Panama-dependent.</p>
+    <p>We grouped ports this way because that is the real choice our VP faces: which coast to bring goods into. The Census data tells us exactly which port each shipment was unloaded at, so we can sort every shipment into one of the two groups.</p>
+    <p>We focused on imports from China, a major source of US ocean imports, so we can't yet say whether other countries show the same pattern.</p>
+    <p>One idea we dropped: we first thought trade with Mexico could stand in for Panama Canal traffic. But about 90 percent of it moves by truck and train, not ship, so it tells us nothing about the canal.</p>
+  </aside>
 </section>
 
 <!-- ======================= 07 FINDING ======================= -->
@@ -321,6 +362,14 @@
       <div class="row now down"><span class="k">2026 so far</span><span class="arrow">&#9660;</span><span><strong>Falling</strong>, matching the second pattern</span></div>
     </div>
   </div>
+  <aside class="notes">
+    <p>This is the core finding about where cargo goes.</p>
+    <p>Normally, about 30 percent of the value of China's imports comes in through East and Gulf Coast ports, and the rest mostly through the West Coast.</p>
+    <p>When West Coast ports jammed up in 2021 and 2022, cargo shifted toward East Coast ports, rising from roughly 28 to about 37 percent. Shippers routed around the traffic jam.</p>
+    <p>When the trouble was the route itself, with the Panama Canal drought and attacks on ships in the Red Sea in 2023 and 2024, cargo drifted slightly back toward the West Coast. That shift was small, only a couple of points, and the canal drought alone barely moved it.</p>
+    <p>So far in 2026, cargo is leaning back toward the West Coast again, by about 3 points, which looks like the second pattern.</p>
+    <p>These numbers come from Census records of the value of containers from China unloaded at each port.</p>
+  </aside>
 </section>
 
 <!-- ======================= 08 CORRELATION ======================= -->
@@ -341,6 +390,14 @@
     </div>
     <p class="callout">The six-month freight-rate link held strongly through 2022 (r = 0.82) but has been weak since (r = 0.09), so it isn't a reliable predictor going forward.</p>
   </div>
+  <aside class="notes">
+    <p>This slide tests whether shipping prices give an early warning of cargo changing routes.</p>
+    <p>Correlation just measures how closely two things move together, on a scale from zero, meaning no connection, to one, meaning they move in lockstep.</p>
+    <p>We compared the cost of shipping a container from Shanghai to Los Angeles six months earlier with how much cargo went to East Coast ports. Across the whole period the connection is moderate, about 0.5. But that's misleading. Through 2022 it was very strong, about 0.8. Since 2023 it has almost disappeared, about 0.1.</p>
+    <p>The general pressure index does even worse as a signal.</p>
+    <p>For a VP, this means: don't treat a jump in shipping rates as an automatic warning that you need to reroute. Rates did jump sharply in mid-2026, from about 3,100 dollars a container in April to about 7,800 in September. That's worth watching, but it's not a forecast.</p>
+    <p>The freight rates come from the Bureau of Transportation Statistics, which republishes an industry rate survey.</p>
+  </aside>
 </section>
 
 <!-- ======================= 09 VIEWS ======================= -->
@@ -360,6 +417,13 @@
         <h3>Small-multiples synthesis</h3><p>GSCPI, freight rate, and lane share layered together</p></div>
     </div>
   </div>
+  <aside class="notes">
+    <p>These are the three charts we built, and all three line up on the same calendar.</p>
+    <p>The first is the history of the pressure index, with each disruption marked so you can compare their size and length.</p>
+    <p>The second shows what share of cargo comes in through each coast over time.</p>
+    <p>The third, our centerpiece, stacks everything together: the pressure index, cargo share by coast, shipping rates, and the number of ships waiting outside ports. You can read straight down one moment in time and see how each piece reacted.</p>
+    <p>Why one shared timeline: our VP shouldn't have to piece together cause and effect across separate charts. Lined up, you can see that the 2021 port jam came with a big shift east, while the 2023 canal problems barely registered anywhere.</p>
+  </aside>
 </section>
 
 <!-- ======================= 10 LIMITS ======================= -->
@@ -374,6 +438,14 @@
       <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p><strong>Four comparable disruption episodes</strong> is a pattern worth charting, not a proven causal result.</p></div>
     </div>
   </div>
+  <aside class="notes">
+    <p>We want to be upfront about what this can and can't tell you.</p>
+    <p>First, in 2023 two things overlap: the Panama Canal drought started just as the 2022 West Coast jam was clearing, so we can't fully separate their effects. The canal and Red Sea problems also overlapped each other.</p>
+    <p>Second, imports from China dropped sharply in 2025 when new tariffs arrived, so the percentages for 2025 and 2026 jump around more.</p>
+    <p>Third, government data arrives two to three months late, so we're always looking slightly in the rear-view mirror.</p>
+    <p>Fourth, and most important: we only have four disruption episodes to learn from. That's enough to see a consistent pattern worth acting on, but not enough to prove cause and effect.</p>
+    <p>And as mentioned, the route data covers imports from China only.</p>
+  </aside>
 </section>
 
 <!-- ======================= 11 AI ======================= -->
@@ -388,6 +460,12 @@
         <ul><li>Framing</li><li>Lane definition</li><li>How to split the work</li></ul></div>
     </div>
   </div>
+  <aside class="notes">
+    <p>We used an AI coding assistant, Claude Code, for the heavy lifting on data.</p>
+    <p>It pulled all three data sources and checked them. That caught real problems: one dataset we planned to use had quietly stopped updating years ago, and an early query was returning year-to-date running totals instead of monthly numbers, which would have distorted everything. It also flagged the Mexico idea as a dead end.</p>
+    <p>But the team made every decision: how to frame the question, how to define the two routes, and how to split up the work.</p>
+    <p>The takeaway is that AI made us faster and caught mistakes, while the judgment calls stayed with people.</p>
+  </aside>
 </section>
 
 <!-- ======================= 12 CLOSE ======================= -->
@@ -412,11 +490,19 @@
     </div>
     <p class="thanks">Thank you. <span>Questions?</span></p>
   </div>
+  <aside class="notes">
+    <p>To wrap up with what this means for our VP: no single route is always the safe one.</p>
+    <p>East and Gulf Coast ports protected companies when West Coast ports jammed. West Coast ports held up better when the canal or the Red Sea was the problem. That suggests spreading imports across both coasts works as a hedge, because each route covers the other's weak spot.</p>
+    <p>And 2026 so far looks more like the canal-and-route type of disruption than a port jam.</p>
+    <p>The usual caution applies: four episodes give us a pattern, not proof.</p>
+    <p>All the code and data are public in the repository on screen, and the team's emails are there too. Happy to take questions.</p>
+  </aside>
 </section>
 
 </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/plugin/notes/notes.min.js"></script>
 <script>
   Reveal.initialize({
     width: 1280,
@@ -429,7 +515,8 @@
     slideNumber: false,        // each slide carries its own "NN / 12" manifest number
     transition: "slide",
     backgroundTransition: "none",
-    pdfMaxPagesPerSlide: 1     // print: open with ?view=print, then browser Print -> Save as PDF
+    pdfMaxPagesPerSlide: 1,    // print: open with ?view=print, then browser Print -> Save as PDF
+    plugins: [ RevealNotes ]   // press S to open speaker view with each slide's notes
   });
 </script>
 </body>
