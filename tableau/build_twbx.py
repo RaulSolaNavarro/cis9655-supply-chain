@@ -1,13 +1,14 @@
 """Generate tableau/supply_chain_resilience.twbx from the CSVs in tableau/data/.
 
-UNTESTED IN TABLEAU. The .twb XML below is written from the documented shape
-of Tableau 2018.1+ workbooks (federated textscan connections, column-instance
-shelf references, dual-axis panes, dashboard zones, a filter action, and a
-storyboard). It has not been opened in Tableau Desktop. tableau/BUILD_GUIDE.md
-is the reliable path; this file is a best-effort shortcut. validate() checks
-only what can be checked offline: well-formed XML, every field a sheet uses is
-declared in its datasource, every sheet the dashboard/action/story names
-exists, and the packaged CSV paths resolve.
+CONFIRMED BROKEN, NOT JUST UNTESTED. Tableau Desktop refuses to load the output
+(error D2E8DA72: schema errors on the reference-line elements and the
+storyboard window element). Don't use the output or try to repair it; build
+from tableau/BUILD_GUIDE.md. This script is kept only as a record of the
+attempt. The .twb XML was written from memory of the Tableau 2018.1+ format,
+not checked against Tableau's schema. validate() checks only what can be
+checked offline (well-formed XML, every field a sheet uses is declared in its
+datasource, every sheet the dashboard/action/story names exists, packaged CSV
+paths resolve) and passes despite the schema errors.
 
 Colors (hex), the same as tableau/build_tableau_data.py and the q1-q4 scripts:
   Pacific-direct / LA-LB / GSCPI   #2a78d6
