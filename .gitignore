@@ -7,10 +7,6 @@ __pycache__/
 # Secrets
 .env
 
-# Downloaded data is reproducible via scripts/; keep folders, not contents
-data/raw/*
-!data/raw/.gitkeep
-
 # OS / editor
 .DS_Store
 Thumbs.db
