@@ -1,0 +1,10 @@
+port,lane_group,congestion_window_peak,trough_index,trough_month,recovered_month,months_to_recover,latest_index,latest_month
+Los Angeles,Pacific-direct,129.0,77.0,2023-04,2023-06,2,126.0,2026-07
+Long Beach,Pacific-direct,135.0,81.0,2023-02,2023-05,3,136.0,2026-07
+Oakland,Pacific-direct,120.0,76.0,2023-03,2024-07,16,99.0,2026-07
+Sea-Tac,Pacific-direct,115.0,71.0,2023-03,2024-07,16,78.0,2026-07
+NY-NJ,Panama-dependent,136.0,95.0,2023-04,2023-05,1,125.0,2026-07
+Savannah,Panama-dependent,140.0,99.0,2023-04,2023-05,1,135.0,2026-07
+Port of VA,Panama-dependent,137.0,89.0,2023-04,2023-06,2,123.0,2026-07
+Charleston,Panama-dependent,150.0,107.0,2023-04,,0,113.0,2026-07
+Houston,Panama-dependent,173.0,133.0,2023-05,,0,176.0,2026-07
