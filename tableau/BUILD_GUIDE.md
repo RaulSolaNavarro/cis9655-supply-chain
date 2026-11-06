@@ -1,5 +1,7 @@
 # Building the project in Tableau Desktop
 
+> **The generated `supply_chain_resilience.twbx` / `.twb` is confirmed broken, not just untested.** Tableau Desktop refuses to load it (error D2E8DA72: schema errors on the `reference-line` elements and the storyboard `window` element), so don't use it or try to repair it; build from this guide.
+
 This guide rebuilds the project's four views, a linked dashboard, and a story in Tableau Desktop in about an hour. Use it if the course deliverable has to be a Tableau workbook. It doesn't depend on `supply_chain_resilience.twbx`. That file was generated without being tested in Tableau and may not open (see [About the .twbx](#about-the-twbx)).
 
 **Inputs:** the four CSVs in `tableau/data/`, built by `python tableau/build_tableau_data.py` from the same loaders as the q1–q4 charts. The hard parts are precomputed (window labels, band helper, map coordinates, marker sizes), so the build below uses **no calculated fields**.
