@@ -1,4 +1,5 @@
 pandas>=2.2
+matplotlib>=3.9
 requests>=2.32
 xlrd>=2.0        # GSCPI file is legacy .xls despite the .xlsx extension
 openpyxl>=3.1
