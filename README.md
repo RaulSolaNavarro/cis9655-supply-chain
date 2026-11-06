@@ -110,3 +110,5 @@ Census files keep monthly (`_MO`) fields only, renamed to `total_value_usd`, `ve
 - Shanghai→LA spot rate ($/40ft box) and weekly containership capacity calling at US ports.
 - The standalone BTS port datasets (`rd72-aq8r`, `iahn-a7j4`, `nfsh-p62e`) stop in 2022–2023. Don't use them for the disruption windows.
 - The explore.dot.gov Tableau dashboards block scripted access (HTTP 403).
+
+**Natural Earth outlines (maps only):** 1:110m land, countries, and US states GeoJSON in `data/raw/natural_earth/`, from [nvkelso/natural-earth-vector](https://github.com/nvkelso/natural-earth-vector) tag v5.1.2 (public domain). `scripts/map_outlines.py` reads them, and `scripts/port_locations.py` holds approximate coordinates for the 9 BTS ports.

@@ -10,6 +10,10 @@
 
 ![Loaded imports by port](port_throughput_small_multiples.png)
 
+![Map of the 9 ports](port_map.png)
+
+On the map, circle size is a **per-port proxy, not the berth backlog**. BTS counts waiting ships only for LA + Long Beach combined, Savannah, and all other ports, so there's no backlog figure for each of the 9 ports. Instead, each circle shows how far that port's loaded imports fell below its 2019 level at the 2022–23 low. That's the same trough as in the small multiples. The two backlog peaks BTS does publish are added as notes.
+
 ## Answer
 
 **Worst congestion: LA-LB.** An average of 103 ships waited for a berth in Jan 2022, more than all other US ports combined (62 at their Mar 2022 peak). Savannah was hit later: its backlog peaked at 39 in Aug 2022, as cargo shifted east (see Q2).
@@ -24,5 +28,6 @@
 
 - `build_port_charts.py`: builds both charts and the stats tables. Run `python q3-ports/build_port_charts.py`. It imports `WINDOWS` from `q1-pressure/build_gscpi_chart.py`, the same as Q2.
 - `port_backlog.png` and `port_throughput_small_multiples.png`: the charts.
+- `build_port_map.py` and `port_map.png`: the port map. Run it after `build_port_charts.py`, since it reads both stats CSVs. Port coordinates come from `scripts/port_locations.py`, and the outlines from Natural Earth via `scripts/map_outlines.py`. The LA and Long Beach markers are drawn offshore, with leader lines to their true locations, because the two ports are about 8 km apart.
 - `port_backlog_stats.csv`: backlog peak, months to clear (first month below 25% of peak), and the mean for each window.
 - `port_throughput_stats.csv`: for each port, the trough index between Jul 2022 and Dec 2023, months from that trough back to 100, and the latest value. Throughput uses a 3-month average indexed to each port's 2019 mean. Lane groups come from the Q2 Census lanes table.

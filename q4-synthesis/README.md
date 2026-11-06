@@ -4,6 +4,10 @@
 
 **Primary data:** Outputs of q1–q3, plus the Shanghai–LA spot rate from `data/processed/bts_port_indicators_2026-10-15.csv`
 
+![Two routes from China to the US](route_map.png)
+
+The route map shows why the two lane groups react to different disruptions. Pacific-direct cargo makes one short crossing, so its weak point is the West Coast ports themselves. Panama-dependent cargo travels about 1.9× as far and must pass through the canal. The map is a schematic: routes are great-circle legs between a few waypoints, so paths and distances are approximate.
+
 ![Synthesis small multiples](synthesis_small_multiples.png)
 
 > **Caveat: four episodes support a pattern, not a proven result.** The findings below rest on four disruption windows. Two of them (Panama and Red Sea) overlap and can't be separated, and the lane data is China-origin only. Demand swings, tariffs, and carrier decisions also move these series. Read this as a consistent pattern worth testing, not as established cause and effect.
@@ -31,4 +35,5 @@ The rate climbed from $3.1k in Apr 2026 to $7.8k in Sep 2026. If the 2021–22 r
 
 - `build_synthesis_chart.py`: builds the chart and lag table. Run `python q4-synthesis/build_synthesis_chart.py`. It imports the loaders from the Q1–Q3 scripts and `WINDOWS` from Q1, so all four charts use the same numbers and months.
 - `synthesis_small_multiples.png`: the chart. The freight rate sits in its own strip (2b) under the lane share rather than on a second y-axis.
+- `build_route_map.py` and `route_map.png`: the route schematic. Distances are computed along the drawn paths. Port and waypoint coordinates come from `scripts/port_locations.py`.
 - `lag_correlations.csv`: r between the freight rate or GSCPI at month t − lag and the Panama-dependent share at month t, for lags 0–12. The six-month row adds the split before and after 2023.
