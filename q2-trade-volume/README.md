@@ -18,7 +18,7 @@ Each line shows a lane group's share of China containerized import value across 
 - **Chokepoint shocks pulled it back west, but only a little.** During the Panama drought the share was flat (31.3% before and after). It had already been falling since its Nov 2022 peak, so the drought added no clear extra shift. Red Sea rerouting coincided with a 2.3-point drop to 28.7%, about the 2019 level. Because the Panama and Red Sea windows overlap, we can't separate the two.
 - **2026 also leans west:** down 2.7 points (32.9% → 30.2%), though month-to-month swings are large (38% in March, 28% in April).
 
-Congestion at the ports themselves moved far more cargo than canal or Suez constraints did. The unshaded early-2025 spike, likely tariff front-loading, is a reminder that policy shocks move these shares too.
+Congestion at the ports themselves moved far more cargo than canal or Suez constraints did. The unshaded early-2025 spike is unexplained and we haven't investigated it. It may be tariff-related, but that's a guess, not a finding.
 
 ## Files
 
