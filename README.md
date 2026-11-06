@@ -28,6 +28,7 @@ data/raw/          downloaded source files (committed, so EDA needs no API key; 
 data/processed/    cleaned, analysis-ready tables (committed)
 scripts/           shared data download / validation scripts
 q1-pressure/ … q4-synthesis/   per-question analysis, notebooks, figures
+tableau/           Tableau-ready CSVs, a generated (untested) .twbx, and BUILD_GUIDE.md for building it by hand
 ```
 
 ## Setup

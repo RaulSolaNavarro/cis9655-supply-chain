@@ -1,0 +1,10 @@
+port,lat,lon,lane_group,trough_index,trough_month,slump_points,map_marker_size,dipped,months_to_recover,latest_index,latest_month,lalb_backlog_peak_ships,lalb_backlog_peak_month,savannah_backlog_peak_ships,savannah_backlog_peak_month
+Los Angeles,33.74,-118.27,Pacific-direct,77.0,2023-04,23.0,23.0,Yes,2,126.0,2026-07,102.6,2022-01,,
+Long Beach,33.75,-118.19,Pacific-direct,81.0,2023-02,19.0,19.0,Yes,3,136.0,2026-07,102.6,2022-01,,
+Oakland,37.8,-122.32,Pacific-direct,76.0,2023-03,24.0,24.0,Yes,16,99.0,2026-07,,,,
+Sea-Tac,47.42,-122.38,Pacific-direct,71.0,2023-03,29.0,29.0,Yes,16,78.0,2026-07,,,,
+NY-NJ,40.68,-74.15,Panama-dependent,95.0,2023-04,5.0,5.0,Yes,1,125.0,2026-07,,,,
+Savannah,32.12,-81.14,Panama-dependent,99.0,2023-04,1.0,1.0,Yes,1,135.0,2026-07,,,39.4,2022-08
+Port of VA,36.92,-76.33,Panama-dependent,89.0,2023-04,11.0,11.0,Yes,2,123.0,2026-07,,,,
+Charleston,32.8,-79.93,Panama-dependent,107.0,2023-04,0.0,1.0,No,0,113.0,2026-07,,,,
+Houston,29.68,-95.01,Panama-dependent,133.0,2023-05,0.0,1.0,No,0,176.0,2026-07,,,,
