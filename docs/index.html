@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Global Supply Chain Resilience</title>
-<meta name="description" content="CIS 9655 team pitch: tracking freight disruption and lane shifts, 2019-2026.">
+<meta name="description" content="CIS 9655 final presentation: Global Supply Chain Resilience.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reset.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/5.1.0/reveal.min.css">
 <style>
@@ -174,6 +174,17 @@
   @media print {
     html, body, .reveal, .pdf-page { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
   }
+
+  /* ---- Final deck: embedded chart images ---- */
+  /* Charts are rendered on a light background, so they sit in a light frame on the navy slide */
+  .reveal .slides section img.fig { display: block; margin: 0; max-width: 100%; max-height: none; width: 100%; height: auto;
+    box-sizing: border-box; background: #fcfcfb; border: 1px solid var(--rule); border-top: 4px solid var(--teal); padding: 6px; }
+  .fig-grid { display: grid; grid-template-columns: 1.75fr 1fr; gap: 30px; align-items: start; }
+  .points { display: grid; gap: 12px; }
+  .points .box { font-size: 0.6em; }
+  .points .box p { color: var(--ink); }
+  .caveat { font-size: 0.5em; color: var(--muted); border-left: 3px solid var(--orange); padding: 4px 0 4px 12px; margin: 0; }
+  .crew-qs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; }
 </style>
 </head>
 <body>
@@ -186,317 +197,178 @@
     <defs>
       <pattern id="ribs" width="8" height="10" patternUnits="userSpaceOnUse"><path d="M4 0v10" stroke="#e9eff5" stroke-width="1.4"/></pattern>
     </defs>
-    <!-- dotted great-circle routes -->
     <g fill="none" stroke="#0ea5a3" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round">
       <path d="M-40 250 C 300 80, 700 90, 1320 230"/>
       <path d="M-40 330 C 380 200, 820 230, 1320 360"/>
       <path d="M-40 150 C 260 40, 980 10, 1320 120"/>
     </g>
-    <!-- container stacks along the quay -->
     <g stroke="#e9eff5" stroke-width="2">
       <g fill="#0ea5a3"><rect x="760" y="560" width="120" height="56"/><rect x="890" y="560" width="120" height="56"/><rect x="1020" y="560" width="120" height="56"/><rect x="1150" y="560" width="120" height="56"/></g>
       <g fill="#ff6b35"><rect x="825" y="498" width="120" height="56"/><rect x="955" y="498" width="120" height="56"/><rect x="1085" y="498" width="120" height="56"/></g>
       <g fill="#0ea5a3"><rect x="890" y="436" width="120" height="56"/><rect x="1150" y="436" width="120" height="56"/></g>
       <g fill="url(#ribs)" stroke="none" opacity=".5"><rect x="770" y="566" width="500" height="44"/><rect x="835" y="504" width="370" height="44"/></g>
     </g>
-    <!-- gantry crane -->
     <g fill="none" stroke="#e9eff5" stroke-width="5">
       <path d="M700 616 V300 M780 616 V300 M660 300 H1180 M700 360 H780 M700 300 L780 360 M780 300 L700 360"/>
       <path d="M1000 300 V380 M985 380 H1015"/>
     </g>
   </svg>
-  <div class="manifest"><span class="no">01 / 12</span><span>CIS-9655 · PITCH</span></div>
+  <div class="manifest"><span class="no">01 / 08</span><span>CIS-9655 · FINAL</span></div>
   <div class="hero">
-    <div class="tag orange">Freight disruption · lane shifts</div>
     <h1>Global Supply Chain <span>Resilience</span></h1>
-    <p class="sub">Tracking freight disruption and lane shifts, 2019&ndash;2026</p>
-    <p class="course">CIS 9655 &middot; Data Visualization &middot; Prof. Lisa Santa-Coloma</p>
-    <div class="crew"><span>Jason Braverman</span><span>Paven Oommen</span><span>Raul Sola Navarro</span><span>Supriya Singh</span></div>
+    <p class="course" style="margin-top:1.2em">CIS 9655</p>
+    <div class="crew"><span>Jason Braverman</span><span>Paven Oommen</span><span>Supriya Singh</span><span>Raul Sola Navarro</span></div>
   </div>
   <aside class="notes">
-    <p>This project is about one practical question: when global shipping breaks down, where does the cargo go, and which shipping routes hold up?</p>
-    <p>We're a four-person team, and we looked at 2019 through 2026, a period with several major shipping disruptions back to back.</p>
-    <p>Why it matters: imagine you run supply chain for a company that imports from Asia. You have to decide whether to keep bringing goods in through one coast or spread them across several routes. That costs real money, so you want evidence that it pays off.</p>
-    <p>Everything we use is free, public government data, so anyone can check our work.</p>
+    <p><strong>Speaker:</strong> none — Jason starts talking as this is up. (~3s)</p>
   </aside>
 </section>
 
-<!-- ======================= 02 QUESTION ======================= -->
+<!-- ======================= 02 BUSINESS QUESTION ======================= -->
 <section class="data">
-  <div class="manifest"><span class="no">02 / 12</span><span>THE-QUESTION</span></div>
+  <div class="manifest"><span class="no">02 / 08</span><span>THE-QUESTION</span></div>
   <div class="stage">
-    <p class="question">Is the supply chain crisis <span>actually over?</span></p>
-    <div class="cols" style="grid-template-columns: 1.15fr 1fr; gap: 44px;">
-      <p class="lede">The NY Fed's own pressure index (<strong>GSCPI</strong>) is <span class="accent">still elevated as of September 2026</span>, well above its 2023 low.</p>
-      <p class="lede muted" style="font-size:0.8em">We're asking whether today's pressure follows a pattern the data has already seen, and whether cargo actually <span class="teal">reroutes between shipping lanes</span> when a chokepoint breaks.</p>
+    <p class="question">Is the supply-chain crisis <span>actually over?</span></p>
+    <div class="label" style="margin-bottom:14px">Four questions, one team</div>
+    <div class="crew-qs">
+      <div class="box"><span class="ribs"></span><div class="id">Q1 · Pressure</div><h3>Jason</h3></div>
+      <div class="box"><span class="ribs"></span><div class="id">Q2 · Lanes</div><h3>Paven</h3></div>
+      <div class="box"><span class="ribs"></span><div class="id">Q3 · Ports</div><h3>Supriya</h3></div>
+      <div class="box hot"><span class="ribs"></span><div class="id">Q4 · Synthesis</div><h3>Raul</h3></div>
     </div>
   </div>
   <aside class="notes">
-    <p>The headline question: is the supply chain crisis actually over?</p>
-    <p>The New York Federal Reserve publishes a monthly score called the Global Supply Chain Pressure Index, or GSCPI. Think of it as a stress thermometer for global shipping. It rolls shipping costs, delivery delays, and order backlogs into one number, where zero means normal.</p>
-    <p>In September 2026 it read about 1.3. That's well above normal and far above its 2023 low. It's still nowhere near the record of about 4.4 in late 2021, but it's the first real rise since then.</p>
-    <p>For a supply chain leader, the question is whether this new spike looks like one we've seen before, and if so, what happened to cargo routes last time.</p>
-    <p>The number comes straight from the New York Fed, which updates it every month.</p>
+    <p><strong>Jason</strong> · ~35s</p>
+    <p>"Everyone remembers 2021 — ships stuck outside LA, prices through the roof. The Fed's own pressure index says the system is still tenser than normal today, in 2026. So we asked: is a new crisis building, or does this just look like the ones we've already seen? We split that into four pieces: how much pressure there is overall, whether cargo actually shifts to different ports when a route breaks, which ports get hit hardest, and which routes hold up best once you put it all together."</p>
   </aside>
 </section>
 
-<!-- ======================= 03 TEAM QUESTIONS ======================= -->
+<!-- ======================= 03 DATA & APPROACH ======================= -->
 <section class="data">
-  <div class="manifest"><span class="no">03 / 12</span><span>SUB-QUESTIONS</span></div>
+  <div class="manifest"><span class="no">03 / 08</span><span>CARGO-MANIFEST</span></div>
   <div class="stage">
-    <h2>Four questions, <em>one team</em></h2>
-    <div class="cols-2x2">
-      <div class="box"><span class="ribs"></span><div class="id">Q1 · Pressure</div><h3>Jason Braverman</h3><p>How has overall pressure moved across the three major disruptions, and what's driving the renewed 2026 pressure?</p></div>
-      <div class="box"><span class="ribs"></span><div class="id">Q2 · Lanes</div><h3>Paven Oommen</h3><p>Does cargo measurably shift between chokepoint-dependent ports and direct ports, and does that depend on the disruption type?</p></div>
-      <div class="box"><span class="ribs"></span><div class="id">Q3 · Ports</div><h3>Supriya Singh</h3><p>Which ports saw the worst congestion and fastest recovery?</p></div>
-      <div class="box hot"><span class="ribs"></span><div class="id">Q4 · Synthesis</div><h3>Raul Sola Navarro</h3><p>Combining all three, which lanes held up best against which disruptions?</p></div>
-    </div>
-  </div>
-  <aside class="notes">
-    <p>We split the big question into four smaller ones, one per team member.</p>
-    <p>Jason looked at overall pressure. The finding: the 2021 to 2022 spike was by far the biggest and longest. The 2023 to 2024 problems at the Panama Canal and in the Red Sea barely moved the overall index. And 2026 is the first real rise since, about 40 percent the size of the 2021 peak, and it hasn't faded yet.</p>
-    <p>Paven looked at whether cargo actually changes routes. It does, and which way it moves depends on what kind of disruption it is.</p>
-    <p>Supriya looked at individual ports. Los Angeles and Long Beach had the worst jam but bounced back fastest. Seattle-Tacoma still hasn't recovered, and Houston grew the most.</p>
-    <p>Raul pulled it all together to answer which routes held up best against which kind of disruption.</p>
-  </aside>
-</section>
-
-<!-- ======================= 04 AUDIENCE ======================= -->
-<section class="data">
-  <div class="manifest"><span class="no">04 / 12</span><span>CONSIGNEE</span></div>
-  <div class="stage">
-    <h2>Who this is <em>for</em></h2>
-    <div class="persona">
-      <svg viewBox="0 0 220 220" aria-hidden="true">
-        <rect x="10" y="110" width="200" height="96" fill="#102b45" stroke="#0ea5a3" stroke-width="3"/>
-        <path d="M30 120v76M50 120v76M70 120v76M90 120v76M130 120v76M150 120v76M170 120v76M190 120v76" stroke="#93a9be" stroke-width="2" opacity=".6"/>
-        <path d="M110 112v94" stroke="#0ea5a3" stroke-width="3"/>
-        <circle cx="110" cy="52" r="26" fill="none" stroke="#ff6b35" stroke-width="4"/>
-        <path d="M66 108c4-20 22-30 44-30s40 10 44 30" fill="none" stroke="#ff6b35" stroke-width="4"/>
-      </svg>
+    <h2>Data &amp; <em>approach</em></h2>
+    <div class="fig-grid" style="grid-template-columns: 1fr 1.55fr;">
+      <div class="points">
+        <div class="box"><div class="id">SRC-01</div><p>NY Fed pressure index (1998–2026)</p></div>
+        <div class="box"><div class="id">SRC-02</div><p>US Customs import records, by port</p></div>
+        <div class="box"><div class="id">SRC-03</div><p>Transportation-dept. ship-backlog &amp; freight-rate feed (weekly)</p></div>
+      </div>
       <div>
-        <p class="who">A mid-market retailer's or manufacturer's <span class="accent">VP of Supply Chain or Sourcing Strategy</span>, deciding whether to diversify shipping lanes or supplier regions.</p>
-        <p class="muted" style="font-size:0.72em">Freight cost and lead-time volatility hits their inventory planning and working capital directly.</p>
-        <div class="pain"><span>Freight cost</span><span>Lead time</span><span>Inventory</span><span>Working capital</span></div>
+        <img class="fig" src="assets/route_map.png" alt="Route map: Pacific-direct vs. Panama-dependent routes from China to US ports">
+        <p class="footnote" style="font-size:0.52em">We tested Mexico as a stand-in for Panama Canal traffic — dropped it once we found 90% of that trade moves by truck and rail, not ship.</p>
       </div>
     </div>
   </div>
   <aside class="notes">
-    <p>This is who we built it for: a vice president of supply chain or sourcing at a mid-sized retailer or manufacturer.</p>
-    <p>That person lives with two pains. Shipping costs that swing wildly, and delivery times nobody can predict. Both hit how much inventory they have to hold and how much cash gets tied up waiting for goods.</p>
-    <p>Their decision is whether to spread imports across more shipping routes, or more supplier countries. Diversifying isn't free: it means new contracts, new warehouses, and new carriers. So they need to know when it would actually have protected them.</p>
-    <p>Every chart in this project is meant to answer that person's question, not an academic one.</p>
+    <p><strong>Paven</strong> · ~45s</p>
+    <p>"We pulled three real datasets: the Fed's pressure index back to 1998, US Customs records of what's imported through which port, and a transportation feed that tracks ships waiting outside ports and shipping rates, updated weekly. To talk about routes, we split ports into two groups — ports you can reach straight across the Pacific, and ports you can only reach through the Panama Canal, which is almost twice the distance. We almost used Mexico as a stand-in for Panama Canal traffic, but caught that 90% of that trade moves by truck and rail, not ship, so we dropped it."</p>
   </aside>
 </section>
 
-<!-- ======================= 05 DATA ======================= -->
+<!-- ======================= 04 Q1 PRESSURE ======================= -->
 <section class="data">
-  <div class="manifest"><span class="no">05 / 12</span><span>CARGO-MANIFEST</span></div>
+  <div class="manifest"><span class="no">04 / 08</span><span>Q1 · PRESSURE · JASON</span></div>
   <div class="stage">
-    <h2>Three validated <em>data sources</em></h2>
-    <div class="tag">Pulled and checked, not just proposed</div>
-    <div class="cols-3">
-      <div class="box"><span class="ribs"></span><div class="id">SRC-01 · NY Fed</div><h3>GSCPI</h3><p>Monthly, Jan 1998 to Sep 2026</p></div>
-      <div class="box"><span class="ribs"></span><div class="id">SRC-02 · US Census</div><h3>Trade-by-port API</h3><p>Monthly, Jan 2019 to Aug 2026, by port of unlading</p></div>
-      <div class="box"><span class="ribs"></span><div class="id">SRC-03 · BTS</div><h3>Supply Chain &amp; Freight Indicators</h3><p>Weekly updates, 9 major ports, ship-backlog counts and the Shanghai-to-LA freight rate</p></div>
-    </div>
-  </div>
-  <aside class="notes">
-    <p>We use three public data sources, and we actually pulled and checked each one instead of just listing it in a proposal.</p>
-    <p>First, the New York Fed's pressure index, monthly, going back to 1998.</p>
-    <p>Second, the US Census Bureau's trade records, which show the value of goods arriving at each US port every month.</p>
-    <p>Third, the Bureau of Transportation Statistics, which tracks how many ships are waiting outside major ports, how many containers each port handles, and what it costs to ship one container from Shanghai to Los Angeles.</p>
-    <p>Why these: they're official, free, updated regularly, and anyone can verify them. "Validated" means we checked the dates, the units, and the gaps in each one before trusting it.</p>
-  </aside>
-</section>
-
-<!-- ======================= 06 LANES ======================= -->
-<section class="data">
-  <div class="manifest"><span class="no">06 / 12</span><span>LANE-GROUP</span></div>
-  <div class="stage">
-    <h2>Defining a <em>lane</em></h2>
-    <svg class="lane-map" viewBox="0 0 1130 170" aria-label="Asia to West Coast directly across the Pacific; Asia to East and Gulf Coast via the Panama Canal">
-      <g font-family="ui-monospace, Consolas, monospace" font-size="15" letter-spacing="2" fill="#93a9be">
-        <text x="12" y="92">ASIA</text>
-        <text x="250" y="34" fill="#0ea5a3">PACIFIC-DIRECT</text>
-        <text x="455" y="160" fill="#ff6b35">PANAMA-DEPENDENT</text>
-        <text x="1010" y="40">WEST</text><text x="1010" y="58">COAST</text>
-        <text x="1010" y="142">EAST /</text><text x="1010" y="160">GULF</text>
-      </g>
-      <circle cx="90" cy="86" r="10" fill="#e9eff5"/>
-      <path d="M100 80 C 380 30, 700 30, 990 44" fill="none" stroke="#0ea5a3" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/>
-      <path d="M100 92 C 380 140, 600 140, 700 128 S 900 138, 990 140" fill="none" stroke="#ff6b35" stroke-width="4" stroke-dasharray="3 10" stroke-linecap="round"/>
-      <!-- canal lock marker -->
-      <g transform="translate(700 128)"><rect x="-16" y="-14" width="32" height="28" fill="#0a1f33" stroke="#ff6b35" stroke-width="3"/><path d="M-6 -14v28M6 -14v28" stroke="#ff6b35" stroke-width="2"/></g>
-      <text x="676" y="104" font-family="ui-monospace, Consolas, monospace" font-size="13" letter-spacing="2" fill="#ff6b35">PANAMA</text>
-      <!-- ship silhouette -->
-      <g transform="translate(640 30)" fill="#0ea5a3"><path d="M-30 4 h60 l-8 12 h-44z"/><rect x="-18" y="-8" width="10" height="12"/><rect x="-6" y="-8" width="10" height="12"/><rect x="6" y="-8" width="10" height="12"/></g>
-      <rect x="990" y="30" width="12" height="24" fill="#0ea5a3"/><rect x="990" y="128" width="12" height="24" fill="#ff6b35"/>
-    </svg>
-    <div class="cols">
-      <div class="portlist"><b class="accent">Panama-dependent</b>NY/NJ &middot; Savannah &middot; Port of Virginia &middot; Charleston &middot; Houston</div>
-      <div class="portlist"><b class="teal">Pacific-direct</b>Los Angeles &middot; Long Beach &middot; Oakland &middot; Seattle-Tacoma</div>
-    </div>
-    <p class="footnote">We dropped Mexico as a stand-in for Panama Canal trade once we found about 90% of it isn't ocean freight (mostly truck and rail).</p>
-  </div>
-  <aside class="notes">
-    <p>Here's what we mean by a lane. Goods from Asia reach the US one of two ways.</p>
-    <p>The short way goes straight across the Pacific to West Coast ports like Los Angeles, Long Beach, Oakland, and Seattle-Tacoma. We call that Pacific-direct.</p>
-    <p>The long way goes through the Panama Canal to East and Gulf Coast ports like New York-New Jersey, Savannah, Virginia, Charleston, and Houston. We call that Panama-dependent.</p>
-    <p>We grouped ports this way because that is the real choice our VP faces: which coast to bring goods into. The Census data tells us exactly which port each shipment was unloaded at, so we can sort every shipment into one of the two groups.</p>
-    <p>We focused on imports from China, a major source of US ocean imports, so we can't yet say whether other countries show the same pattern.</p>
-    <p>One idea we dropped: we first thought trade with Mexico could stand in for Panama Canal traffic. But about 90 percent of it moves by truck and train, not ship, so it tells us nothing about the canal.</p>
-  </aside>
-</section>
-
-<!-- ======================= 07 FINDING ======================= -->
-<section class="data">
-  <div class="manifest"><span class="no">07 / 12</span><span>EARLY-FINDING</span></div>
-  <div class="stage">
-    <h2>The early <em>finding</em></h2>
-    <p style="font-size:0.7em" class="muted">Panama-dependent share of China's import value</p>
-    <div class="rows">
-      <div class="row flat"><span class="k">Baseline</span><span class="arrow">&#9644;</span><span>Runs about <strong>30%</strong></span></div>
-      <div class="row up"><span class="k">West Coast jammed</span><span class="arrow">&#9650;</span><span><strong>Rises</strong>: cargo reroutes away from the jam</span></div>
-      <div class="row flat"><span class="k">Panama drought</span><span class="arrow">&#9644;</span><span><strong>Flat</strong>: 31.3% before and after</span></div>
-      <div class="row down"><span class="k">Red Sea hit</span><span class="arrow">&#9660;</span><span><strong>Falls</strong> 2.3 points: cargo drifts back west</span></div>
-      <div class="row now down"><span class="k">2026 so far</span><span class="arrow">&#9660;</span><span><strong>Falling</strong>, matching the Red Sea pattern</span></div>
-    </div>
-  </div>
-  <aside class="notes">
-    <p>This is the core finding about where cargo goes.</p>
-    <p>Normally, about 30 percent of the value of China's imports comes in through East and Gulf Coast ports, and the rest mostly through the West Coast.</p>
-    <p>When West Coast ports jammed up in 2021 and 2022, cargo shifted toward East Coast ports, rising from roughly 28 to about 37 percent. Shippers routed around the traffic jam.</p>
-    <p>When the trouble was the route itself, with the Panama Canal drought and attacks on ships in the Red Sea in 2023 and 2024, cargo drifted slightly back toward the West Coast. That shift was small, only a couple of points, and the canal drought alone barely moved it.</p>
-    <p>So far in 2026, cargo is leaning back toward the West Coast again, by about 3 points, which looks like the Red Sea pattern.</p>
-    <p>These numbers come from Census records of the value of containers from China unloaded at each port.</p>
-  </aside>
-</section>
-
-<!-- ======================= 08 CORRELATION ======================= -->
-<section class="data">
-  <div class="manifest"><span class="no">08 / 12</span><span>SIGNAL-CHECK</span></div>
-  <div class="stage">
-    <h2>What actually <em>moves together</em></h2>
-    <div class="bars">
-      <div class="bar">
-        <div class="meta"><span>Shanghai-to-LA freight rate, lagged six months</span><b class="accent">r = 0.48</b></div>
-        <div class="track"><div class="fill rate" style="width:48%"></div></div>
-      </div>
-      <div class="bar">
-        <div class="meta"><span>GSCPI, same month <span class="muted">(dashed: same six-month lag)</span></span><b class="teal">r = 0.08 <span class="muted">/ 0.28</span></b></div>
-        <div class="track"><div class="fill gscpi ghost" style="width:28%"></div><div class="fill gscpi" style="width:8%"></div></div>
-        <div class="scale"><span>0</span><span>0.25</span><span>0.50</span><span>0.75</span><span>1.0</span></div>
+    <h2>The index is still climbing, <em>not back to normal</em></h2>
+    <div class="fig-grid">
+      <img class="fig" src="assets/gscpi_disruption_windows.png" alt="Global Supply Chain Pressure Index, Jan 2019 to Sep 2026, with four shaded disruption windows">
+      <div class="points">
+        <div class="box hot"><div class="id">2021 peak</div><p><strong>4.43</strong> (all-time high)</p></div>
+        <div class="box"><div class="id">2023–24 shocks</div><p>Barely moved it (<strong>0.20</strong>)</p></div>
+        <div class="box hot"><div class="id">2026 so far</div><p><strong>1.81</strong> peak, <strong>1.28</strong> in Sept — about 40% of the 2021 peak and still elevated</p></div>
       </div>
     </div>
-    <p class="callout">The six-month freight-rate link held strongly through 2022 (r = 0.82) but has been weak since (r = 0.09), so it isn't a reliable predictor going forward.</p>
   </div>
   <aside class="notes">
-    <p>This slide tests whether shipping prices give an early warning of cargo changing routes.</p>
-    <p>Correlation just measures how closely two things move together, on a scale from zero, meaning no connection, to one, meaning they move in lockstep.</p>
-    <p>We compared the cost of shipping a container from Shanghai to Los Angeles six months earlier with how much cargo went to East Coast ports. Across the whole period the connection is moderate, about 0.5. But that's misleading. Through 2022 it was very strong, about 0.8. Since 2023 it has almost disappeared, about 0.1.</p>
-    <p>The general pressure index does even worse as a signal.</p>
-    <p>For a VP, this means: don't treat a jump in shipping rates as an automatic warning that you need to reroute. Rates did jump sharply in mid-2026, from about 3,100 dollars a container in April to about 7,800 in September. That's worth watching, but it's not a forecast.</p>
-    <p>The freight rates come from the Bureau of Transportation Statistics, which republishes an industry rate survey.</p>
+    <p><strong>Jason</strong> · ~55s</p>
+    <p>"This is that pressure index over time. Zero is normal, anything over 1 is clearly stressed. The 2021 port jam was the big one — it hit an all-time high in December 2021, and pressure stayed elevated for almost two years. The 2023 Panama drought and the Red Sea attacks barely moved this chart at all — real problems, but narrow ones, not system-wide. Now look at the right edge: pressure's been climbing again since late 2025, and as of this September it was still at about 40% of the 2021 peak and hasn't come back down. We shaded every disruption the same gray and labeled it by name, so your eye follows the trend first, not a rainbow of colors."</p>
   </aside>
 </section>
 
-<!-- ======================= 09 VIEWS ======================= -->
+<!-- ======================= 05 Q2 LANES ======================= -->
 <section class="data">
-  <div class="manifest"><span class="no">09 / 12</span><span>VIEW-PLAN</span></div>
+  <div class="manifest"><span class="no">05 / 08</span><span>Q2 · LANES · PAVEN</span></div>
   <div class="stage">
-    <h2>Three views, <em>one shared timeline</em></h2>
-    <div class="cols-3">
-      <div class="box view"><div class="id">VIEW-01</div>
-        <svg viewBox="0 0 300 110" aria-hidden="true"><path d="M10 80 L60 76 L90 40 L120 30 L150 70 L190 92 L230 78 L260 60 L290 64" fill="none" stroke="#0ea5a3" stroke-width="3"/><g fill="#ff6b35"><circle cx="120" cy="30" r="5"/><circle cx="260" cy="60" r="5"/></g><path d="M120 30 V12 M260 60 V40" stroke="#ff6b35" stroke-width="1.5" stroke-dasharray="3 3"/></svg>
-        <h3>Annotated GSCPI history</h3></div>
-      <div class="box view"><div class="id">VIEW-02</div>
-        <svg viewBox="0 0 300 110" aria-hidden="true"><path d="M10 90 H290" stroke="#93a9be" stroke-width="1"/><path d="M10 70 L50 72 L90 66 L120 46 L150 42 L180 58 L210 68 L240 56 L270 72 L290 68" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M10 70 L50 72 L90 66 L120 46 L150 42 L180 58 L210 68 L240 56 L270 72 L290 68 V90 H10z" fill="#ff6b35" opacity=".15"/></svg>
-        <h3>The lane-share chart</h3></div>
-      <div class="box view hot"><div class="id">VIEW-03 · Centerpiece</div>
-        <svg viewBox="0 0 300 110" aria-hidden="true"><g fill="none" stroke-width="2.5"><path d="M10 28 L80 22 L120 10 L170 26 L230 30 L290 22" stroke="#0ea5a3"/><path d="M10 64 L80 60 L120 46 L170 62 L230 50 L290 56" stroke="#e9eff5"/><path d="M10 98 L80 94 L120 88 L170 84 L230 96 L290 92" stroke="#ff6b35"/></g><path d="M10 38 H290 M10 74 H290" stroke="#93a9be" stroke-width="1" stroke-dasharray="2 4"/></svg>
-        <h3>Small-multiples synthesis</h3><p>GSCPI, freight rate, and lane share layered together</p></div>
+    <h2>Cargo does shift — <em>but which way depends on the disruption</em></h2>
+    <div class="fig-grid">
+      <img class="fig" src="assets/lane_share_disruption_windows.png" alt="Panama-dependent vs. Pacific-direct share of China-origin imports, with disruption windows">
+      <div class="points">
+        <div class="box hot"><div class="id">West Coast jam (2021–22)</div><p>Panama-dependent share <strong>28.3% → 36.7%</strong></p></div>
+        <div class="box"><div class="id">Panama drought alone</div><p>Flat (<strong>31.3% → 31.3%</strong>) — the real drop came from the overlapping Red Sea window</p></div>
+        <p class="caveat">Caveat: China-origin trade only</p>
+      </div>
     </div>
   </div>
   <aside class="notes">
-    <p>These are the three charts we built, and all three line up on the same calendar.</p>
-    <p>The first is the history of the pressure index, with each disruption marked so you can compare their size and length.</p>
-    <p>The second shows what share of cargo comes in through each coast over time.</p>
-    <p>The third, our centerpiece, stacks everything together: the pressure index, cargo share by coast, shipping rates, and the number of ships waiting outside ports. You can read straight down one moment in time and see how each piece reacted.</p>
-    <p>Why one shared timeline: our VP shouldn't have to piece together cause and effect across separate charts. Lined up, you can see that the 2021 port jam came with a big shift east, while the 2023 canal problems barely registered anywhere.</p>
+    <p><strong>Paven</strong> · ~52s</p>
+    <p>"This tracks what share of China's imports come through Panama-Canal-dependent ports versus West-Coast ports, month by month. Watch it rise during the 2021 jam — cargo clearly rerouted east, away from the clogged West Coast, by about 8 points. Now watch 2023–24: it barely moves. The Panama drought by itself changed nothing — the small drop we do see lines up with the Red Sea disruption instead, and since those two overlap, we're careful not to claim more than we can separate. One honest caveat: this is China-origin trade only, so we can't yet say it holds for cargo from anywhere else."</p>
   </aside>
 </section>
 
-<!-- ======================= 10 LIMITS ======================= -->
+<!-- ======================= 06 Q3 PORTS ======================= -->
 <section class="data">
-  <div class="manifest"><span class="no">10 / 12</span><span>HANDLE-WITH-CARE</span></div>
+  <div class="manifest"><span class="no">06 / 08</span><span>Q3 · PORTS · SUPRIYA</span></div>
   <div class="stage">
-    <h2>Being honest about <em>the limits</em></h2>
-    <div class="cols-2x2" style="gap:22px 36px">
-      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Two disruptions are tangled in <strong>2023</strong>: the Panama drought vs. the 2022 West Coast congestion unwinding.</p></div>
-      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>China's import value <strong>roughly halved in 2025</strong> alongside new tariffs, making 2025&ndash;26 shares noisier.</p></div>
-      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Our data runs <strong>two to three months</strong> behind present.</p></div>
-      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p><strong>Four comparable disruption episodes</strong> is a pattern worth charting, not a proven causal result.</p></div>
+    <h2>Where the rerouted cargo <em>actually landed</em></h2>
+    <div class="fig-grid" style="grid-template-columns: 1.28fr 1fr; gap: 20px; width: 96%;">
+      <img class="fig" src="assets/port_backlog.png" alt="Containerships awaiting a berth by port, from Jul 2021">
+      <img class="fig" src="assets/port_map.png" alt="Map of US ports; circle size is how far each port's volume fell below normal at the worst point">
+    </div>
+    <div class="cols" style="gap:20px; margin-top:14px;">
+      <div class="box hot" style="font-size:0.58em"><div class="id">LA–Long Beach</div><p><strong>103 ships</strong> waiting, Jan 2022 — more than every other US port combined</p></div>
+      <div class="box" style="font-size:0.58em"><div class="id">Recovery</div><p>West Coast ports recovered in 2–3 months; Sea-Tac still hasn't (as of July 2026)</p></div>
     </div>
   </div>
   <aside class="notes">
-    <p>We want to be upfront about what this can and can't tell you.</p>
-    <p>First, in 2023 two things overlap: the Panama Canal drought started just as the 2022 West Coast jam was clearing, so we can't fully separate their effects. The canal and Red Sea problems also overlapped each other.</p>
-    <p>Second, imports from China dropped sharply in 2025 when new tariffs arrived, so the percentages for 2025 and 2026 jump around more.</p>
-    <p>Third, government data arrives two to three months late, so we're always looking slightly in the rear-view mirror.</p>
-    <p>Fourth, and most important: we only have four disruption episodes to learn from. That's enough to see a consistent pattern worth acting on, but not enough to prove cause and effect.</p>
-    <p>And as mentioned, the route data covers imports from China only.</p>
+    <p><strong>Supriya</strong> · ~50s</p>
+    <p>"This is where that rerouted cargo actually landed. At the worst point, January 2022, over a hundred ships sat waiting outside LA and Long Beach at once — more than every other US port combined. Savannah got hit later, once cargo arrived from the reroute. The map tells the same story geographically. Circle size there is how far each port's volume fell below normal at the worst point — not literal wait times, because that number only exists for a couple of ports, and we were careful not to show a number the data can't back up. West Coast ports recovered in two to three months. Sea-Tac, in Seattle, still hasn't, as of this past July."</p>
   </aside>
 </section>
 
-<!-- ======================= 11 AI ======================= -->
+<!-- ======================= 07 Q4 SYNTHESIS ======================= -->
 <section class="data">
-  <div class="manifest"><span class="no">11 / 12</span><span>CREW-LOG</span></div>
+  <div class="manifest"><span class="no">07 / 08</span><span>Q4 · SYNTHESIS · RAUL</span></div>
   <div class="stage">
-    <h2>Where <em>AI</em> fit in</h2>
-    <div class="cols split">
-      <div class="box"><div class="id">Claude Code</div><h3>Pulled and validated all three data sources</h3>
-        <ul><li>Caught a dataset that had gone stale</li><li>Caught a year-to-date vs. monthly field mixup in an early Census query</li><li>Flagged a dead-end idea: Mexico as a Panama proxy</li></ul></div>
-      <div class="box hot"><div class="id">The team</div><h3>Made every call</h3>
-        <ul><li>Framing</li><li>Lane definition</li><li>How to split the work</li></ul></div>
+    <div class="fig-grid" style="grid-template-columns: 1fr 494px; gap: 30px; align-items: center;">
+      <div>
+        <h2 style="font-size:1.4em">Congestion and chokepoints <em>favor opposite routes</em></h2>
+        <div class="points">
+          <div class="box"><div class="id">Port congestion</div><p>Panama-dependent route held up best</p></div>
+          <div class="box"><div class="id">Chokepoint disruption (canal, Red Sea)</div><p>Pacific-direct route held up best</p></div>
+          <div class="box hot"><div class="id">2026 so far</div><p>Looks like the chokepoint pattern</p></div>
+          <p class="caveat">Freight-rate link: strong through 2022 (r = 0.82), weak since (r = 0.09) — not a reliable predictor now</p>
+        </div>
+      </div>
+      <img class="fig" src="assets/synthesis_small_multiples.png" alt="Small multiples on one shared timeline: GSCPI, lane share, lagged freight rate, and ships awaiting a berth">
     </div>
   </div>
   <aside class="notes">
-    <p>We used an AI coding assistant, Claude Code, for the heavy lifting on data.</p>
-    <p>It pulled all three data sources and checked them. That caught real problems: one dataset we planned to use had quietly stopped updating years ago, and an early query was returning year-to-date running totals instead of monthly numbers, which would have distorted everything. It also flagged the Mexico idea as a dead end.</p>
-    <p>But the team made every decision: how to frame the question, how to define the two routes, and how to split up the work.</p>
-    <p>The takeaway is that AI made us faster and caught mistakes, while the judgment calls stayed with people.</p>
+    <p><strong>Raul</strong> · ~54s</p>
+    <p>"Putting all three together: port congestion and chokepoint disruptions are opposite problems. Congestion favors the longer Panama route, because the short route is where the jam is. A canal or chokepoint problem favors the short Pacific route instead. 2026's renewed pressure looks like the second pattern so far. We also tested whether shipping rates predict this shift six months out — they did, strongly, through 2022, but that relationship's been weak ever since, so we're not using it to predict anything going forward. Three panels on one shared timeline, so you can see whether pressure, rates, and routing actually move together — instead of us just telling you they do."</p>
   </aside>
 </section>
 
-<!-- ======================= 12 CLOSE ======================= -->
-<section class="title">
-  <svg class="bg-motif" viewBox="0 0 1280 720" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g fill="none" stroke="#0ea5a3" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round">
-      <path d="M-40 520 C 300 380, 760 400, 1320 300"/><path d="M-40 600 C 420 470, 860 520, 1320 430"/>
-    </g>
-    <!-- cargo ship -->
-    <g transform="translate(880 470)">
-      <path d="M-20 60 H380 L340 120 H20z" fill="#16385a" stroke="#e9eff5" stroke-width="3"/>
-      <g stroke="#e9eff5" stroke-width="2"><g fill="#0ea5a3"><rect x="20" y="20" width="60" height="38"/><rect x="140" y="20" width="60" height="38"/><rect x="260" y="20" width="60" height="38"/></g><g fill="#ff6b35"><rect x="80" y="20" width="60" height="38"/><rect x="200" y="20" width="60" height="38"/><rect x="80" y="-20" width="60" height="38"/><rect x="200" y="-20" width="60" height="38"/></g></g>
-      <rect x="330" y="-30" width="34" height="88" fill="#16385a" stroke="#e9eff5" stroke-width="3"/>
-    </g>
-  </svg>
-  <div class="manifest"><span class="no">12 / 12</span><span>END-OF-MANIFEST</span></div>
-  <div class="hero">
-    <div class="tag orange">Full pitch and data</div>
-    <div class="links">
-      <div class="link-row"><span class="label">Repo &middot; public</span><a href="https://github.com/RaulSolaNavarro/cis9655-supply-chain">github.com/RaulSolaNavarro/cis9655-supply-chain</a></div>
-      <div class="link-row"><span class="label">Team email</span><span class="muted">Jason Braverman &middot; shlomo7braverman@gmail.com<br>Paven Oommen &middot; pavenmathew007@gmail.com<br>Supriya Singh &middot; supriyasingh0913@gmail.com<br>Raul Sola Navarro &middot; raul.solanavarro58@stu-mail.baruch.cuny.edu</span></div>
+<!-- ======================= 08 CONCLUSIONS, LIMITS, THANK YOU ======================= -->
+<section class="data">
+  <div class="manifest"><span class="no">08 / 08</span><span>END-OF-MANIFEST</span></div>
+  <div class="stage">
+    <h2>Conclusions &amp; <em>limits</em></h2>
+    <div class="cols-3" style="margin-bottom:22px">
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Only <strong>4</strong> comparable disruptions</p></div>
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p><strong>2</strong> of them overlap</p></div>
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p><strong>China-origin</strong> data only</p></div>
     </div>
-    <p class="thanks">Thank you. <span>Questions?</span></p>
+    <p class="callout" style="margin-bottom:28px">Bottom line: not back to 2019 normal; which route wins depends on the disruption type.</p>
+    <p class="thanks" style="margin:0 0 0.35em">Thank you. <span>Questions?</span></p>
+    <div class="link-row" style="max-width: 34em"><span class="label">Repo &middot; public</span><a href="https://github.com/RaulSolaNavarro/cis9655-supply-chain">github.com/RaulSolaNavarro/cis9655-supply-chain</a></div>
   </div>
   <aside class="notes">
-    <p>To wrap up with what this means for our VP: no single route is always the safe one.</p>
-    <p>East and Gulf Coast ports protected companies when West Coast ports jammed. West Coast ports held up better when the canal or the Red Sea was the problem. That suggests spreading imports across both coasts works as a hedge, because each route covers the other's weak spot.</p>
-    <p>And 2026 so far looks more like the canal-and-route type of disruption than a port jam.</p>
-    <p>The usual caution applies: four episodes give us a pattern, not proof.</p>
-    <p>All the code and data are public in the repository on screen, and the team's emails are there too. Happy to take questions.</p>
+    <p><strong>Supriya (limits)</strong> · ~20s</p>
+    <p>"Three honest limits. We only have four comparable disruptions, so this is a pattern worth watching, not a proven law. Two of them overlap, so we can't fully separate their effects. And our trade data covers China only, so we don't yet know if other countries behave the same way."</p>
+    <p><strong>Raul (conclusion + close)</strong> · ~20s</p>
+    <p>"So where this leaves us: the system isn't back to 2019 normal, and which route holds up next depends on what kind of disruption shows up. We'd want to check this against a second origin country before trusting it further. Thanks — happy to take questions."</p>
+    <p>Thank you / Questions: ~2s, transition straight to Q&amp;A.</p>
   </aside>
 </section>
 
@@ -513,7 +385,7 @@
     center: false,
     controls: true,
     progress: true,
-    slideNumber: false,        // each slide carries its own "NN / 12" manifest number
+    slideNumber: false,        // each slide carries its own "NN / 08" manifest number
     transition: "slide",
     backgroundTransition: "none",
     pdfMaxPagesPerSlide: 1,    // print: open with ?view=print, then browser Print -> Save as PDF

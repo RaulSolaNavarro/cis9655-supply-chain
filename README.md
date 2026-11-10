@@ -29,6 +29,10 @@ data/processed/    cleaned, analysis-ready tables (committed)
 scripts/           shared data download / validation scripts
 q1-pressure/ … q4-synthesis/   per-question analysis, notebooks, figures
 tableau/           Tableau-ready CSVs, BUILD_GUIDE.md for building the workbook by hand, and a generated .twbx that is confirmed broken (Tableau won't load it)
+docs/index.html    the final presentation deck (reveal.js, served by GitHub Pages; press S for speaker notes)
+docs/pitch.html    the earlier pitch deck, kept for history
+docs/assets/       the chart and map images embedded in the final deck (copies of the q1–q4 figures)
+presentation/      the full script with timing and speaker assignments, the Tableau team-build split, and the Q&A prep sheet
 ```
 
 ## Setup
