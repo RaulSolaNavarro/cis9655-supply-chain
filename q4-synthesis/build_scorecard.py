@@ -91,7 +91,7 @@ def build_chart(table: pd.DataFrame) -> Path:
     fig.patch.set_facecolor(SURFACE)
 
     n = len(table)
-    top, bottom = 0.80, 0.09
+    top, bottom = 0.80, 0.115
     # Column x-ranges in figure fractions: labels, three bar columns, text column.
     cols = {"label": (0.02, 0.27), "pressure": (0.285, 0.43),
             "shift": (0.455, 0.645), "ships": (0.67, 0.82),
@@ -190,6 +190,8 @@ def build_chart(table: pd.DataFrame) -> Path:
         fig.text(cols["moved"][0], y, r["cargo_moved"], fontsize=17,
                  fontweight="bold", color=color, va="center")
 
+    fig.text(0.02, 0.062, "Cargo shift for 2026 runs through Aug 2026, the latest trade data. "
+             "Pressure runs through Sep 2026.", fontsize=14, color=TEXT_SECONDARY)
     fig.text(0.02, 0.025, "Sources: NY Fed GSCPI; US Census Bureau imports "
              "(China-origin, containerized value); BTS Supply Chain and Freight "
              "Indicators.", fontsize=14, color=TEXT_SECONDARY)

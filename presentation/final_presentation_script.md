@@ -82,7 +82,7 @@
 **On screen:** Title "Where the rerouted cargo landed." Backlog line chart on the left, circle map on the right. One caption line about the 103 ships.
 
 **Say:**
-> "Two views. On the left, a line chart of ships waiting for a berth: blue is Los Angeles and Long Beach, orange is Savannah, gray is every other port. In January 2022, 103 ships were waiting at Los Angeles and Long Beach, more than at all the other ports. Savannah peaked later, at 39 ships in August 2022, after the rerouted cargo arrived. On the right, a map. Each circle is a port, placed where it really is. Circle size shows how far that port's volume fell below its 2019 level at the low point. We used size because wait counts exist for only two ports, and we did not want to fake precision. The biggest circles are on the West Coast. Los Angeles and Long Beach bounced back within three months, Oakland took sixteen, and Seattle-Tacoma, the seaport, is still below 2019."
+> "Two views. On the left, a line chart of ships waiting for a berth: blue is Los Angeles and Long Beach, orange is Savannah, gray is every other port. In January 2022, 103 ships were waiting at Los Angeles and Long Beach, more than at all the other ports. Savannah peaked later, at 39 ships in August 2022, after the rerouted cargo arrived. On the right, a map. Each circle is a port, placed where it really is. Circle size shows how far that port's volume fell below its 2019 level at the low point. We used size because wait counts exist for only two ports, and we did not want to fake precision. The biggest circles are on the West Coast. Los Angeles and Long Beach bounced back within three months. Oakland and Seattle-Tacoma took sixteen months each, and Seattle-Tacoma then slipped again. It is the one port still clearly below 2019."
 
 ---
 
@@ -94,7 +94,7 @@
 **Say:**
 > "This is the whole project on one page. Each row is a disruption. Each column is something we measured: pressure, how far cargo moved east or west, and how many ships waited at Los Angeles and Long Beach. Longer bar, bigger number, so you can read across a row. Top row, the 2021 jam: pressure 4.43, cargo moved east by 8 points, about 41 ships waiting on average. A big jam, and cargo went east. Next two rows, the canal drought and the Red Sea: small pressure, almost no waiting, and cargo flat or drifting west. Last row, 2026: pressure up, almost no ships waiting, cargo leaning west. So there are two patterns: a port jam pushes cargo east, and a chokepoint problem pushes it west. 2026 so far looks like the second one. We also tested shipping prices as a predictor. They matched through 2022, but not since, so we do not use them to forecast."
 
-*(Backup slides B1 to B4 hold the stacked-strips chart, the price scatter, and the route map. Do not open them unless asked.)*
+*(Backup slides B1 to B4 hold the stacked-strips chart, the price scatter, the port-volume small multiples, and a plain-English glossary. Do not open them unless asked.)*
 
 ---
 

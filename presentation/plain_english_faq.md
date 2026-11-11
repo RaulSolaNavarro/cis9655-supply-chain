@@ -78,9 +78,9 @@ In our data the Pacific ports were running above 2019 during the 2021-22 jam (in
 
 Why volume fell in 2023: our data does not say. A common explanation is that importers had over-ordered during the surge and then bought less, and some cargo moved east. We did not test either, so say "we did not test why."
 
-## 9. Do we know why Seattle-Tacoma hasn't recovered?
+## 9. Do we know why Seattle-Tacoma is still below 2019?
 
-Our data does not tell us why. It only shows that Seattle-Tacoma sat at an index of 78 in July 2026 (2019 = 100), after a low of 71 in March 2023. It is the only one of our nine ports still well below its 2019 level. (Oakland recovered after 16 months, though it still sits just under 2019 at 99.)
+Our data does not tell us why. It only shows that Seattle-Tacoma fell to a low of 71 in March 2023 (2019 = 100), got back to its 2019 level by July 2024 (16 months), and then fell again to 78 by July 2026. It is the one port of our nine still clearly below its 2019 level. (Oakland also took 16 months to recover, and it sits just under 2019 at 99.)
 
 Outside reporting gives context. Sea-Intelligence reports that the Northwest Seaport Alliance (Seattle and Tacoma) had the steepest decline of any major US West Coast port, with laden import volumes down 18.0% year on year in 2026-Q1, while Vancouver rose 9.0% and Prince Rupert 7.8%. The reasons it lists are trade friction, favourable rail routes from Canadian ports into the US Midwest, and shippers avoiding US West Coast labor and congestion risk. Source: [Sea-Intelligence, TP Realignment: NAWC 2026-Q1 Volume Analysis](https://sea-intelligence.com/press-room/387-tp-realignment-nawc-2026-q1-volume-analysis).
 
@@ -126,6 +126,6 @@ See [`visualization_decisions.md`](visualization_decisions.md). It walks each ch
 ## Two corrections we found while preparing (say so if asked)
 
 - The earlier deck said September 2026's reading of 1.28 was "about 40% of the 2021 peak." Checking the math: 1.28 / 4.43 is about 29%. The **40% figure is the 2026 peak of 1.81** (1.81 / 4.43 is about 41%). The deck and notes now say: peak 1.81 in May, 1.28 in September.
-- The earlier deck said "West Coast ports recovered in 2 to 3 months." That is true of Los Angeles (2) and Long Beach (3). **Oakland took 16 months and Seattle-Tacoma has not recovered.** The deck now says that.
+- The earlier deck said "West Coast ports recovered in 2 to 3 months." That is true of Los Angeles (2) and Long Beach (3). **Oakland and Seattle-Tacoma each took 16 months, and Seattle-Tacoma then fell back to 78 by July 2026, the one port clearly below 2019.** The deck now says that.
 
 Catching and fixing our own errors is exactly the "integrity" story the professor asked about. Use it.

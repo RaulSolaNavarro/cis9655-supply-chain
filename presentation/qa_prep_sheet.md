@@ -33,7 +33,7 @@ Questions can go to **any** of us, and everyone should be able to talk about the
 3. **A misattributed cause.** A drop in lane share had been pinned on the Panama drought. The data shows the drought alone left the share flat; the drop came in the overlapping Red Sea window. Fixed in the slide and the README.
 4. **An unsupported guess.** An early draft called a 2025 trade spike "likely tariff front-loading." We had no evidence, so the README says "that's a guess, not a finding."
 5. **A broken workbook.** A script generated a Tableau file that Tableau refused to open. We documented it as broken and built the workbook by hand from a step-by-step guide.
-6. **A recovery claim that was too broad.** "West Coast ports recovered in 2 to 3 months" was true of Los Angeles and Long Beach only. Oakland took 16 months and Seattle-Tacoma has not recovered.
+6. **A recovery claim that was too broad.** "West Coast ports recovered in 2 to 3 months" was true of Los Angeles and Long Beach only. Oakland and Seattle-Tacoma each took 16 months, and Seattle-Tacoma then fell back to 78 by July 2026, the one port clearly below 2019.
 
 ## "What alternatives did you consider and reject?"
 
@@ -73,7 +73,7 @@ Questions can go to **any** of us, and everyone should be able to talk about the
 | Is this about volume? | Lane share is dollar value. Port throughput and ships waiting are volumes and counts. |
 | Do ships waiting cause the reroute? | It is consistent with the data. The East and Gulf share also kept rising after the LA backlog cleared, and outside reporting cites West Coast labor worries, so we do not claim waiting ships are the only cause. |
 | Why did volume drop at some ports, and how does that tie to wait times? | Waits are high when too much arrives at once. Volume is low when too little arrives. In our data volume dropped below 2019 in spring 2023, after the waiting ended. We did not test why it dropped. |
-| Why has Seattle-Tacoma not recovered? | Our data does not say. Outside reporting shows its imports down 18.0% year on year in 2026-Q1 while Vancouver and Prince Rupert grew, with trade friction, Canadian rail routes, and labor and congestion worries cited. |
+| Why is Seattle-Tacoma still below 2019? | It got back to its 2019 level by July 2024 (16 months), then fell to 78 by July 2026. Our data does not say why. Outside reporting shows its imports down 18.0% year on year in 2026-Q1 while Vancouver and Prince Rupert grew, with trade friction, Canadian rail routes, and labor and congestion worries cited. |
 | What is a congestion versus a chokepoint? | Congestion blocks a destination (a port). A chokepoint blocks a path (the canal, the Red Sea). They push cargo in opposite directions. |
 | Do shipping prices predict the shift? | They did through 2022 (r 0.82) and do not since (r 0.09). One episode drove it, so we do not use it to forecast. |
 | What is your conclusion? | Not over, not 2021 again. Pressure above normal, ports clear, cargo leaning west. Which route holds up depends on the disruption type. A pattern to watch, not a proven law. |
