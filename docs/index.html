@@ -213,7 +213,10 @@
   .box.hot .stat { color: var(--orange); }
 
   /* Slide 7 */
-  .pattern-grid { display: grid; grid-template-columns: 730px 1fr; gap: 24px; align-items: start; }
+  /* Slide 7: full-width scorecard with a one-line strip of takeaways under it */
+  .strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
+  .strip .box { padding: 7px 14px; font-size: 0.5em; line-height: 1.3; color: var(--ink); white-space: nowrap; }
+  .strip .box .id { display: inline; margin: 0 0.7em 0 0; }
   .compact .box { padding: 7px 16px 8px; font-size: 0.56em; }
   .compact .box .id { margin-bottom: 2px; }
 
@@ -386,17 +389,15 @@
   <div class="manifest"><span class="no">07 / 08</span><span>Q4 · SYNTHESIS · RAUL</span></div>
   <div class="stage">
     <h2 style="font-size:1.3em; margin-bottom:0.4em">Port jams push cargo east. <em>Chokepoints push it west.</em></h2>
-    <div class="pattern-grid">
-      <img class="fig" src="assets/episode_scorecard.png" alt="Episode scorecard: four disruptions as rows; columns show peak pressure, cargo shift east or west, and ships waiting at Los Angeles and Long Beach">
-      <div class="points compact" style="gap:10px">
-        <div class="box hot"><div class="id">Port jam</div><p>Too much arrives at one port at once. Cargo moves east, away from the jam.</p></div>
-        <div class="box lane-blue"><div class="id">Chokepoint</div><p>A passage like the canal or the Red Sea is the problem. Cargo moves west, back to the short route.</p></div>
-        <p class="caveat">Shipping prices matched the shift through 2022 (r = 0.82) but not since (r = 0.09), so we do not use them to forecast.</p>
-      </div>
+    <img class="fig" src="assets/episode_scorecard.png" style="width:1070px; margin:0 auto" alt="Episode scorecard: four disruptions as rows; columns show peak pressure, cargo shift east or west, and ships waiting at Los Angeles and Long Beach">
+    <div class="strip">
+      <div class="box hot"><span class="id">Port jam</span>Cargo moves east, away from the jam.</div>
+      <div class="box lane-blue"><span class="id">Chokepoint</span>Cargo moves west, to the Pacific.</div>
+      <div class="box"><span class="id">Prices</span>r = 0.82 to 2022, 0.09 since</div>
     </div>
     <div class="readbar">
-      <p class="read"><b>How to read</b>Each row is a disruption. Each column is one thing we measured. Longer bar, bigger number. Read across a row to see whether the measures moved together.</p>
-      <p class="read why"><b>Why this chart</b>The earlier stacked chart made co-movement hard to see. This puts the evidence side by side. The stacked version is in the backup slides.</p>
+      <p class="read"><b>How to read</b>One row per disruption. Longer bar, bigger number.</p>
+      <p class="read why"><b>Why this chart</b>Shows co-movement the stacked strips hid (backup B1).</p>
     </div>
   </div>
   <aside class="notes">
