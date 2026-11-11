@@ -18,7 +18,7 @@ The route map shows why the two lane groups react to different disruptions. Paci
 
 **Chokepoint disruptions (Panama drought and Red Sea, 2023–24): the Pacific-direct lane held up best.** During the Panama drought alone, the Panama-dependent share stayed flat (31.3% before and after). The 2.3-point drop back to its 2019 level came in the overlapping Red Sea window. LA and Long Beach were back above 2019 volume by mid-2023. No port backed up (LA-LB averaged under 1 ship waiting) and GSCPI stayed near zero, so these were small, lane-specific shocks.
 
-**Renewed 2026 pressure looks like the chokepoint pattern so far.** GSCPI is elevated (1.81 peak, 1.28 in Sep), the share is leaning west (−2.7 points), and port backlogs are near record lows. Within Pacific-direct, LA and Long Beach are the resilient ports; Oakland recovered slowly and Sea-Tac hasn't recovered. Within Panama-dependent, Houston is the strongest.
+**Renewed 2026 pressure looks like the chokepoint pattern so far.** GSCPI is elevated (1.81 peak, 1.28 in Sep), the share is leaning west (−2.7 points), and port backlogs are near record lows. Within Pacific-direct, LA and Long Beach are the resilient ports; Oakland recovered slowly, and Seattle-Tacoma recovered once (Jul 2024) and then fell back to 78 in Jul 2026, the one port clearly below its 2019 level. Within Panama-dependent, Houston is the strongest.
 
 ## Freight rate at a six-month lag
 

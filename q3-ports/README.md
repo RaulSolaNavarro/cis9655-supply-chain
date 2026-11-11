@@ -1,4 +1,4 @@
-# Q3 — Port-level resilience
+# Q3: Port-level resilience
 
 **Question:** Which US ports saw the worst congestion, and which recovered fastest?
 
@@ -20,7 +20,7 @@ On the map, circle size is a **per-port proxy, not the berth backlog**. BTS coun
 
 **Backlogs cleared fastest at LA-LB and Savannah.** Both fell below a quarter of their peak within 5 months, versus 11 months for all other ports. LA-LB has stayed near zero since Dec 2022, but Savannah flared up again (14 ships in Sep 2023, 17 in Feb 2025).
 
-**The throughput slump hit Pacific ports hardest.** In early 2023, West Coast imports fell to 71–81% of their 2019 level, versus 89–99% for NY-NJ, Savannah, and Virginia. Charleston and Houston didn't dip below 100 at all after 2022. LA and Long Beach were back to 2019 volume within 2–3 months. Oakland took 16 months. Sea-Tac took 16 months and then fell back, and at 78 in Jul 2026 it's the one port that hasn't recovered. Houston grew the most, reaching 176.
+**The throughput slump hit Pacific ports hardest.** In early 2023, West Coast imports fell to 71–81% of their 2019 level, versus 89–99% for NY-NJ, Savannah, and Virginia. Charleston and Houston didn't dip below 100 at all after 2022. LA and Long Beach were back to 2019 volume within 2–3 months. Oakland took 16 months. Seattle-Tacoma took 16 months and then fell back, and at 78 in Jul 2026 it's the one port clearly below its 2019 level. Houston grew the most, reaching 176.
 
 **Later windows didn't congest ports.** During the Panama, Red Sea, and 2026 windows, LA-LB averaged under 1 ship waiting, Savannah about 3–5, and all other ports 5–12. By this measure, the 2026 pressure in Q1 isn't port congestion.
 

@@ -1,4 +1,4 @@
-# Q1 — Macro pressure trend
+# Q1: Macro pressure trend
 
 **Question:** How has the NY Fed's Global Supply Chain Pressure Index moved from before the pandemic through the recent disruptions, and how do the spikes compare in size and duration?
 

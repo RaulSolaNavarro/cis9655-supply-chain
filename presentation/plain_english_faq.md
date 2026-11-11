@@ -84,7 +84,7 @@ Our data does not tell us why. It only shows that Seattle-Tacoma fell to a low o
 
 Outside reporting gives context. Sea-Intelligence reports that the Northwest Seaport Alliance (Seattle and Tacoma) had the steepest decline of any major US West Coast port, with laden import volumes down 18.0% year on year in 2026-Q1, while Vancouver rose 9.0% and Prince Rupert 7.8%. The reasons it lists are trade friction, favourable rail routes from Canadian ports into the US Midwest, and shippers avoiding US West Coast labor and congestion risk. Source: [Sea-Intelligence, TP Realignment: NAWC 2026-Q1 Volume Analysis](https://sea-intelligence.com/press-room/387-tp-realignment-nawc-2026-q1-volume-analysis).
 
-Naming note: "Sea-Tac" in our charts means the **seaport** (the Northwest Seaport Alliance), not the airport. On slides, write "Seattle-Tacoma (the seaport)" the first time.
+Naming note: our charts and slides say "Seattle-Tacoma", meaning the **seaport** (the Northwest Seaport Alliance), not the airport. The data files and Tableau CSVs still use the short label "Sea-Tac" for the same port. On slides, write "Seattle-Tacoma (the seaport)" the first time.
 
 ## 10. Slide 07 explained
 

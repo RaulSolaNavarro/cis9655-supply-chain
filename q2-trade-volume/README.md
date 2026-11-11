@@ -1,4 +1,4 @@
-# Q2 — Trade volume impact
+# Q2: Trade volume impact
 
 **Question:** How have US trade volumes with key partners/regions shifted during the disruption windows, especially Asia-linked trade (Red Sea/Suez) and Latin America-linked trade (Panama Canal)?
 

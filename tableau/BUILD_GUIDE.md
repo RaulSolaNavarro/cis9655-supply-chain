@@ -187,7 +187,7 @@ For the throughput view, a reference line at **Constant `100`** (the 2019 level)
 3. Click **Duplicate**. On the new point, click a West Coast band on GSCPI, then click **Update** above the caption. Caption: **West Coast congestion: cargo shifted east**.
 4. Duplicate again. Ctrl-click a Panama-only month, an overlap month, and a Red Sea-only month → **Update**. Caption: **Panama drought and Red Sea: small westward drift**.
 5. Duplicate again. Click a 2026 band → **Update**. Caption: **2026: pressure up, ports clear**.
-6. Optional fifth point: the dashboard with the Port map tooltip open on Sea-Tac. Caption: **Pacific ports slumped hardest; Sea-Tac hasn't recovered**.
+6. Optional fifth point: the dashboard with the Port map tooltip open on Seattle-Tacoma (labeled Sea-Tac in the data). Caption: **Pacific ports slumped hardest; Seattle-Tacoma recovered in Jul 2024, then fell back to 78 in Jul 2026, the one port clearly below 2019**.
 
 Keep the captions close to the findings in the q1–q4 READMEs. In particular, the Panama drought alone left the lane share flat; the westward drop came during the Red Sea window.
 
