@@ -46,7 +46,7 @@ Three reasons, in order of how solid they are:
 2. **The data pull works one country at a time.** The Census port-level endpoint takes one country code per request (China is 5700), and each request is slow. One clean country beat several rushed ones.
 3. **Keeping the comparison clean.** Mixing countries would blend very different routes and trade rules into one line.
 
-The honest limit: we have not measured China's share of all US container imports, so we do not claim China is "most of" the trade. We call our result China-origin only and say it is unconfirmed for other countries. The next step we propose is to repeat it for a second origin country, such as Vietnam.
+How big is China's slice? It was the largest source of US goods imports through 2022, and still $439B in 2024, 13.4% of the total and second behind Mexico. It is shrinking: $215.0B in January to September 2026, 7.8% of US imports and fourth, behind Mexico, Canada and Taiwan. Sources: [Census, US trade with China](https://www.census.gov/foreign-trade/balance/c5700.html) and [Census, top trading partners](https://www.census.gov/foreign-trade/statistics/highlights/topyr.html). So our lens covers a shrinking slice of US trade. We call our result China-origin only and say it is unconfirmed for other countries. The next step we propose is to repeat it for a second origin country, such as Vietnam.
 
 ## 6. Were our decisions based on shipment volume? Is there enough data?
 
@@ -113,13 +113,31 @@ Naming note: our charts and slides say "Seattle-Tacoma", meaning the **seaport**
 1. **Episode scorecard (main slide).** One row per disruption, one column per measure (pressure, cargo shift, ship backlog), with a bar in each cell. Your eye reads across a row and sees at once whether the three measures rose together. It uses only our own numbers.
 2. **Rate scatter (backup).** One dot per month, shipping rate on the x axis, East and Gulf share on the y axis, two colors for "through 2022" and "2023 and later." You can see the tight line through 2022 and the shapeless cloud after it. That makes r = 0.82 versus 0.09 visible instead of just stated.
 
-**What is our conclusion?** In one breath: **"The crisis is not over, but this is not 2021 again. Pressure is still above normal, ports are clear, and cargo is leaning back west. History says which route holds up depends on the type of disruption: port jams push cargo east, canal and Red Sea problems push it west. That is a pattern from four episodes, so we call it worth watching, not proven."**
+**What is our conclusion?** In one breath: **"The crisis is not over, but it is a different crisis. 2021 was a port jam: pressure, freight costs and ships waiting all spiked, and cargo moved east. 2026 is a cost shock: pressure and freight rates are up, ports are clear, and cargo is leaning west. That is a pattern from four episodes, so we call it worth watching, not proven."** On freight costs: the Shanghai to Los Angeles rate went from $1,730 in February 2020 (the series starts there) to $11,730 in August 2021. For why 2026 looks this way, see answers 12 to 14: that part is outside reporting and a theory, not something our data tests.
 
 Raul delivers both the limits and the conclusion, so the close flows as one voice.
 
 ## 11. Where do we stand against the professor's guidelines?
 
 See [`visualization_decisions.md`](visualization_decisions.md). It walks each chart through the course vocabulary: data and task abstraction, marks and channels, expressiveness and effectiveness, graphical integrity, color, small multiples, narrative structure, and the map rules from the geovisualization lecture (proportional symbols, counts versus ratios).
+
+## 12. Why is pressure high in 2026 but ports are clear?
+
+**What our data shows.** The pressure score peaked at 1.81 in May 2026 and was 1.28 in September. The Shanghai to Los Angeles spot rate rose from $3,112 in April to $7,848 in September (per 40-ft box). But Los Angeles and Long Beach averaged under 1 ship waiting in 2026, against 103 at the January 2022 peak. So 2026 is not a port jam.
+
+**Theory (outside reporting, not tested in our data).** The Middle East war that began on February 28, 2026 effectively closed the Strait of Hormuz, roughly doubled bunker fuel prices, and sent ships the long way around the Cape ([Sea Vantage timeline](https://www.seavantage.com/blog/strait-of-hormuz-crisis-2026-shipping-disruption-timeline)). Higher fuel and longer routes raise costs and delivery times without filling US ports. The NY Fed itself did not say what drove the index ([Reuters, Oct 6 2026](https://finance.yahoo.com/economy/policy/articles/york-fed-says-supply-chain-143658302.html)).
+
+## 13. Do tariffs explain it?
+
+**What our data shows.** US goods imports from China fell from $440.3B in 2024 to $308.7B in 2025, and were $215.0B in January to September 2026 ([Census, US trade with China](https://www.census.gov/foreign-trade/balance/c5700.html)). China's share of US imports fell from 13.4% in 2024 (second, behind Mexico) to 7.8% so far in 2026 (fourth, behind Mexico, Canada and Taiwan) ([Census, top trading partners](https://www.census.gov/foreign-trade/statistics/highlights/topyr.html)). PIIE puts China's share at about 9% by the end of 2025 ([PIIE, Mar 16 2026](https://www.piie.com/blogs/realtime-economics/2026/trump-china-trade-wars-five-takeaways-us-imports-2025)).
+
+**Theory, not a result.** Fewer containers from China would help explain why West Coast ports are clear. Tariffs do not explain why pressure is higher. We did not test either link.
+
+## 14. What is the war's role?
+
+**Outside reporting, a theory, not our result.** Reuters reported that the pressure index hit its highest level in nearly four years in April 2026 (first reported as 1.82; our revised snapshot has 1.78), and that the rise coincides with the war, but the NY Fed did not explain it ([Reuters via PYMNTS, May 6 2026](https://www.pymnts.com/supply-chain/2026/fed-data-shows-global-supply-chain-pressure-hits-4-year-high/)). Xeneta reported Far East to US West Coast spot rates up 192% between February 28 and June 19, 2026, even though that lane does not pass through Hormuz, and expected full recovery no earlier than mid-September ([Xeneta, Jun 19 2026](https://www.xeneta.com/news/us-iran-deal-to-reopen-strait-of-hormuz-but-full-container-shipping-recovery-at-least-three-months-away)).
+
+**What to say if pushed.** The timing fits: our pressure score jumped from 0.63 in March to 1.78 in April. But it was already above zero before the war (0.47 in December 2025), and we have no data that separates the war from tariffs or anything else. Call it a theory.
 
 ---
 

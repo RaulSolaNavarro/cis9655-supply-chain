@@ -185,25 +185,32 @@ def set_rc() -> None:
 
 
 def build_backlog_chart(backlog: pd.DataFrame, stats: pd.DataFrame) -> Path:
+    """Ships waiting, sized for a half-slide panel: no subtitle, text about
+    35% larger than the other Q3 charts, and the x-axis starting where the
+    data starts (Jul 2021) so each year gets more width."""
     set_rc()
+    k = 1.35  # text scale relative to the other charts
+    plt.rcParams.update({"font.size": 10 * k})
     fig, (strip, ax) = plt.subplots(
         2, 1, figsize=(12, 6.4), sharex=True,
-        gridspec_kw={"height_ratios": [1, 5], "hspace": 0.04},
+        gridspec_kw={"height_ratios": [1, 5.4], "hspace": 0.04},
     )
     fig.patch.set_facecolor(SURFACE)
     pad = pd.Timedelta(days=15)
     last = backlog.index[-1]
+    x_lo = backlog.dropna(how="all").index[0] - pd.Timedelta(days=40)
 
     # Same window strip as Q1/Q2: overlapping Panama and Red Sea on separate rows.
     rows = [0, 1, 0, 0]
     for (name, start, end), row in zip(WINDOWS, rows):
         lo = pd.Timestamp(start)
         hi = pd.Timestamp(end) if end else last
-        strip.barh(row, (hi + pad) - (lo - pad), left=lo - pad, height=0.62,
+        strip.barh(row, (hi + pad) - (lo - pad), left=lo - pad, height=0.66,
                    color=BAND, edgecolor=SURFACE, linewidth=2)
         label = "2026 pressure" if end is None else name
-        strip.text(lo, row, f" {label}", va="center", ha="left",
-                   fontsize=9, color=TEXT_PRIMARY)
+        # Windows that start before the axis get their label at the axis edge.
+        strip.text(max(lo, x_lo), row, f" {label}", va="center", ha="left",
+                   fontsize=9 * k, color=TEXT_PRIMARY)
     strip.set_ylim(1.6, -0.6)
     strip.axis("off")
     strip.set_facecolor(SURFACE)
@@ -213,47 +220,46 @@ def build_backlog_chart(backlog: pd.DataFrame, stats: pd.DataFrame) -> Path:
     for group in BACKLOG_GROUPS:
         color = BACKLOG_COLORS[group]
         s = backlog[group]
-        ax.plot(s.index, s.values, color=color, lw=2, zorder=3,
+        ax.plot(s.index, s.values, color=color, lw=2.6, zorder=3,
                 solid_capstyle="round", label=group)
         r = stats.set_index("group").loc[group]
         peak = pd.Timestamp(r["peak_month"])
-        ax.plot(peak, r["peak_ships"], "o", ms=6, color=color, zorder=4,
+        ax.plot(peak, r["peak_ships"], "o", ms=8, color=color, zorder=4,
                 markeredgecolor=SURFACE, markeredgewidth=2)
         label = f"{group} peak {r['peak_ships']:.0f}\n({peak:%b %Y})"
         if group == "Savannah":
             # The other two lines crowd Savannah's peak; label it in open space.
             ax.annotate(label, (peak, r["peak_ships"]),
-                        xytext=(pd.Timestamp("2023-02-01"), 52),
-                        ha="left", va="center", fontsize=8.5,
+                        xytext=(pd.Timestamp("2023-01-15"), 55),
+                        ha="left", va="center", fontsize=8.5 * k,
                         color=TEXT_PRIMARY,
                         arrowprops={"arrowstyle": "-", "color": TEXT_SECONDARY,
-                                    "lw": 0.8, "shrinkA": 2, "shrinkB": 5})
+                                    "lw": 1, "shrinkA": 2, "shrinkB": 6})
         else:
-            ax.annotate(label, (peak, r["peak_ships"]), xytext=(8, 4),
-                        textcoords="offset points", ha="left", va="bottom",
-                        fontsize=8.5, color=TEXT_PRIMARY)
+            ax.annotate(label, (peak, r["peak_ships"]), xytext=(10, 0),
+                        textcoords="offset points", ha="left", va="center",
+                        fontsize=8.5 * k, color=TEXT_PRIMARY)
 
-    ax.legend(loc="upper right", frameon=False, fontsize=9, ncols=3)
-    ax.set_ylabel("Containerships awaiting a berth (monthly mean)")
-    ax.set_ylim(0, 120)
-    ax.set_xticks(pd.date_range("2021-01-01", last, freq="YS"))
+    ax.legend(loc="upper right", frameon=False, fontsize=9 * k, ncols=3,
+              handlelength=1.6, columnspacing=1.2, borderaxespad=0.2)
+    ax.set_ylabel("Ships waiting (monthly mean)")
+    ax.set_ylim(0, 112)
+    ax.set_xticks(pd.date_range("2022-01-01", last, freq="YS"))
     ax.xaxis.set_major_formatter(mdates.DateFormatter("%Y"))
-    ax.set_xlim(pd.Timestamp("2021-01-01") - pad * 2, last + pd.Timedelta(days=60))
+    ax.set_xlim(x_lo, last + pd.Timedelta(days=45))
 
     fig.suptitle("Ships waiting for a berth at US container ports, "
-                 f"Jul 2021 – {last:%b %Y}", x=0.07, ha="left", y=0.985,
-                 fontsize=14, fontweight="bold")
-    fig.text(0.07, 0.925, "BTS splits this count only into LA-LB, Savannah, and "
-             "all other ports; the series starts Jul 2021. Gap = no Oct 2025 data.",
-             fontsize=9.5, color=TEXT_SECONDARY)
-    fig.text(0.07, 0.015, "Source: BTS Supply Chain and Freight Indicators "
-             "(MARAD / Marine Exchange of SoCal).", fontsize=8,
-             color=TEXT_SECONDARY)
-    fig.subplots_adjust(left=0.07, right=0.97, top=0.9, bottom=0.08)
+                 f"Jul 2021 – {last:%b %Y}", x=0.065, ha="left", y=0.985,
+                 fontsize=14 * k, fontweight="bold")
+    fig.text(0.065, 0.012, "Source: BTS Supply Chain and Freight Indicators "
+             "(MARAD / Marine Exchange of SoCal). Gap: no Oct 2025 data.",
+             fontsize=8 * k, color=TEXT_SECONDARY)
+    fig.subplots_adjust(left=0.065, right=0.99, top=0.915, bottom=0.085)
 
     out = OUT_DIR / "port_backlog.png"
     fig.savefig(out, dpi=200, facecolor=SURFACE)
     plt.close(fig)
+    plt.rcParams.update({"font.size": 10})
     return out
 
 

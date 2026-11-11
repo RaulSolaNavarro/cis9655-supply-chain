@@ -15,6 +15,7 @@ compare by bar length down a column, and an episode reads across its row.
 Usage:  python q4-synthesis/build_scorecard.py
 """
 import importlib.util
+import textwrap
 from pathlib import Path
 
 import matplotlib
@@ -85,24 +86,25 @@ def load_table() -> pd.DataFrame:
 
 
 def build_chart(table: pd.DataFrame) -> Path:
-    """Wide layout (15 x 5.4 in) so the chart can span a full slide width.
+    """Squarer layout (11 x 6.5 in) for the left side of slide 7.
 
-    Text sizes are set so every label stays legible when the slide is shown
-    at half size: labels and values 19-21 pt, secondary lines 17 pt.
+    At about 760 px wide on the slide, the 18-21 pt labels and values render
+    as large as in a full-width chart. Row names and two column titles wrap
+    onto two lines so the four columns fit the narrower width.
     """
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 17,
                          "text.color": TEXT_PRIMARY})
-    W, H = 15, 5.4
+    W, H = 11, 6.5
     fig = plt.figure(figsize=(W, H))
     fig.patch.set_facecolor(SURFACE)
 
     n = len(table)
     # Vertical bands in figure fractions: header on top, footnotes at the bottom.
-    top, bottom = 0.735, 0.205
+    top, bottom = 0.725, 0.11
     # Column x-ranges in figure fractions: labels, three bar columns, text column.
-    cols = {"label": (0.012, 0.31), "pressure": (0.315, 0.44),
-            "shift": (0.46, 0.64), "ships": (0.66, 0.80),
-            "moved": (0.825, 0.995)}
+    cols = {"label": (0.012, 0.27), "pressure": (0.285, 0.43),
+            "shift": (0.45, 0.635), "ships": (0.655, 0.80),
+            "moved": (0.83, 0.995)}
     row_h = (top - bottom) / n
     y_mid = [top - row_h * (i + 0.5) for i in range(n)]
 
@@ -116,8 +118,10 @@ def build_chart(table: pd.DataFrame) -> Path:
 
     def header(key, title, unit):
         x0, _ = cols[key]
-        fig.text(x0, 0.92, title, fontsize=20, fontweight="bold", va="bottom")
-        fig.text(x0, 0.905, unit, fontsize=17, color=TEXT_SECONDARY, va="top",
+        # Titles sit on a shared baseline; two-line titles grow upward.
+        fig.text(x0, 0.885, title, fontsize=20, fontweight="bold", va="bottom",
+                 linespacing=1.05)
+        fig.text(x0, 0.875, unit, fontsize=16, color=TEXT_SECONDARY, va="top",
                  linespacing=1.1)
 
     # Faint row separators, except between the two overlapping windows,
@@ -129,44 +133,44 @@ def build_chart(table: pd.DataFrame) -> Path:
             continue
         y = top - row_h * i
         fig.add_artist(plt.Line2D([0.012, 0.995], [y, y], color=RULE, lw=1))
-    fig.add_artist(plt.Line2D([0.012, 0.995], [top + 0.012] * 2,
+    fig.add_artist(plt.Line2D([0.012, 0.995], [top + 0.01] * 2,
                               color=TEXT_SECONDARY, lw=1))
 
-    # Row labels: episode name and date range.
-    lx = 0.024
+    # Row labels: episode name (wrapped to two lines) and date range.
+    lx = 0.03
     for (_, r), y in zip(table.iterrows(), y_mid):
-        fig.text(lx, y + 0.03, r["window"], fontsize=19, fontweight="bold",
-                 va="center")
-        fig.text(lx, y - 0.04, f"{_month(r['start'])} to {_month(r['end'])}",
-                 fontsize=17, color=TEXT_SECONDARY, va="center")
-    # Bracket joining the overlapping Panama and Red Sea rows (explained in the footnote).
-    ya, yb = y_mid[i_pan] + 0.055, y_mid[i_red] - 0.065
-    bx = 0.014
+        fig.text(lx, y + 0.02, textwrap.fill(r["window"], 15), fontsize=18,
+                 fontweight="bold", va="center", linespacing=1.05)
+        fig.text(lx, y - 0.036, f"{_month(r['start'])} to {_month(r['end'])}",
+                 fontsize=16, color=TEXT_SECONDARY, va="top")
+    # Bracket beside the two overlapping windows (Panama and Red Sea).
+    ya, yb = y_mid[i_pan] + 0.065, y_mid[i_red] - 0.075
+    bx = 0.016
     fig.add_artist(plt.Line2D([bx, bx], [yb, ya], color=TEXT_SECONDARY, lw=2))
     for yy in (ya, yb):
-        fig.add_artist(plt.Line2D([bx, bx + 0.006], [yy, yy],
+        fig.add_artist(plt.Line2D([bx, bx + 0.008], [yy, yy],
                                   color=TEXT_SECONDARY, lw=2))
 
-    bar_h = 0.5
-    value_size = 21
+    bar_h = 0.42
+    value_size = 20
     # 1. Pressure: peak GSCPI, one shared scale starting at zero.
-    header("pressure", "Pressure", "Pressure score\n(peak)")
+    header("pressure", "Pressure", "Peak score")
     ax = column_axes("pressure")
     vmax = table["peak_gscpi"].max()
-    ax.set_xlim(0, vmax * 1.42)
+    ax.set_xlim(0, vmax * 1.62)
     for i, v in enumerate(table["peak_gscpi"]):
         ax.barh(i, v, height=bar_h, color=PRESSURE)
-        ax.text(v + vmax * 0.04, i, f"{v:.2f}", va="center", fontsize=value_size)
+        ax.text(v + vmax * 0.05, i, f"{v:.2f}", va="center", fontsize=value_size)
     ax.axvline(0, color=TEXT_PRIMARY, lw=1)
 
     # 2. Cargo shift: diverging from zero. Positive = toward East and Gulf.
-    header("shift", "Cargo shift", "East and Gulf share,\nchange (points)")
+    header("shift", "Cargo shift", "East and Gulf\nshare (points)")
     ax = column_axes("shift")
     # Uneven limits: most of the room goes to the long eastward bar.
     neg = -table["share_change_pp"].min()
     pos = table["share_change_pp"].max()
     lim = (neg + pos) * 0.8  # scale for the value-label offset
-    ax.set_xlim(-neg * 2.75, pos * 1.68)
+    ax.set_xlim(-neg * 3.1, pos * 2.0)
     for i, v in enumerate(table["share_change_pp"]):
         color = EAST if v > 0 else WEST
         ax.barh(i, v, height=bar_h, color=color)
@@ -177,36 +181,34 @@ def build_chart(table: pd.DataFrame) -> Path:
             ax.text(v - lim * 0.04, i, label, va="center", ha="right", fontsize=value_size)
     ax.axvline(0, color=TEXT_PRIMARY, lw=1)
     x0, x1 = cols["shift"]
-    fig.text(x0, top + 0.022, "← West", fontsize=17, color=WEST,
+    fig.text(x0, top + 0.02, "← West", fontsize=15, color=WEST,
              fontweight="bold", va="bottom", ha="left")
-    fig.text(x1, top + 0.022, "East →", fontsize=17, color=EAST,
+    fig.text(x1, top + 0.02, "East →", fontsize=15, color=EAST,
              fontweight="bold", va="bottom", ha="right")
 
     # 3. Ships waiting at LA-Long Beach, window average.
-    header("ships", "Ships waiting", "LA-Long Beach\n(average)")
+    header("ships", "Ships\nwaiting", "LA-Long Beach\n(average)")
     ax = column_axes("ships")
     smax = table["lalb_ships_waiting_mean"].max()
-    ax.set_xlim(0, smax * 1.45)
+    ax.set_xlim(0, smax * 1.62)
     for i, v in enumerate(table["lalb_ships_waiting_mean"]):
         ax.barh(i, v, height=bar_h, color=SHIPS)
-        ax.text(v + smax * 0.04, i, f"{v:.1f}", va="center", fontsize=value_size)
+        ax.text(v + smax * 0.05, i, f"{v:.1f}", va="center", fontsize=value_size)
     ax.axvline(0, color=TEXT_PRIMARY, lw=1)
 
     # 4. Plain-English direction of the cargo shift.
-    header("moved", "Cargo moved", "")
+    header("moved", "Cargo\nmoved", "")
     for (_, r), y in zip(table.iterrows(), y_mid):
         color = {"East": EAST, "West": WEST}.get(r["cargo_moved"], TEXT_SECONDARY)
-        fig.text(cols["moved"][0], y, r["cargo_moved"], fontsize=21,
-                 fontweight="bold", color=color, va="center")
+        text = "No\nchange" if r["cargo_moved"] == "No change" else r["cargo_moved"]
+        fig.text(cols["moved"][0], y, text, fontsize=20, fontweight="bold",
+                 color=color, va="center", linespacing=1.05)
 
-    fig.text(0.012, 0.145, "Bracket: the Panama and Red Sea windows overlap, Nov 2023 to May 2024.",
-             fontsize=17, color=TEXT_SECONDARY, va="center")
-    fig.text(0.012, 0.09, "Cargo shift for 2026 runs through Aug 2026, the latest trade data. "
-             "Pressure runs through Sep 2026.", fontsize=17, color=TEXT_SECONDARY,
-             va="center")
-    fig.text(0.012, 0.035, "Sources: NY Fed GSCPI; US Census Bureau imports "
+    fig.text(0.012, 0.062, "2026 cargo shift runs through Aug 2026.",
+             fontsize=16, color=TEXT_SECONDARY, va="center")
+    fig.text(0.012, 0.022, "Sources: NY Fed GSCPI; US Census Bureau imports "
              "(China-origin, containerized value); BTS Supply Chain and Freight "
-             "Indicators.", fontsize=15, color=TEXT_SECONDARY, va="center")
+             "Indicators.", fontsize=10.5, color=TEXT_SECONDARY, va="center")
 
     out = OUT_DIR / "episode_scorecard.png"
     fig.savefig(out, dpi=200, facecolor=SURFACE)

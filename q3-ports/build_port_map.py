@@ -20,6 +20,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from matplotlib import patheffects
 from matplotlib.lines import Line2D
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -52,14 +53,18 @@ LABELS = {
     "Houston": ((0, -1), "center"),
 }
 LABEL_GAP_PT = 6
+# White halo so labels stay readable where they cross state borders.
+HALO = [patheffects.withStroke(linewidth=3.5, foreground="#fcfcfb")]
 # Chart labels: "Sea-Tac" is the BTS data key for the Seattle-Tacoma seaport.
 DISPLAY_NAMES = {"Sea-Tac": "Seattle-Tacoma"}
 
 SURFACE = "#fcfcfb"
 TEXT_PRIMARY = "#0b0b0b"
 TEXT_SECONDARY = "#52514e"
-LAND = "#e9e8e3"
-LAND_CONTEXT = "#f2f1ee"
+# Land is a mid gray so the US shape and white state borders hold up on a projector.
+LAND = "#d5d3cb"
+LAND_CONTEXT = "#ebeae5"
+OUTLINE = "#8a8984"
 LANE_COLORS = {"Pacific-direct": "#2a78d6", "Panama-dependent": "#eb6834"}
 
 
@@ -81,35 +86,43 @@ def draw_outlines(ax) -> None:
     for ring in rings("ne_110m_admin_1_states_provinces_lakes",
                       keep=lambda p: p["postal"] not in ("AK", "HI")):
         ax.fill(*albers(ring[:, 0], ring[:, 1]), facecolor=LAND,
-                edgecolor=SURFACE, lw=0.8, zorder=1)
+                edgecolor=SURFACE, lw=1.3, zorder=1)
+    # US outline on top of the state fills, still behind the circles (zorder 4).
+    for ring in rings("ne_110m_admin_0_countries_lakes",
+                      keep=lambda p: p["ADM0_A3"] == "USA"):
+        ax.plot(*albers(ring[:, 0], ring[:, 1]), color=OUTLINE, lw=1.4, zorder=1.5)
 
 
 def draw_legends(fig) -> None:
     """Lane colors and circle-area key, in a strip below the map."""
-    lax = fig.add_axes([0.04, 0.045, 0.92, 0.09])
+    lax = fig.add_axes([0.03, 0.065, 0.94, 0.1])
     lax.axis("off")
-    handles = [Line2D([], [], marker="o", ls="", ms=9, color=c, label=g)
+    handles = [Line2D([], [], marker="o", ls="", ms=12, color=c, label=g)
                for g, c in LANE_COLORS.items()]
-    handles.append(Line2D([], [], marker="o", ls="", ms=7, markerfacecolor=SURFACE,
+    handles.append(Line2D([], [], marker="o", ls="", ms=10, markerfacecolor=SURFACE,
                           markeredgecolor=TEXT_SECONDARY, markeredgewidth=2,
-                          label="No 2022–23 dip below 2019"))
-    lax.legend(handles=handles, loc="center left", frameon=False, fontsize=9,
-               ncols=3, bbox_to_anchor=(0, 0.5))
-    lax.text(0.66, 0.5, "Points below 2019\nat the low", transform=lax.transAxes,
-             ha="right", va="center", fontsize=8.5, color=TEXT_SECONDARY)
-    for i, pts in enumerate([10, 20, 30]):
-        x = 0.71 + i * 0.1
+                          label="No dip below 2019"))
+    lax.legend(handles=handles, loc="center left", frameon=False, fontsize=13,
+               ncols=3, bbox_to_anchor=(0, 0.5), columnspacing=1.2, handletextpad=0.3)
+    lax.text(0.735, 0.5, "Points below\n2019 at low", transform=lax.transAxes,
+             ha="right", va="center", fontsize=12, color=TEXT_SECONDARY)
+    # Key circles use the map's own area scale, at smaller example values.
+    for i, pts in enumerate([5, 10, 20]):
+        x = 0.765 + i * 0.08
         lax.scatter(x, 0.5, s=pts * AREA_PER_POINT, transform=lax.transAxes,
                     facecolor="none", edgecolor=TEXT_SECONDARY, linewidth=1,
                     clip_on=False)
-        lax.text(x + 0.045, 0.5, f"{pts}", transform=lax.transAxes,
-                 ha="left", va="center", fontsize=8.5, color=TEXT_SECONDARY)
+        # Number just right of the circle edge (s = diameter^2 in points).
+        lax.annotate(f"{pts}", (x, 0.5), xycoords=lax.transAxes,
+                     xytext=(np.sqrt(pts * AREA_PER_POINT) / 2 + 5, 0),
+                     textcoords="offset points",
+                 ha="left", va="center", fontsize=12, color=TEXT_SECONDARY)
 
 
 def build_map(stats: pd.DataFrame, backlog: pd.DataFrame) -> Path:
     plt.rcParams.update({"font.family": "DejaVu Sans", "font.size": 10,
                          "text.color": TEXT_PRIMARY})
-    fig, ax = plt.subplots(figsize=(12, 8.2))
+    fig, ax = plt.subplots(figsize=(12, 7.4))
     fig.patch.set_facecolor(SURFACE)
     ax.set_facecolor(SURFACE)
     draw_outlines(ax)
@@ -123,8 +136,8 @@ def build_map(stats: pd.DataFrame, backlog: pd.DataFrame) -> Path:
         if port in NUDGE_KM:
             dx, dy = NUDGE_KM[port]
             mx, my = x + dx, y + dy
-            ax.plot([x, mx], [y, my], color=TEXT_SECONDARY, lw=0.8, zorder=2)
-            ax.plot(x, y, "o", ms=2.5, color=TEXT_PRIMARY, zorder=3)
+            ax.plot([x, mx], [y, my], color=TEXT_PRIMARY, lw=1, zorder=2)
+            ax.plot(x, y, "o", ms=3.5, color=TEXT_PRIMARY, zorder=3)
         slump = max(0.0, 100 - r["trough_index"])
         area = slump * AREA_PER_POINT if slump > 0 else NO_DIP_AREA
         if slump > 0:
@@ -140,7 +153,7 @@ def build_map(stats: pd.DataFrame, backlog: pd.DataFrame) -> Path:
         ax.annotate(f"{DISPLAY_NAMES.get(port, port)}  {value}", (mx, my),
                     xytext=(sx * offset, sy * offset),
                     textcoords="offset points", ha=ha, va="center",
-                    fontsize=9, color=TEXT_PRIMARY, zorder=5)
+                    fontsize=13.5, color=TEXT_PRIMARY, zorder=5, path_effects=HALO)
 
     # Backlog notes: the only per-port berth counts BTS publishes. Anchored in
     # axes coordinates so they stay inside the frame, with leader lines.
@@ -155,30 +168,23 @@ def build_map(stats: pd.DataFrame, backlog: pd.DataFrame) -> Path:
         ax.annotate(f"Peak berth backlog, {name}:\n{r['peak_ships']:.0f} ships "
                     f"({pd.Timestamp(r['peak_month']):%b %Y})",
                     albers(lon, lat), xytext=xy, textcoords="axes fraction",
-                    ha=ha, va="top", fontsize=8.5, color=TEXT_SECONDARY,
+                    ha=ha, va="top", fontsize=12, color=TEXT_SECONDARY, path_effects=HALO,
                     arrowprops={"arrowstyle": "-", "color": TEXT_SECONDARY,
-                                "lw": 0.6, "shrinkA": 2, "shrinkB": 3})
+                                "lw": 0.9, "shrinkA": 2, "shrinkB": 3})
 
     x0, y0 = albers(-125.5, 24.0)
     x1, y1 = albers(-66.0, 49.5)
-    ax.set_xlim(x0 - 900, x1 + 500)
-    ax.set_ylim(y0 - 250, y1 + 150)
+    ax.set_xlim(x0 - 1250, x1 + 650)
+    ax.set_ylim(y0 - 330, y1 + 120)
     ax.set_aspect("equal")
     ax.axis("off")
 
     fig.suptitle("Where the 2022–23 import slump hit hardest", x=0.04, ha="left",
-                 y=0.97, fontsize=14, fontweight="bold")
-    fig.text(0.04, 0.905,
-             "Circle area = how far each port's loaded imports fell below its 2019 "
-             "level at the 2022–23 low; number = that low (2019 = 100).\n"
-             "A per-port proxy: BTS reports berth backlogs only for LA + Long Beach "
-             "combined, Savannah, and all other ports.",
-             fontsize=9.5, color=TEXT_SECONDARY, va="top")
-    fig.text(0.04, 0.012, "Sources: BTS Supply Chain and Freight Indicators; "
-             "Natural Earth outlines. LA and Long Beach markers are offset from "
-             "their true locations (dots) so both are visible.",
-             fontsize=8, color=TEXT_SECONDARY)
-    fig.subplots_adjust(left=0.01, right=0.99, top=0.86, bottom=0.15)
+                 y=0.972, fontsize=19, fontweight="bold")
+    fig.text(0.04, 0.018, "Sources: BTS Supply Chain and Freight Indicators; Natural Earth. "
+             "LA and Long Beach circles are offset from their true locations (dots).",
+             fontsize=10.5, color=TEXT_SECONDARY)
+    fig.subplots_adjust(left=0.005, right=0.995, top=0.93, bottom=0.17)
     draw_legends(fig)
 
     out = OUT_DIR / "port_map.png"

@@ -213,10 +213,8 @@
   .box.hot .stat { color: var(--orange); }
 
   /* Slide 7 */
-  /* Slide 7: full-width scorecard with a one-line strip of takeaways under it */
-  .strip { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 10px; }
-  .strip .box { padding: 7px 14px; font-size: 0.5em; line-height: 1.3; color: var(--ink); white-space: nowrap; }
-  .strip .box .id { display: inline; margin: 0 0.7em 0 0; }
+  /* Slide 7: scorecard on the left, takeaways in a column on the right */
+  .pattern-grid { display: grid; grid-template-columns: 750px 1fr; gap: 24px; align-items: start; }
   .compact .box { padding: 7px 16px 8px; font-size: 0.56em; }
   .compact .box .id { margin-bottom: 2px; }
 
@@ -292,7 +290,7 @@
   <div class="stage">
     <h2 style="font-size:1.5em; margin-bottom:0.4em">Data and <em>routes</em></h2>
     <div class="fig-grid" style="grid-template-columns: 1fr 1.3fr; gap: 26px;">
-      <div class="points compact" style="gap:8px">
+      <div class="points compact" style="gap:6px">
         <div class="box"><div class="id">SRC-01</div><p>NY Fed pressure score, 1998 to 2026</p></div>
         <div class="box"><div class="id">SRC-02</div><p>US Customs import records, by port</p></div>
         <div class="box"><div class="id">SRC-03</div><p>Transportation Dept. ship-waiting and freight-rate feed, weekly</p></div>
@@ -300,8 +298,8 @@
           <div class="box lane-blue"><div class="id">Pacific-direct</div><p>Los Angeles, Long Beach, Oakland, Seattle-Tacoma (seaport)</p></div>
           <div class="box lane-orange"><div class="id">Panama-dependent</div><p>NY-NJ, Savannah, Virginia, Charleston, Houston</p></div>
         </div>
-        <p class="read" style="font-size:0.5em; color:var(--ink); margin-top:2px">We follow China-origin cargo only.</p>
-        <p class="footnote" style="margin-top:2px">We tried Mexico as a stand-in for canal traffic and dropped it: about 90% of that trade moves by truck and rail.</p>
+        <p class="read" style="font-size:0.47em; color:var(--ink); margin-top:2px">Why China: the largest source of US goods imports through 2022, and still $439B in 2024 (13% of the total).</p>
+        <p class="footnote" style="margin-top:2px">Mexico is now #1 but moves about 90% of its trade by truck and rail, so it cannot show a sea-route choice. We dropped it.</p>
       </div>
       <div>
         <img class="fig" src="assets/route_map.png" alt="Route map: Pacific-direct and Panama-dependent routes from China to US ports">
@@ -311,7 +309,7 @@
     </div>
   </div>
   <aside class="notes">
-    <p>PAVEN (about 40s): "We used three real datasets: the Fed's pressure score, US Customs records of what comes in through each port, and a transportation feed of ships waiting outside ports. This map shows the idea. Cargo from China can reach the US two ways. Blue is the short way, straight across the Pacific to West Coast ports. Orange is the long way, through the Panama Canal to East and Gulf Coast ports, almost twice as far. We follow China-origin cargo, because that is where this choice exists. We also tried Mexico as a stand-in for canal traffic and dropped it, because about 90 percent of that trade moves by truck and rail, not ship."</p>
+    <p>PAVEN (about 50s): "We used three real datasets: the Fed's pressure score, US Customs records of what comes in through each port, and a transportation feed of ships waiting outside ports. This map shows the idea. Cargo from China can reach the US two ways. Blue is the short way, straight across the Pacific to West Coast ports. Orange is the long way, through the Panama Canal to East and Gulf Coast ports, almost twice as far. Why China? It was the largest source of US goods imports through 2022, and still 439 billion dollars in 2024, about 13 percent of the total. Mexico is now number one, but about 90 percent of its trade moves by truck and rail, so it cannot show a sea-route choice. We dropped it."</p>
   </aside>
 </section>
 
@@ -347,7 +345,7 @@
       <img class="fig" src="assets/lane_share_disruption_windows.png" alt="Panama-dependent and Pacific-direct share of China-origin imports, with disruption windows">
       <div class="points" style="gap:10px">
         <div class="box hot"><div class="stat">28.3% to 36.7%</div><p>West Coast jam, 2021 to 2022: East and Gulf share rose 8.4 points</p></div>
-        <div class="box"><div class="stat">31.3% to 31.3%</div><p>Panama drought alone: flat. The drop came in the overlapping Red Sea window.</p></div>
+        <div class="box"><div class="stat">31.3% to 31.3%</div><p>Panama drought alone: ended where it started (31.3%), after swinging between 30.6% and 32.9%. The drop came later, in the Red Sea window.</p></div>
         <p class="caveat">China-origin cargo only. Unconfirmed for other countries.</p>
       </div>
     </div>
@@ -357,7 +355,7 @@
     </div>
   </div>
   <aside class="notes">
-    <p>PAVEN (about 60s): "This chart sits on the same timeline and uses the same gray bands, so you can read it right under the last one. Each line is a share: of all the cargo value we track from China, what percent lands at East and Gulf ports, in orange, versus West Coast ports, in blue. We used two lines because the question is how two groups compare over time. Watch the 2021 and 2022 band. The orange share rose from 28.3 to 36.7 percent, about eight points. Cargo moved east, away from the jam. Now the Panama drought: flat, 31.3 percent before and after. The small drop of about two points comes later, in the Red Sea window, so we do not blame the canal. One caveat: this is China-origin cargo only."</p>
+    <p>PAVEN (about 60s): "This chart sits on the same timeline and uses the same gray bands, so you can read it right under the last one. Each line is a share: of all the cargo value we track from China, what percent lands at East and Gulf ports, in orange, versus West Coast ports, in blue. We used two lines because the question is how two groups compare over time. Watch the 2021 and 2022 band. The orange share rose from 28.3 to 36.7 percent, about eight points. Cargo moved east, away from the jam. Now the Panama drought: the share swung between about 31 and 33 percent, then ended where it started, at 31.3. The small drop of about two points comes later, in the Red Sea window, so we do not blame the canal. One caveat: this is China-origin cargo only."</p>
   </aside>
 </section>
 
@@ -366,7 +364,7 @@
   <div class="manifest"><span class="no">06 / 08</span><span>Q3 · PORTS · SUPRIYA</span></div>
   <div class="stage">
     <h2 style="font-size:1.5em; margin-bottom:0.35em">Where the rerouted cargo <em>landed</em></h2>
-    <div style="display:grid; grid-template-columns: 1.284fr 1fr; gap: 20px; align-items: start; width: 87%;">
+    <div style="display:grid; grid-template-columns: 1.157fr 1fr; gap: 20px; align-items: start; width: 87%;">
       <div class="readstack">
         <img class="fig" src="assets/port_backlog.png" alt="Containerships awaiting a berth by port group, from Jul 2021">
         <p class="read"><b>How to read</b>Lines show ships waiting for a berth. Blue is Los Angeles and Long Beach, orange is Savannah, gray is all other ports.</p>
@@ -389,11 +387,13 @@
   <div class="manifest"><span class="no">07 / 08</span><span>Q4 · SYNTHESIS · RAUL</span></div>
   <div class="stage">
     <h2 style="font-size:1.3em; margin-bottom:0.4em">Port jams push cargo east. <em>Chokepoints push it west.</em></h2>
-    <img class="fig" src="assets/episode_scorecard.png" style="width:1070px; margin:0 auto" alt="Episode scorecard: four disruptions as rows; columns show peak pressure, cargo shift east or west, and ships waiting at Los Angeles and Long Beach">
-    <div class="strip">
-      <div class="box hot"><span class="id">Port jam</span>Cargo moves east, away from the jam.</div>
-      <div class="box lane-blue"><span class="id">Chokepoint</span>Cargo moves west, to the Pacific.</div>
-      <div class="box"><span class="id">Prices</span>r = 0.82 to 2022, 0.09 since</div>
+    <div class="pattern-grid">
+      <img class="fig" src="assets/episode_scorecard.png" alt="Episode scorecard: four disruptions as rows; columns show peak pressure, cargo shift east or west, and ships waiting at Los Angeles and Long Beach">
+      <div class="points compact" style="gap:10px">
+        <div class="box hot"><div class="id">Port jam</div><p>Too much arrives at one port at once. Cargo moves east, away from the jam.</p></div>
+        <div class="box lane-blue"><div class="id">Chokepoint</div><p>A passage like the canal or the Red Sea is the problem. Cargo moves west, back to the short route.</p></div>
+        <p class="caveat">Shipping prices matched the shift through 2022 (r = 0.82) but not since (r = 0.09), so we do not use them to forecast.</p>
+      </div>
     </div>
     <div class="readbar">
       <p class="read"><b>How to read</b>One row per disruption. Longer bar, bigger number.</p>
@@ -409,19 +409,20 @@
 <section class="data">
   <div class="manifest"><span class="no">08 / 08</span><span>END-OF-MANIFEST · RAUL</span></div>
   <div class="stage">
-    <h2>What we can and <em>cannot say</em></h2>
-    <div class="cols-3" style="margin-bottom:22px">
-      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Only four disruptions: a pattern to watch, not a law</p></div>
+    <h2 style="margin-bottom:0.4em">What we can and <em>cannot say</em></h2>
+    <div class="cols-3" style="margin-bottom:16px">
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Four disruptions is a small sample: a pattern, not proof</p></div>
       <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Two of the four overlap in time</p></div>
-      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Trade data is China only</p></div>
+      <div class="limit"><svg class="hz" viewBox="0 0 44 44"><path d="M22 4 L41 38 H3z" fill="none" stroke="#ff6b35" stroke-width="3"/><path d="M22 16v11M22 31v3" stroke="#ff6b35" stroke-width="3"/></svg><p>Trade data is China only (about 8% of US imports in 2026, down from 13% in 2024)</p></div>
     </div>
-    <p class="callout" style="font-size:0.78em; margin-bottom:14px">The crisis is not over, but it is not 2021 again. Pressure is above normal, ports are clear, and cargo is leaning west. Which route holds up next depends on the kind of disruption.</p>
-    <p class="read" style="font-size:0.56em; margin-bottom:22px"><b>Next</b>Repeat this for a second origin country.</p>
-    <p class="thanks" style="margin:0 0 0.35em">Thank you. <span>Questions?</span></p>
+    <p class="callout" style="font-size:0.7em; margin-bottom:12px">The crisis is not over, but it is a different crisis. 2021 was a port jam: pressure, freight costs and ships waiting all spiked, and cargo moved east. 2026 is a cost shock: pressure and freight rates are up, ports are clear, and cargo is leaning west.</p>
+    <p class="read" style="font-size:0.5em; margin-bottom:10px"><b>Our theory (not tested in our data)</b>Outside reporting ties 2026 pressure to the Middle East war, which raised fuel costs and lengthened routes, while tariffs cut China's cargo, so ships are not queuing.</p>
+    <p class="read" style="font-size:0.5em; margin-bottom:14px"><b>Next</b>Repeat this for a second origin country.</p>
+    <p class="thanks" style="font-size:1.6em; margin:0 0 0.3em">Thank you. <span>Questions?</span></p>
     <div class="link-row" style="max-width: 34em"><span class="label">Repo &middot; public</span><a href="https://github.com/RaulSolaNavarro/cis9655-supply-chain">github.com/RaulSolaNavarro/cis9655-supply-chain</a></div>
   </div>
   <aside class="notes">
-    <p>RAUL (about 35s): "Three honest limits. We have only four disruptions, so this is a pattern to watch, not a law. Two of the four overlap in time. And our trade data is China only. So here is our answer: the crisis is not over, but it is not 2021 again. Pressure is still above normal, the ports are clear, and cargo is leaning back west. Which route holds up next depends on the kind of disruption. Our next step is to repeat this for a second country. Thank you. We are happy to take questions."</p>
+    <p>RAUL (about 40s): "Three honest limits. Four disruptions is a small sample: a pattern, not proof. Two of them overlap in time. And our trade data is China only, about 8 percent of US imports this year. Our answer: the crisis is not over, but it is a different crisis. 2021 was a port jam: pressure, freight costs and ships waiting all spiked, and cargo moved east. 2026 is a cost shock: pressure and freight rates are up, ports are clear, and cargo is leaning west. Outside reporting points to the war and tariffs, a theory we did not test. Thank you. We are happy to take questions."</p>
   </aside>
 </section>
 

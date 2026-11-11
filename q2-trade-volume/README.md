@@ -15,7 +15,7 @@ Each line shows a lane group's share of China containerized import value across 
 **Yes, cargo shifts measurably, and the direction depends on the disruption type.**
 
 - **West Coast congestion pushed cargo east.** The Panama-dependent share rose 8.4 points over 2021–2022, from 28.3% to 36.7%. That's more than five times normal monthly noise, as shippers routed around jammed LA/Long Beach.
-- **Chokepoint shocks pulled it back west, but only a little.** During the Panama drought the share was flat (31.3% before and after). It had already been falling since its Nov 2022 peak, so the drought added no clear extra shift. Red Sea rerouting coincided with a 2.3-point drop to 28.7%, about the 2019 level. Because the Panama and Red Sea windows overlap, we can't separate the two.
+- **Chokepoint shocks pulled it back west, but only a little.** During the Panama drought the share ended where it started (31.3% before and at the end), after swinging between 30.6% and 32.9% on the 3-month average. It had already been falling since its Nov 2022 peak, so the drought added no clear extra shift. Red Sea rerouting coincided with a 2.3-point drop to 28.7%, about the 2019 level. Because the Panama and Red Sea windows overlap, we can't separate the two.
 - **2026 also leans west:** down 2.7 points (32.9% → 30.2%), though month-to-month swings are large (38% in March, 28% in April).
 
 Congestion at the ports themselves moved far more cargo than canal or Suez constraints did. The unshaded early-2025 spike is unexplained and we haven't investigated it. It may be tariff-related, but that's a guess, not a finding.

@@ -2,7 +2,7 @@
 
 **Format:** 7 minutes talking, 3 minutes Q&A. Presentations are in person (Dec 3). Everyone attends both sessions.
 
-**Plan:** about 6 minutes spoken, which leaves a minute of slack. Pace is about 150 words a minute. Practice once with a timer and cut a sentence if you run long.
+**Plan:** about 6 minutes 15 seconds spoken, which leaves 45 seconds of slack. Pace is about 150 words a minute. Practice once with a timer and cut a sentence if you run long.
 
 **Who speaks:** Jason (slides 2 and 4), Paven (slides 3 and 5), Supriya (slide 6), Raul (slide 7 and the close).
 
@@ -12,12 +12,12 @@
 |---|---|---|---|
 | 1 Title | none | 0:05 | 0:05 |
 | 2 The question | Jason | 0:35 | 0:40 |
-| 3 Data and routes | Paven | 0:40 | 1:20 |
-| 4 Pressure (Q1) | Jason | 1:00 | 2:20 |
-| 5 Lanes (Q2) | Paven | 1:00 | 3:20 |
-| 6 Ports (Q3) | Supriya | 1:00 | 4:20 |
-| 7 Synthesis (Q4) | Raul | 1:05 | 5:25 |
-| 8 Limits, conclusion, thanks | Raul | 0:35 | 6:00 |
+| 3 Data and routes | Paven | 0:50 | 1:30 |
+| 4 Pressure (Q1) | Jason | 1:00 | 2:30 |
+| 5 Lanes (Q2) | Paven | 1:00 | 3:30 |
+| 6 Ports (Q3) | Supriya | 1:00 | 4:30 |
+| 7 Synthesis (Q4) | Raul | 1:05 | 5:35 |
+| 8 Limits, conclusion, thanks | Raul | 0:40 | 6:15 |
 
 **Rules for the whole talk (the course is Data Visualization, so the charts are the stars):**
 
@@ -45,12 +45,12 @@
 ---
 
 ## Slide 3: Data and routes
-**Speaker: Paven** (about 40s, 100 words)
+**Speaker: Paven** (about 50s, 120 words)
 
-**On screen:** Three data sources, the route map, two route groups, one line on China-only, one line on Mexico.
+**On screen:** Three data sources, the route map, two route groups, one line on why China ($439B in 2024, 13% of US goods imports), one line on why Mexico was dropped.
 
 **Say:**
-> "We used three real datasets: the Fed's pressure score, US Customs records of what comes in through each port, and a transportation feed of ships waiting outside ports. This map shows the idea. Cargo from China can reach the US two ways. Blue is the short way, straight across the Pacific to West Coast ports. Orange is the long way, through the Panama Canal to East and Gulf Coast ports, almost twice as far. We follow China-origin cargo, because that is where this choice exists. We also tried Mexico as a stand-in for canal traffic and dropped it, because about 90 percent of that trade moves by truck and rail, not ship."
+> "We used three real datasets: the Fed's pressure score, US Customs records of what comes in through each port, and a transportation feed of ships waiting outside ports. This map shows the idea. Cargo from China can reach the US two ways. Blue is the short way, straight across the Pacific to West Coast ports. Orange is the long way, through the Panama Canal to East and Gulf Coast ports, almost twice as far. Why China? It was the largest source of US goods imports through 2022, and still 439 billion dollars in 2024, about 13 percent of the total. Mexico is now number one, but about 90 percent of its trade moves by truck and rail, so it cannot show a sea-route choice. We dropped it."
 
 ---
 
@@ -72,7 +72,7 @@
 **On screen:** Title "Cargo shifts, but the direction depends on the disruption." Two-line chart. Two numbers: 28.3% to 36.7%, and 31.3% to 31.3%. Caveat: China-origin only.
 
 **Say:**
-> "This chart sits on the same timeline and uses the same gray bands, so you can read it right under the last one. Each line is a share: of all the cargo value we track from China, what percent lands at East and Gulf ports, in orange, versus West Coast ports, in blue. We used two lines because the question is how two groups compare over time. Watch the 2021 and 2022 band. The orange share rose from 28.3 to 36.7 percent, about eight points. Cargo moved east, away from the jam. Now the Panama drought: flat, 31.3 percent before and after. The small drop of about two points comes later, in the Red Sea window, so we do not blame the canal. One caveat: this is China-origin cargo only."
+> "This chart sits on the same timeline and uses the same gray bands, so you can read it right under the last one. Each line is a share: of all the cargo value we track from China, what percent lands at East and Gulf ports, in orange, versus West Coast ports, in blue. We used two lines because the question is how two groups compare over time. Watch the 2021 and 2022 band. The orange share rose from 28.3 to 36.7 percent, about eight points. Cargo moved east, away from the jam. Now the Panama drought: the share swung between about 31 and 33 percent, then ended where it started, at 31.3. The small drop of about two points comes later, in the Red Sea window, so we do not blame the canal. One caveat: this is China-origin cargo only."
 
 ---
 
@@ -99,12 +99,12 @@
 ---
 
 ## Slide 8: Limits, conclusion, thank you
-**Speaker: Raul** (about 35s, 90 words)
+**Speaker: Raul** (about 40s, 100 words)
 
-**On screen:** Three limits, a bottom-line box, "Thank you. Questions?", the repo link.
+**On screen:** Three limits, a bottom-line box (2021 port jam versus 2026 cost shock), one line labeled "Our theory (not tested in our data)", "Thank you. Questions?", the repo link.
 
 **Say:**
-> "Three honest limits. We have only four disruptions, so this is a pattern to watch, not a law. Two of the four overlap in time. And our trade data is China only. So here is our answer: the crisis is not over, but it is not 2021 again. Pressure is still above normal, the ports are clear, and cargo is leaning back west. Which route holds up next depends on the kind of disruption. Our next step is to repeat this for a second country. Thank you. We are happy to take questions."
+> "Three honest limits. Four disruptions is a small sample: a pattern, not proof. Two of them overlap in time. And our trade data is China only, about 8 percent of US imports this year. Our answer: the crisis is not over, but it is a different crisis. 2021 was a port jam: pressure, freight costs and ships waiting all spiked, and cargo moved east. 2026 is a cost shock: pressure and freight rates are up, ports are clear, and cargo is leaning west. Outside reporting points to the war and tariffs, a theory we did not test. Thank you. We are happy to take questions."
 
 ---
 
@@ -117,4 +117,4 @@
 - [ ] Decide who advances slides (one person with the clicker or keyboard) so nobody fights over the arrow keys.
 - [ ] Screenshots of every Tableau view on a USB stick, in case Tableau Public is slow.
 - [ ] Everyone has read `plain_english_faq.md` and `qa_prep_sheet.md`. Any of us may get any question.
-- [ ] Time yourselves once out loud on Dec 1 or earlier. Target 6:00.
+- [ ] Time yourselves once out loud on Dec 1 or earlier. Target 6:15.
