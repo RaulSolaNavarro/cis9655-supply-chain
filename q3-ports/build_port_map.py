@@ -52,6 +52,8 @@ LABELS = {
     "Houston": ((0, -1), "center"),
 }
 LABEL_GAP_PT = 6
+# Chart labels: "Sea-Tac" is the BTS data key for the Seattle-Tacoma seaport.
+DISPLAY_NAMES = {"Sea-Tac": "Seattle-Tacoma"}
 
 SURFACE = "#fcfcfb"
 TEXT_PRIMARY = "#0b0b0b"
@@ -135,7 +137,7 @@ def build_map(stats: pd.DataFrame, backlog: pd.DataFrame) -> Path:
         # Start the label just outside the circle's edge (scatter s = diameter^2).
         offset = np.sqrt(area) / 2 + LABEL_GAP_PT
         value = f"{r['trough_index']:.0f}" if slump > 0 else "no dip"
-        ax.annotate(f"{port}  {value}", (mx, my),
+        ax.annotate(f"{DISPLAY_NAMES.get(port, port)}  {value}", (mx, my),
                     xytext=(sx * offset, sy * offset),
                     textcoords="offset points", ha=ha, va="center",
                     fontsize=9, color=TEXT_PRIMARY, zorder=5)

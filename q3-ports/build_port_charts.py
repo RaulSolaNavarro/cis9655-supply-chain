@@ -47,6 +47,8 @@ TROUGH_SEARCH = ("2022-07", "2023-12")
 RELAPSE_BELOW = 90
 
 # Small-multiple order: Pacific-direct ports first, then Panama-dependent.
+# Chart labels: "Sea-Tac" is the BTS data key for the Seattle-Tacoma seaport.
+DISPLAY_NAMES = {"Sea-Tac": "Seattle-Tacoma"}
 PORT_ORDER = ["Los Angeles", "Long Beach", "Oakland", "Sea-Tac",
               "NY-NJ", "Savannah", "Port of VA", "Charleston", "Houston"]
 
@@ -271,7 +273,7 @@ def build_throughput_chart(index: pd.DataFrame, stats: pd.DataFrame) -> Path:
         ax.axhline(100, color=TEXT_SECONDARY, lw=0.8, ls=(0, (3, 3)), zorder=1)
         ax.plot(s.index, s.values, color=color, lw=2, zorder=3,
                 solid_capstyle="round")
-        ax.set_title(f"{port}  ·  {r['lane_group']}", loc="left", fontsize=10,
+        ax.set_title(f"{DISPLAY_NAMES.get(port, port)}  ·  {r['lane_group']}", loc="left", fontsize=10,
                      color=TEXT_PRIMARY)
         # Selective label: the post-congestion trough and how long recovery took.
         trough = pd.Timestamp(r["trough_month"])

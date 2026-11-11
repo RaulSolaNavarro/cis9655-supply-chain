@@ -1,4 +1,4 @@
-# Q4 — Synthesis
+# Q4: Synthesis
 
 **Question:** Combining Q1–Q3, which specific lanes came out more resilient, and why?
 

@@ -127,7 +127,7 @@ The CSVs in `data/processed/` are **frozen snapshots for exploration, not live d
 | `census_exports_all_hs_2013-04_<date>.csv` | The brief's example call: all US exports, Apr 2013, every HS level (filter on `hs_level`) |
 | `census_imports_china_hs2_<date>.csv` | Monthly US imports from China by HS2 chapter, Jan 2013 onward |
 | `census_exports_mexico_hs2_<date>.csv` | Monthly US exports to Mexico by HS2 chapter, Jan 2013 onward |
-| `census_porths_5700_lanes_<date>.csv` | Monthly US imports from China by port of unlading, all commodities, Jan 2019 onward. `bts_port` maps Census port codes to the 9 BTS ports, and `lane_group` is `Panama-dependent` (NY-NJ, Savannah, Port of VA, Charleston, Houston), `Pacific-direct` (LA, Long Beach, Oakland, Sea-Tac), or `Other`. The all-ports total row and `7070 LOW VALUE` are excluded. Both stay in the raw pull (`data/raw/census_porths_5700_<start>_<end>.csv`). Rebuild with `python scripts/pull_census_porths_history.py [CTY_CODE] [START_YEAR]`. |
+| `census_porths_5700_lanes_<date>.csv` | Monthly US imports from China by port of unlading, all commodities, Jan 2019 onward. `bts_port` maps Census port codes to the 9 BTS ports, and `lane_group` is `Panama-dependent` (NY-NJ, Savannah, Port of VA, Charleston, Houston), `Pacific-direct` (LA, Long Beach, Oakland, Seattle-Tacoma), or `Other`. The all-ports total row and `7070 LOW VALUE` are excluded. Both stay in the raw pull (`data/raw/census_porths_5700_<start>_<end>.csv`). Rebuild with `python scripts/pull_census_porths_history.py [CTY_CODE] [START_YEAR]`. |
 
 Census files keep monthly (`_MO`) fields only, renamed to `total_value_usd`, `vessel_value_usd`, `containerized_value_usd`, `air_value_usd`, `vessel_weight_kg`, and `shipment_count`. For imports, `total_value_usd` is the Census "general imports" value (`GEN_VAL_MO`).
 
@@ -157,7 +157,7 @@ Census files keep monthly (`_MO`) fields only, renamed to `total_value_usd`, `ve
 - Every response includes a `PORT == "-"` "TOTAL FOR ALL PORTS" row. **Exclude it before summing**, or totals double.
 - `7070 LOW VALUE` is a pseudo-port for low-value shipments, not a place. Some ports have no name (e.g. `1791`), and the list of ports varies month to month.
 - All-commodity totals (`I_COMMODITY=-`) are fast: about 10s per month, about 16s per full year in one call. Per-port HS2 detail took 60–130s for a single month.
-- Matching BTS port names to Census port codes: NY-NJ ≈ 1003 Newark + 1001 New York; Sea-Tac = 3001 Seattle + 3002 Tacoma; Port of VA ≈ 1401 Norfolk.
+- Matching BTS port names to Census port codes: NY-NJ ≈ 1003 Newark + 1001 New York; Seattle-Tacoma = 3001 Seattle + 3002 Tacoma; Port of VA ≈ 1401 Norfolk.
 
 **BTS Supply Chain and Freight Indicators:** [data.bts.gov dataset `y5ut-ibwt`](https://data.bts.gov/d/y5ut-ibwt) (Socrata API, no key needed)
 - Long format: `date, indicator, measure1 (port/region), value1, units`. Updated weekly.
