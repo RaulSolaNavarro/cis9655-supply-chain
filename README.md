@@ -10,7 +10,7 @@ CIS 9655 (Data Visualization): team final project.
 |---|---|---|
 | Final presentation (web deck) | https://raulsolanavarro.github.io/cis9655-supply-chain/ | The 8-slide deck we present. Press S for speaker notes, F for full screen. |
 | Earlier pitch deck | https://raulsolanavarro.github.io/cis9655-supply-chain/pitch.html | The Oct 15 pitch, kept for history. |
-| Final presentation (Google Slides) | https://docs.google.com/presentation/d/1NCJ1iLk6TDnCqQEziUqWxZBvC1HYF4jo_mq601SRGCw/edit | A Google Slides copy of the same deck, for the shared folder. |
+| Final presentation (Google Slides) | https://docs.google.com/presentation/d/1a68IT-oZYxsnWrZ2Whijz4o7LiLRtB-lV0DvrHOGjk8/edit | A Google Slides copy of the same deck, for the shared folder. |
 | Speaker script | [presentation/final_presentation_script.md](presentation/final_presentation_script.md) | Who says what, with timing, plus the in-person checklist. |
 | Plain-English FAQ | [presentation/plain_english_faq.md](presentation/plain_english_faq.md) | Plain answers to the questions we expect, with sources. |
 | Q&A prep sheet | [presentation/qa_prep_sheet.md](presentation/qa_prep_sheet.md) | Answers to the professor's question types and likely audience questions. |
