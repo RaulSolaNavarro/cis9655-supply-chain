@@ -1,126 +1,120 @@
-# Final Presentation Script — Global Supply Chain Resilience
+# Final presentation script (v2, in person)
 
-Target: **5:30–6:00 spoken** inside the 7-minute slot (leaves ~1 min of slack), then 3 min Q&A.
-Word counts assume ~150 words/min conversational pace. Practice once with a timer — these are starting points, not a contract.
+**Format:** 7 minutes talking, 3 minutes Q&A. Presentations are in person (Dec 3). Everyone attends both sessions.
 
-Speaking totals: Jason ~90s, Paven ~100s, Supriya ~70s, Raul ~70s. Adjust live if someone wants more/less.
+**Plan:** about 6 minutes spoken, which leaves a minute of slack. Pace is about 150 words a minute. Practice once with a timer and cut a sentence if you run long.
+
+**Who speaks:** Jason (slides 2 and 4), Paven (slides 3 and 5), Supriya (slide 6), Raul (slide 7 and the close).
+
+**Hand-offs:** end each part by naming the next speaker ("Paven, over to you"). Whoever is not speaking stays still and looks at the slide, not at their phone.
+
+| Slide | Speaker | Time | Running total |
+|---|---|---|---|
+| 1 Title | none | 0:05 | 0:05 |
+| 2 The question | Jason | 0:35 | 0:40 |
+| 3 Data and routes | Paven | 0:40 | 1:20 |
+| 4 Pressure (Q1) | Jason | 1:00 | 2:20 |
+| 5 Lanes (Q2) | Paven | 1:00 | 3:20 |
+| 6 Ports (Q3) | Supriya | 1:00 | 4:20 |
+| 7 Synthesis (Q4) | Raul | 1:05 | 5:25 |
+| 8 Limits, conclusion, thanks | Raul | 0:35 | 6:00 |
+
+**Rules for the whole talk (the course is Data Visualization, so the charts are the stars):**
+
+1. On every chart slide, say three things in this order: **how to read it** (what is on each axis, what a line or circle is), **why we drew it this way**, **what it shows**.
+2. Use plain words. Say "pressure score," not "standard deviations." Say "ships waiting," not "backlog."
+3. Point at the chart when you say a number.
+4. The color key never changes: **blue = short Pacific route, orange = longer canal route, gray shading = a disruption.**
 
 ---
 
-## Slide 1 — Title
-**On screen:** Global Supply Chain Resilience · CIS 9655 · Jason Braverman, Paven Oommen, Supriya Singh, Raul Sola Navarro
-**Speaker:** none — Jason starts talking as this is up.
-**Time:** ~3s
+## Slide 1: Title
+**On screen:** Global Supply Chain Resilience, CIS 9655, the four names.
+**Speaker:** none. Jason starts as soon as the slide is up. If you want, thank Prof. Santa-Coloma in one line.
 
 ---
 
-## Slide 2 — The Business Question
-**Speaker: Jason** · ~35s / 85 words
+## Slide 2: The question
+**Speaker: Jason** (about 35s, 90 words)
 
-**On screen (big, minimal):**
-- "Is the supply-chain crisis actually over?"
-- Four questions, one team: Pressure (Jason) · Lanes (Paven) · Ports (Supriya) · Synthesis (Raul)
+**On screen:** "Is the supply-chain crisis actually over?" The four questions with owners. A small color key (blue, orange, gray).
 
 **Say:**
-> "Everyone remembers 2021 — ships stuck outside LA, prices through the roof. The Fed's own pressure index says the system is still tenser than normal today, in 2026. So we asked: is a new crisis building, or does this just look like the ones we've already seen? We split that into four pieces: how much pressure there is overall, whether cargo actually shifts to different ports when a route breaks, which ports get hit hardest, and which routes hold up best once you put it all together."
+> "Everyone remembers 2021: ships stuck outside Los Angeles, prices through the roof. The New York Fed's pressure score says supply chains are still more stretched than normal today. So our question is simple: is the crisis over, or is a new one starting? We split it into four pieces. I cover how much pressure there is. Paven covers where cargo goes. Supriya covers which ports get hit. Raul pulls it together. One thing to know before we start: in every chart, blue is the short route across the Pacific, orange is the longer route through the Panama Canal, and gray shading marks a disruption."
 
 ---
 
-## Slide 3 — Data & Approach
-**Speaker: Paven** · ~45s / 110 words
+## Slide 3: Data and routes
+**Speaker: Paven** (about 40s, 100 words)
 
-**On screen:**
-- 3 sources: NY Fed pressure index (1998–2026) · US Customs import records, by port · Transportation-dept. ship-backlog & freight-rate feed (weekly)
-- Route map image (`route_map.png`) — Pacific-direct vs. Panama-dependent
-- Callout: "We tested Mexico as a stand-in for Panama Canal traffic — dropped it once we found 90% of that trade moves by truck and rail, not ship."
+**On screen:** Three data sources, the route map, two route groups, one line on China-only, one line on Mexico.
 
 **Say:**
-> "We pulled three real datasets: the Fed's pressure index back to 1998, US Customs records of what's imported through which port, and a transportation feed that tracks ships waiting outside ports and shipping rates, updated weekly. To talk about routes, we split ports into two groups — ports you can reach straight across the Pacific, and ports you can only reach through the Panama Canal, which is almost twice the distance. We almost used Mexico as a stand-in for Panama Canal traffic, but caught that 90% of that trade moves by truck and rail, not ship, so we dropped it."
+> "We used three real datasets: the Fed's pressure score, US Customs records of what comes in through each port, and a transportation feed of ships waiting outside ports. This map shows the idea. Cargo from China can reach the US two ways. Blue is the short way, straight across the Pacific to West Coast ports. Orange is the long way, through the Panama Canal to East and Gulf Coast ports, almost twice as far. We follow China-origin cargo, because that is where this choice exists. We also tried Mexico as a stand-in for canal traffic and dropped it, because about 90 percent of that trade moves by truck and rail, not ship."
 
 ---
 
-## Slide 4 — Q1: Pressure (Jason)
-**Image:** `gscpi_disruption_windows.png`
-**Speaker: Jason** · ~55s / 140 words
+## Slide 4: Q1, Pressure
+**Speaker: Jason** (about 60s, 150 words)
 
-**On screen:**
-- "The index is still climbing, not back to normal"
-- Key numbers: 2021 peak **4.43** (all-time high) · 2023–24 shocks barely moved it (**0.20**) · 2026 so far: **1.81** peak, **1.28** in Sept — about 40% of the 2021 peak and still elevated
+**On screen:** Title "The pressure score is still above normal." The line chart. Three numbers: 4.43, 0.20, 1.81 (peak) and 1.28 (September).
 
 **Say:**
-> "This is that pressure index over time. Zero is normal, anything over 1 is clearly stressed. The 2021 port jam was the big one — it hit an all-time high in December 2021, and pressure stayed elevated for almost two years. The 2023 Panama drought and the Red Sea attacks barely moved this chart at all — real problems, but narrow ones, not system-wide. Now look at the right edge: pressure's been climbing again since late 2025, and as of this September it was still at about 40% of the 2021 peak and hasn't come back down. We shaded every disruption the same gray and labeled it by name, so your eye follows the trend first, not a rainbow of colors."
+> "This is a line chart of the pressure score, one point per month. Left to right is time. Up means more pressure. Zero is normal, and the dashed line at one means clearly stressed. We used one line because our question is how pressure changes over time, and we shaded every disruption the same gray, so your eye follows the line and not a rainbow of colors. Look at 2021 and 2022: the score hit 4.43 in December 2021 and stayed above one for two straight years. Now look at the Panama drought and the Red Sea bands: barely a bump, about 0.2. Real problems, but narrow. Now look at the right edge: in 2026 the score peaked at 1.81 in May, about 40 percent of the 2021 peak, and was still 1.28 in September."
+
+*(If asked: 1.28 in September is about 29 percent of the 2021 peak. The 40 percent figure is for the 2026 peak of 1.81.)*
 
 ---
 
-## Slide 5 — Q2: Lanes (Paven)
-**Image:** `lane_share_disruption_windows.png`
-**Speaker: Paven** · ~52s / 130 words
+## Slide 5: Q2, Lanes
+**Speaker: Paven** (about 60s, 150 words)
 
-**On screen:**
-- "Cargo does shift — but which way depends on the disruption"
-- West Coast jam (2021–22): Panama-dependent share **28.3% → 36.7%**
-- Panama drought alone: flat (**31.3% → 31.3%**) — the real drop came from the overlapping Red Sea window
-- Caveat: China-origin trade only
+**On screen:** Title "Cargo shifts, but the direction depends on the disruption." Two-line chart. Two numbers: 28.3% to 36.7%, and 31.3% to 31.3%. Caveat: China-origin only.
 
 **Say:**
-> "This tracks what share of China's imports come through Panama-Canal-dependent ports versus West-Coast ports, month by month. Watch it rise during the 2021 jam — cargo clearly rerouted east, away from the clogged West Coast, by about 8 points. Now watch 2023–24: it barely moves. The Panama drought by itself changed nothing — the small drop we do see lines up with the Red Sea disruption instead, and since those two overlap, we're careful not to claim more than we can separate. One honest caveat: this is China-origin trade only, so we can't yet say it holds for cargo from anywhere else."
+> "This chart sits on the same timeline and uses the same gray bands, so you can read it right under the last one. Each line is a share: of all the cargo value we track from China, what percent lands at East and Gulf ports, in orange, versus West Coast ports, in blue. We used two lines because the question is how two groups compare over time. Watch the 2021 and 2022 band. The orange share rose from 28.3 to 36.7 percent, about eight points. Cargo moved east, away from the jam. Now the Panama drought: flat, 31.3 percent before and after. The small drop of about two points comes later, in the Red Sea window, so we do not blame the canal. One caveat: this is China-origin cargo only."
 
 ---
 
-## Slide 6 — Q3: Ports (Supriya)
-**Images:** `port_backlog.png` + `port_map.png`
-**Speaker: Supriya** · ~50s / 125 words
+## Slide 6: Q3, Ports
+**Speaker: Supriya** (about 60s, 150 words)
 
-**On screen:**
-- "Where the rerouted cargo actually landed"
-- LA–Long Beach: **103 ships** waiting, Jan 2022 — more than every other US port combined
-- West Coast ports recovered in 2–3 months; Sea-Tac still hasn't (as of July 2026)
+**On screen:** Title "Where the rerouted cargo landed." Backlog line chart on the left, circle map on the right. One caption line about the 103 ships.
 
 **Say:**
-> "This is where that rerouted cargo actually landed. At the worst point, January 2022, over a hundred ships sat waiting outside LA and Long Beach at once — more than every other US port combined. Savannah got hit later, once cargo arrived from the reroute. The map tells the same story geographically. Circle size there is how far each port's volume fell below normal at the worst point — not literal wait times, because that number only exists for a couple of ports, and we were careful not to show a number the data can't back up. West Coast ports recovered in two to three months. Sea-Tac, in Seattle, still hasn't, as of this past July."
+> "Two views. On the left, a line chart of ships waiting for a berth: blue is Los Angeles and Long Beach, orange is Savannah, gray is every other port. In January 2022, 103 ships were waiting at Los Angeles and Long Beach, more than at all the other ports. Savannah peaked later, at 39 ships in August 2022, after the rerouted cargo arrived. On the right, a map. Each circle is a port, placed where it really is. Circle size shows how far that port's volume fell below its 2019 level at the low point. We used size because wait counts exist for only two ports, and we did not want to fake precision. The biggest circles are on the West Coast. Los Angeles and Long Beach bounced back within three months, Oakland took sixteen, and Seattle-Tacoma, the seaport, is still below 2019."
 
 ---
 
-## Slide 7 — Q4: Synthesis (Raul)
-**Image:** `synthesis_small_multiples.png`
-**Speaker: Raul** · ~54s / 135 words
+## Slide 7: Q4, Synthesis (the scorecard)
+**Speaker: Raul** (about 65s, 165 words)
 
-**On screen:**
-- "Congestion and chokepoints favor opposite routes"
-- Port congestion → Panama-dependent route held up best
-- Chokepoint disruption (canal, Red Sea) → Pacific-direct route held up best
-- 2026 so far looks like the chokepoint pattern
-- Freight-rate link: strong through 2022 (r = 0.82), weak since (r = 0.09) — not a reliable predictor now
+**On screen:** Title "Port jams push cargo east. Chokepoints push it west." The episode scorecard: four rows (the four disruptions), three columns of bars (pressure, cargo shift, ships waiting). A short note on shipping prices.
 
 **Say:**
-> "Putting all three together: port congestion and chokepoint disruptions are opposite problems. Congestion favors the longer Panama route, because the short route is where the jam is. A canal or chokepoint problem favors the short Pacific route instead. 2026's renewed pressure looks like the second pattern so far. We also tested whether shipping rates predict this shift six months out — they did, strongly, through 2022, but that relationship's been weak ever since, so we're not using it to predict anything going forward. Three panels on one shared timeline, so you can see whether pressure, rates, and routing actually move together — instead of us just telling you they do."
+> "This is the whole project on one page. Each row is a disruption. Each column is something we measured: pressure, how far cargo moved east or west, and how many ships waited at Los Angeles and Long Beach. Longer bar, bigger number, so you can read across a row. Top row, the 2021 jam: pressure 4.43, cargo moved east by 8 points, about 41 ships waiting on average. A big jam, and cargo went east. Next two rows, the canal drought and the Red Sea: small pressure, almost no waiting, and cargo flat or drifting west. Last row, 2026: pressure up, almost no ships waiting, cargo leaning west. So there are two patterns: a port jam pushes cargo east, and a chokepoint problem pushes it west. 2026 so far looks like the second one. We also tested shipping prices as a predictor. They matched through 2022, but not since, so we do not use them to forecast."
+
+*(Backup slides B1 to B4 hold the stacked-strips chart, the price scatter, and the route map. Do not open them unless asked.)*
 
 ---
 
-## Slide 8 — Conclusions & Limits
-**Speaker: Supriya (limits)** ~20s / 50 words, **then Raul (conclusion + close)** ~20s / 50 words
+## Slide 8: Limits, conclusion, thank you
+**Speaker: Raul** (about 35s, 90 words)
 
-**On screen:**
-- Limits: only 4 comparable disruptions · 2 of them overlap · China-origin data only
-- Bottom line: not back to 2019 normal; which route wins depends on the disruption type
+**On screen:** Three limits, a bottom-line box, "Thank you. Questions?", the repo link.
 
-**Supriya says:**
-> "Three honest limits. We only have four comparable disruptions, so this is a pattern worth watching, not a proven law. Two of them overlap, so we can't fully separate their effects. And our trade data covers China only, so we don't yet know if other countries behave the same way."
-
-**Raul says:**
-> "So where this leaves us: the system isn't back to 2019 normal, and which route holds up next depends on what kind of disruption shows up. We'd want to check this against a second origin country before trusting it further. Thanks — happy to take questions."
+**Say:**
+> "Three honest limits. We have only four disruptions, so this is a pattern to watch, not a law. Two of the four overlap in time. And our trade data is China only. So here is our answer: the crisis is not over, but it is not 2021 again. Pressure is still above normal, the ports are clear, and cargo is leaning back west. Which route holds up next depends on the kind of disruption. Our next step is to repeat this for a second country. Thank you. We are happy to take questions."
 
 ---
 
-## Slide 9 — Thank you / Questions
-**On screen:** Thank you. Repo + dashboard links.
-**Time:** ~2s, transition straight to Q&A.
+## In-person checklist (Dec 3)
 
----
-
-## Design-decision one-liners (already folded into the script above, listed here for quick reference if a question asks "why this chart type")
-
-- **Q1:** One line, not multiple colors per event — shaded disruption windows in the same gray so the trend reads first.
-- **Q2:** Same two colors and the same gray windows as Q1, so the two charts compare without learning new chart grammar.
-- **Q3 map:** Circle size only encodes what the data actually supports (a throughput-slump proxy); backlog counts aren't shown for ports where they don't exist, instead of guessing.
-- **Q4:** Three stacked panels sharing one time axis (small multiples) instead of three separate charts, so alignment — or the lack of it — is visible at a glance, and the freight rate gets its own strip rather than a second, differently-scaled y-axis.
+- [ ] One person brings the laptop with the adapter (USB-C to HDMI) **and** a second person has the deck on their own laptop.
+- [ ] Offline copy: PDF of the deck on a USB stick and in Drive, in case the room Wi-Fi fails. The web deck needs internet for its fonts and libraries.
+- [ ] Open the deck on the room's projector before class if the room is free. Check that the colors and small text are readable from the back.
+- [ ] Speaker notes: press **S** in the deck to open the notes window on the laptop, and drag the main slide to the projector.
+- [ ] Decide who advances slides (one person with the clicker or keyboard) so nobody fights over the arrow keys.
+- [ ] Screenshots of every Tableau view on a USB stick, in case Tableau Public is slow.
+- [ ] Everyone has read `plain_english_faq.md` and `qa_prep_sheet.md`. Any of us may get any question.
+- [ ] Time yourselves once out loud on Dec 1 or earlier. Target 6:00.

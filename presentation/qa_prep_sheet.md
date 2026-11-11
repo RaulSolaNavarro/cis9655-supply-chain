@@ -1,50 +1,79 @@
-# Q&A prep sheet — everyone should skim this before Dec 1/3
+# Q&A prep sheet (v2)
 
-The guidelines say questions can go to **any** team member and everyone should be ready to discuss the **entire** project, not just your own piece. This consolidates what's scattered across the four README files into one page, organized by the exact question types the instructor said she'll ask.
+Questions can go to **any** of us, and everyone should be able to talk about the whole project. Skim this plus [`plain_english_faq.md`](plain_english_faq.md) before Dec 3. The sections follow the question types the professor said she would ask. Full chart-by-chart reasoning is in [`visualization_decisions.md`](visualization_decisions.md).
+
+**Answer pattern that works:** (1) one-sentence answer, (2) the number or chart that backs it, (3) the honest limit. If you do not know, say what the data shows and say "we did not test why."
+
+---
 
 ## "Why did you choose these visual representations and encodings?"
 
-- **Q1 (pressure):** A single line, because the question is "how has this changed over time." Disruption windows are shaded the same gray and labeled by name instead of color-coded, so the trend itself stays the visual lead, not a legend of colors.
-- **Q2 (lanes):** Two lines, same two colors and the same gray windows as Q1 on purpose, so the two charts compare directly without the audience learning a new chart.
-- **Q3 (ports):** A bar/line chart for the hard numbers (ships waiting, throughput), plus a map. On the map, circle size encodes only what the data actually supports — a throughput-slump proxy — not the literal berth-backlog count, because that count only exists for 2 of 9 ports. We chose not to imply precision we didn't have.
-- **Q4 (synthesis):** Three panels stacked on one shared time axis (small multiples) rather than one chart with two y-axes, so a different-unit series (freight rate) doesn't visually overstate or understate itself against the others.
+- **Q1 pressure:** One line, because the task is "how has this changed over time." Position is the most accurate way to show a number. All disruption windows are the same gray and labeled by name, so the trend leads and there is no color legend to decode.
+- **Q2 lanes:** Two lines on a shared axis, the same blue and orange and the same gray bands as Q1 on purpose, so the charts line up and can be compared directly.
+- **Q3 ports:** A line chart for ships waiting, plus a proportional-symbol map. On the map, circle area encodes only what the data supports, a throughput slump, not literal wait times, because wait counts exist for only 2 of the 9 ports.
+- **Q4 synthesis:** An episode scorecard (a table of bars). Rows are disruptions, columns are measures, so you read across a row and see whether pressure, cargo shift, and ship backlog moved together. The older stacked-strips chart is in the backup slides.
 
-## "How do your visualizations support your intended analytical tasks?"
+## "How do your visualizations support your analytical tasks?"
 
-- Q1's task is **identifying trend and magnitude** over nearly 30 years — a line chart is the standard answer to that task.
-- Q2's task is **comparing two groups' share over time** — two lines on a shared axis is the direct encoding for that comparison.
-- Q3's task is **finding extremes and locating them geographically** — a ranked chart plus a map, so "which port" has both a number and a place.
-- Q4's task is **examining whether three different series move together** — stacking them on one axis is built for exactly that read.
+- Q1: identify trend and magnitude over about 30 years.
+- Q2: compare two groups over time and detect a shift in a window.
+- Q3: find extremes (worst backlog) and locate them (map).
+- Q4: compare episodes and check whether three measures move together.
 
-## "What conclusions can reasonably be drawn from your data?"
+## "What conclusions can reasonably be drawn?"
 
-- Cargo really does shift lanes, and which way depends on the *type* of disruption: port congestion pushes it onto the longer Panama-dependent route; a canal/chokepoint problem pushes it back onto the shorter Pacific route.
-- The 2026 pressure increase looks more like the chokepoint pattern so far (based on lane share and port backlogs), not a repeat of 2021.
-- What you **can't** reasonably conclude: anything about non-China-origin trade (data only covers China), anything causal from the correlation numbers (r = 0.48 overall is real but not causal, and the relationship isn't stable — r = 0.82 pre-2023, r = 0.09 since), or a precise berth-backlog ranking across all 9 ports (BTS only publishes that for 3 of them).
+- Cargo does shift between lanes, and the direction depends on the **type** of disruption: a port jam pushed cargo east (the East and Gulf share rose 8.4 points in 2021-22), while canal and Red Sea problems nudged it west.
+- 2026 looks like the chokepoint pattern so far: pressure is elevated (peak 1.81, 1.28 in September), cargo is leaning west (down 2.7 points), and port backlogs are near record lows.
+- **Not** supported: anything about non-China trade, anything causal from the correlations, a precise ship-waiting ranking across all 9 ports (BTS publishes it for 3 groups), or a forecast from shipping prices.
 
-## "How did you evaluate the effectiveness and integrity of your visualizations?" (have 2-3 concrete examples ready — this is the one they'll probe hardest)
+## "How did you evaluate effectiveness and integrity?" (have two examples ready)
 
-- We caught our own unsupported causal claim: an early draft called an unexplained 2025 trade spike "likely tariff front-loading." We had no evidence for that, so the README now says explicitly "that's a guess, not a finding."
-- We caught a misattribution in two places (a slide and a README): a lane-share drop had been pinned on the Panama Canal drought specifically, when the actual data shows the drought alone left the share flat — the drop lined up with the overlapping Red Sea window instead. Fixed in both places once found.
-- We corrected an overclaimed statistic from our own earlier pitch: the pitch deck said the freight-rate correlation was "the signal that predicts the reroute" (r ≈ 0.45). The real number is r = 0.48, which sounds like confirmation — but splitting it by period shows r = 0.82 through 2022 and only r = 0.09 since, meaning the relationship has basically stopped holding. We rewrote the claim instead of keeping the flattering version.
-- On the Tableau side: an automated script generated a workbook file that looked fine by every check we could run, but Tableau Desktop refused to open it (a real, specific schema error, not a vague failure). Rather than hide that or silently drop it, we documented it as confirmed broken and rebuilt by hand.
+1. **A wrong percentage we caught.** Our notes said September 2026's 1.28 was "about 40% of the 2021 peak." 1.28 divided by 4.43 is about 29 percent. The 40 percent applies to the 2026 peak of 1.81. We fixed the slide and the notes.
+2. **An overclaimed statistic.** The pitch called the shipping-price link "the signal that predicts the reroute." The correlation is 0.48, which sounds like confirmation. Splitting it shows 0.82 through 2022 and 0.09 since. We rewrote the claim.
+3. **A misattributed cause.** A drop in lane share had been pinned on the Panama drought. The data shows the drought alone left the share flat; the drop came in the overlapping Red Sea window. Fixed in the slide and the README.
+4. **An unsupported guess.** An early draft called a 2025 trade spike "likely tariff front-loading." We had no evidence, so the README says "that's a guess, not a finding."
+5. **A broken workbook.** A script generated a Tableau file that Tableau refused to open. We documented it as broken and built the workbook by hand from a step-by-step guide.
+6. **A recovery claim that was too broad.** "West Coast ports recovered in 2 to 3 months" was true of Los Angeles and Long Beach only. Oakland took 16 months and Seattle-Tacoma has not recovered.
 
-## "What alternative design choices did you consider and why did you reject them?"
+## "What alternatives did you consider and reject?"
 
-- Considered using Mexico as a stand-in for Panama Canal-routed trade; rejected once we found about 90% of US-Mexico trade moves by truck and rail, not ocean freight, so it would have measured the wrong thing.
-- Considered a second y-axis for the freight rate in the Q4 synthesis chart; rejected it for a separate stacked strip, since two differently-scaled axes on one plot are an easy way to accidentally mislead on how much two lines actually move together.
-- Considered generating the Tableau workbook with a script for speed; rejected (after confirming it broke) in favor of building it by hand in Tableau Desktop, following a step-by-step guide instead.
+- **Mexico as a stand-in for canal traffic:** rejected, about 90% of that trade is truck and rail.
+- **A second y axis for shipping price:** rejected, two scales on one plot invite false claims about co-movement.
+- **Stacked strips as the main Q4 chart:** moved to backup. Four wiggly lines are hard to compare by eye. The scorecard and a price scatter show it better.
+- **A state-shaded choropleth for ports:** rejected, our data belongs to nine points, and shading whole states adds area bias.
+- **A color per disruption:** rejected, it would compete with the lane colors and force a legend lookup.
+- **Generating the Tableau workbook with a script:** rejected after it failed to open.
 
-## "What limitations or sources of misinterpretation remain?"
+## "What limitations remain?"
 
-- Only four disruption episodes total — a pattern worth testing, not a proven causal result.
-- Two of those episodes (Panama drought, Red Sea) overlap in time and can't be fully separated.
-- Trade-volume data is China-origin only; unconfirmed for other countries.
-- Port-level berth backlog is only published for LA-Long Beach combined, Savannah, and "all other ports" lumped together — not all 9 ports individually.
-- Data runs about 2–3 months behind the present.
-- Correlations aren't significance-tested; both series are smooth/trending, so monthly points aren't fully independent observations.
+- Four disruption episodes only: a pattern, not a law.
+- Two episodes (Panama drought and Red Sea) overlap and cannot be fully separated.
+- China-origin data only. We have not measured China's share of all US container imports.
+- Lane share is dollar value, not container counts.
+- Ship-waiting counts are published for LA-Long Beach, Savannah, and "all other ports" only.
+- Correlations are not significance-tested, and monthly points are not independent.
+- Data runs about 2 to 3 months behind.
 
 ## "What additional analysis would be valuable?"
 
-- Re-run the lane-share analysis on a second origin country (e.g., Vietnam or Mexico-as-origin, not Mexico-as-routing-proxy) to see if the congestion-vs-chokepoint pattern holds outside China.
-- Get a true per-port berth-backlog series if a better data source becomes available, instead of the throughput-slump proxy on the map.
+- Repeat the lane-share analysis for a second origin country (Vietnam, for example).
+- Find a true per-port wait series to replace the throughput-slump proxy on the map.
+- Test the labor-dispute and diversion explanations directly instead of citing outside reporting.
+
+---
+
+## Likely audience questions and one-line answers
+
+| Question | Answer |
+|---|---|
+| Why only China? | The Pacific-versus-canal choice exists for Asian cargo. China is the cleanest case. We do not claim it holds elsewhere. |
+| What does the pressure index measure? | The NY Fed's monthly gauge of how stretched global supply chains are, from shipping costs and manufacturer surveys. 0 is average, 1 is clearly stressed. |
+| Why does cargo moving between ports matter? | The disruption moves with it. In 2022 the LA jam was followed by Savannah's own backlog. |
+| What replaced Mexico? | A direct measure: share of China imports at East and Gulf ports versus West Coast ports, from US Customs port data. |
+| Is this about volume? | Lane share is dollar value. Port throughput and ships waiting are volumes and counts. |
+| Do ships waiting cause the reroute? | It is consistent with the data. The East and Gulf share also kept rising after the LA backlog cleared, and outside reporting cites West Coast labor worries, so we do not claim waiting ships are the only cause. |
+| Why did volume drop at some ports, and how does that tie to wait times? | Waits are high when too much arrives at once. Volume is low when too little arrives. In our data volume dropped below 2019 in spring 2023, after the waiting ended. We did not test why it dropped. |
+| Why has Seattle-Tacoma not recovered? | Our data does not say. Outside reporting shows its imports down 18.0% year on year in 2026-Q1 while Vancouver and Prince Rupert grew, with trade friction, Canadian rail routes, and labor and congestion worries cited. |
+| What is a congestion versus a chokepoint? | Congestion blocks a destination (a port). A chokepoint blocks a path (the canal, the Red Sea). They push cargo in opposite directions. |
+| Do shipping prices predict the shift? | They did through 2022 (r 0.82) and do not since (r 0.09). One episode drove it, so we do not use it to forecast. |
+| What is your conclusion? | Not over, not 2021 again. Pressure above normal, ports clear, cargo leaning west. Which route holds up depends on the disruption type. A pattern to watch, not a proven law. |
