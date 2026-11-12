@@ -139,6 +139,14 @@ See [`visualization_decisions.md`](visualization_decisions.md). It walks each ch
 
 **What to say if pushed.** The timing fits: our pressure score jumped from 0.63 in March to 1.78 in April. But it was already above zero before the war (0.47 in December 2025), and we have no data that separates the war from tariffs or anything else. Call it a theory.
 
+## 15. Prices are up in 2026 but we say they do not predict the shift. Which is it?
+
+Both, for different jobs. **We use price to describe the shock, not to predict the shift.**
+
+- **Describe:** shipping was expensive in both episodes. The Shanghai to Los Angeles rate reached $11,730 per 40-ft box in August 2021, and rose from $3,112 in April 2026 to $7,848 in September 2026. That is part of why we call 2026 a cost shock.
+- **Predict:** high prices came with opposite moves. Cargo went east by 8.4 points in 2021-22 and is leaning west by 2.7 points in 2026. If price set the direction, both episodes would have gone the same way. They did not, so the disruption type (a port jam versus a chokepoint and cost shock), not the price level, explains the direction. That is also why the six-month price link was r = 0.82 through 2022 but only 0.09 since.
+- **Not two confirmations:** the pressure score already includes shipping costs: container and dry-bulk freight rates and airfreight prices ([NY Fed, "A New Barometer of Global Supply Chain Pressures"](https://libertystreeteconomics.newyorkfed.org/2022/01/a-new-barometer-of-global-supply-chain-pressures)). So when pressure and prices rise together, that is partly the same signal counted twice, not independent evidence.
+
 ---
 
 ## Two corrections we found while preparing (say so if asked)

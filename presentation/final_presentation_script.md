@@ -2,7 +2,7 @@
 
 **Format:** 7 minutes talking, 3 minutes Q&A. Presentations are in person (Dec 3). Everyone attends both sessions.
 
-**Plan:** about 6 minutes 15 seconds spoken, which leaves 45 seconds of slack. Pace is about 150 words a minute. Practice once with a timer and cut a sentence if you run long.
+**Plan:** about 6 minutes 20 seconds spoken, which leaves 40 seconds of slack. Pace is about 150 words a minute. Practice once with a timer and cut a sentence if you run long.
 
 **Who speaks:** Jason (slides 2 and 4), Paven (slides 3 and 5), Supriya (slide 6), Raul (slide 7 and the close).
 
@@ -16,8 +16,8 @@
 | 4 Pressure (Q1) | Jason | 1:00 | 2:30 |
 | 5 Lanes (Q2) | Paven | 1:00 | 3:30 |
 | 6 Ports (Q3) | Supriya | 1:00 | 4:30 |
-| 7 Synthesis (Q4) | Raul | 1:05 | 5:35 |
-| 8 Limits, conclusion, thanks | Raul | 0:40 | 6:15 |
+| 7 Synthesis (Q4) | Raul | 1:10 | 5:40 |
+| 8 Limits, conclusion, thanks | Raul | 0:40 | 6:20 |
 
 **Rules for the whole talk (the course is Data Visualization, so the charts are the stars):**
 
@@ -87,12 +87,12 @@
 ---
 
 ## Slide 7: Q4, Synthesis (the scorecard)
-**Speaker: Raul** (about 65s, 165 words)
+**Speaker: Raul** (about 70s, 170 words)
 
-**On screen:** Title "Port jams push cargo east. Chokepoints push it west." The episode scorecard: four rows (the four disruptions), three columns of bars (pressure, cargo shift, ships waiting). A short note on shipping prices.
+**On screen:** Title "Port jams push cargo east. Chokepoints push it west." The episode scorecard: four rows (the four disruptions), three columns of bars (pressure, cargo shift, ships waiting). A short note on shipping prices: high in both 2021 and 2026, but cargo moved in opposite directions.
 
 **Say:**
-> "This is the whole project on one page. Each row is a disruption. Each column is something we measured: pressure, how far cargo moved east or west, and how many ships waited at Los Angeles and Long Beach. Longer bar, bigger number, so you can read across a row. Top row, the 2021 jam: pressure 4.43, cargo moved east by 8 points, about 41 ships waiting on average. A big jam, and cargo went east. Next two rows, the canal drought and the Red Sea: small pressure, almost no waiting, and cargo flat or drifting west. Last row, 2026: pressure up, almost no ships waiting, cargo leaning west. So there are two patterns: a port jam pushes cargo east, and a chokepoint problem pushes it west. 2026 so far looks like the second one. We also tested shipping prices as a predictor. They matched through 2022, but not since, so we do not use them to forecast."
+> "This is the whole project on one page. Each row is a disruption. Each column is something we measured: pressure, how far cargo moved east or west, and how many ships waited at Los Angeles and Long Beach. Longer bar, bigger number, so you can read across a row. Top row, the 2021 jam: pressure 4.43, cargo moved east by 8 points, about 41 ships waiting on average. A big jam, and cargo went east. Next two rows, the canal drought and the Red Sea: small pressure, almost no waiting, and cargo flat or drifting west. Last row, 2026: pressure up, almost no ships waiting, cargo leaning west. So there are two patterns: a port jam pushes cargo east, and a chokepoint problem pushes it west. 2026 so far looks like the second one. Shipping prices rose in both 2021 and 2026, but cargo went east the first time and west the second. So price alone does not tell you the direction, and we do not use it to forecast."
 
 *(Backup slides B1 to B4 hold the stacked-strips chart, the price scatter, the port-volume small multiples, and a plain-English glossary. Do not open them unless asked.)*
 
@@ -117,4 +117,4 @@
 - [ ] Decide who advances slides (one person with the clicker or keyboard) so nobody fights over the arrow keys.
 - [ ] Screenshots of every Tableau view on a USB stick, in case Tableau Public is slow.
 - [ ] Everyone has read `plain_english_faq.md` and `qa_prep_sheet.md`. Any of us may get any question.
-- [ ] Time yourselves once out loud on Dec 1 or earlier. Target 6:15.
+- [ ] Time yourselves once out loud on Dec 1 or earlier. Target 6:20.
