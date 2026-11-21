@@ -1,0 +1,5 @@
+episode_order,episode,start,end,peak_gscpi,share_change_pp,lalb_ships_waiting_mean,cargo_moved,note
+1,West Coast port congestion,2021-01,2022-12,4.43,8.4,40.8,East,
+2,Panama Canal drought,2023-06,2024-05,0.2,0.0,0.7,No change,Windows overlap Nov 2023 to May 2024
+3,Red Sea / Suez rerouting,2023-11,2024-12,0.2,-2.3,0.9,West,Windows overlap Nov 2023 to May 2024
+4,Renewed 2026 pressure,2026-01,2026-09,1.81,-2.7,0.9,West,Cargo shift runs through Aug 2026; pressure through Sep 2026

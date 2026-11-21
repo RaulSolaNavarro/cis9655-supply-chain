@@ -18,6 +18,7 @@ Each of us builds one or two views in Tableau, publishes them, and sends Raul th
 | Paven | [02_paven_lane_share.md](02_paven_lane_share.md) | `lane_share_tableau.csv` | about 15 min |
 | Supriya | [03_supriya_ports.md](03_supriya_ports.md) | `port_map_tableau.csv` and `port_series_tableau.csv` | about 25 min |
 | Raul | [04_raul_dashboard.md](04_raul_dashboard.md) | all four | about 25 min, after the others finish |
+| Raul | [05_raul_scorecard.md](05_raul_scorecard.md) | `scorecard_tableau.csv` | about 15 min |
 
 ## How each guide is set up
 
