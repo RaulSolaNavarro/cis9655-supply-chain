@@ -1,6 +1,7 @@
 # Raul: palette, dashboard, story
 
-**What you are building:** one workbook that holds everyone's sheets, a dashboard where clicking a gray band filters the other charts, and a short story.
+**What you are building:** one workbook that holds everyone's sheets, one dashboard per view, and a five-point story.
+**Finished workbook:** [`tableau/team/Supply Chain Resilience - Team.twbx`](Supply%20Chain%20Resilience%20-%20Team.twbx). Open it to compare with what you build.
 
 **Do this after** Jason, Paven, and Supriya have posted their Tableau Public links. If anyone is late, build with what you have and use their screenshot for the rest. Do not let this block the deck.
 
@@ -16,37 +17,34 @@
 
 *You should see:* sheets named GSCPI, Lane share, Port map, and Port series in your workbook.
 
-**Fast fallback:** if copying fails, build your own copy of that sheet from their guide (Level 1 is enough), or use their screenshot in the deck and skip that sheet in the dashboard.
-
-## Step 2: The dashboard (8 minutes)
+**Fast fallback:** if copying fails, build your own copy o## Step 2: The dashboards (10 minutes)
 
 6. Menu **Dashboard**, **New Dashboard**.
-7. At the bottom left, set **Size** to **Fixed size**, **1280 x 720**.
-8. Drag **GSCPI** into the dashboard. Drag **Lane share** under it. Drag **Port series** under that. (Same month axis, so you scan down one date.)
-9. Drag **Port map** to the right side.
-10. Double-click the dashboard title and type `Global supply chain resilience, Jan 2019 to Sep 2026`.
+7. At the bottom left, set **Size** to **Fixed size**, **1560 x 660**.
+8. Drag **GSCPI** into it. Double-click the tab at the bottom and name it `Pressure`.
+9. Repeat for **Lanes** (Lane share sheet), **Ports** (Port map and Port series side by side, keep the filter card next to the series), and **Scorecard** (the scorecard sheet).
+10. Make one more called **Summary**: GSCPI and Lane share stacked on the left, and a **Text** object on the right with three takeaways (2021, 2023 to 2024, 2026).
 
-*You should see:* three time charts stacked on the left and the map on the right.
+*You should see:* five dashboard tabs: Pressure, Lanes, Ports, Scorecard, Summary.
 
-## Step 3: The click-to-filter action (5 minutes)
+## Step 3: The story (5 minutes)
 
-11. Menu **Dashboard**, **Actions**, **Add Action**, **Filter**.
-12. **Name:** `Filter by disruption window`. **Source Sheets:** GSCPI only. **Run action on:** Select. **Target Sheets:** Lane share and Port series (untick Port map). **Clearing the selection will:** Show all values.
-13. Under **Target Filters**, choose **Selected Fields**, click **Add Filter**, and match `disruption_window` to `disruption_window` for each target data source. Click OK.
-14. Test it: click a gray band on the GSCPI chart. The other two charts should narrow to that window. Click empty space to reset.
+11. Menu **Story**, **New Story**. Size **Fixed**, 1600 x 850.
+12. Drag **Pressure** onto the story. Caption: `2021 peaked; but there is still pressure.`
+13. Click **Blank**, drag **Lanes** in. Caption: `Congestion moved cargo east.`
+14. Blank, **Ports**. Caption: `West Coast ports slumped hardest.`
+15. Blank, **Scorecard**. Caption: `Port jams push cargo east. Chokepoints push it west.`
+16. Blank, **Summary**. Caption: `2026 is a cost shock with clear ports.`
 
-## Step 4: The story (5 minutes)
+*You should see:* five story points across the top. Clicking each one shows its dashboard.
 
-15. Menu **Story**, **New Story**. Size **Fixed**, 1280 x 800.
-16. Drag the dashboard onto the story. Caption: `Four disruptions on one timeline`. Select nothing.
-17. Click **Duplicate**. On the new point, click the West Coast band on GSCPI, then click **Update**. Caption: `West Coast jam: cargo shifted east`.
-18. Duplicate again. Ctrl-click a Panama-only month and a Red Sea month, then **Update**. Caption: `Canal and Red Sea: a small drift west`.
-19. Duplicate again. Click the 2026 band, **Update**. Caption: `2026: pressure up, ports clear`.
+## Step 4: Publish
 
-## Step 5: Publish
+17. **File**, **Save to Tableau Public As...**. Name it `Supply Chain Resilience - Team`.
+18. Copy the link, send it to the group, and give it to Claude Code to add to the deck and the README.
+19. Save the workbook as `tableau/team/Supply Chain Resilience - Team.twbx` in the repo.
+20. Take screenshots of each story point as a backup for Dec 3.
 
-20. **File**, **Save to Tableau Public As...**. Name it `Global Supply Chain Resilience`.
-21. Copy the link, send it to the group, and give it to Claude Code to add to slide 8 and the README.
-22. Take screenshots of the dashboard and each story point. Save them in a folder named `tableau_screenshots` as a backup for Dec 3.
+ screenshots of the dashboard and each story point. Save them in a folder named `tableau_screenshots` as a backup for Dec 3.
 
 **Wording to keep:** the Panama drought alone left the lane share flat. The westward drop came during the Red Sea window.

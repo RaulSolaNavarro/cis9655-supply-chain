@@ -86,7 +86,7 @@ Outside reporting gives context. Sea-Intelligence reports that the Northwest Sea
 
 Naming note: our charts and slides say "Seattle-Tacoma", meaning the **seaport** (the Northwest Seaport Alliance), not the airport. The data files and Tableau CSVs still use the short label "Sea-Tac" for the same port. On slides, write "Seattle-Tacoma (the seaport)" the first time.
 
-## 10. Slide 07 explained
+## 10. Congestion, chokepoints, and the scorecard explained
 
 **What is congestion?** Too much cargo arriving at the same port at the same time. Ships queue offshore, containers pile up in the yard. The trouble is **at the port**, at the end of the trip. Example: Los Angeles in 2021.
 
@@ -106,11 +106,11 @@ Naming note: our charts and slides say "Seattle-Tacoma", meaning the **seaport**
 
 **What did shipping rates predict, and why not now?** We tested whether the Shanghai-to-Los Angeles shipping price six months earlier lined up with the East and Gulf share of China imports. Across the whole period the match is moderate (r = 0.48). But splitting the period tells the real story: **r = 0.82 through 2022, r = 0.09 from 2023 on.** The match came from one episode, when the 2021 price spike was followed by the 2021-22 eastward shift. After that, prices stopped being a useful guide. One episode is not a reliable predictor, so we do not use it to forecast. (r is the correlation: 1 means two lines move together perfectly, 0 means no link.)
 
-**What does "three panels" mean?** It was a mistake in our notes. The chart has **four stacked strips** on one shared timeline (pressure, lane share, shipping rate, port backlog). We now call it "stacked strips" and use it only as a backup slide.
+**What does "three panels" mean?** It was a mistake in our notes. The chart has **four stacked strips** on one shared timeline (pressure, lane share, shipping rate, port backlog). We now call it "stacked strips" and use it only as a backup slide in the web deck.
 
 **Is there a better way to show whether they move together?** Yes, and we are adding it. The stacked strips make you compare four wiggly lines by eye, which is hard. Two clearer views:
 
-1. **Episode scorecard (main slide).** One row per disruption, one column per measure (pressure, cargo shift, ship backlog), with a bar in each cell. Your eye reads across a row and sees at once whether the three measures rose together. It uses only our own numbers.
+1. **Episode scorecard (Story point 4).** One row per disruption, one column per measure (pressure, cargo shift, ship backlog), with a bar in each cell. Your eye reads across a row and sees at once whether the three measures rose together. It uses only our own numbers.
 2. **Rate scatter (backup).** One dot per month, shipping rate on the x axis, East and Gulf share on the y axis, two colors for "through 2022" and "2023 and later." You can see the tight line through 2022 and the shapeless cloud after it. That makes r = 0.82 versus 0.09 visible instead of just stated.
 
 **What is our conclusion?** In one breath: **"The crisis is not over, but it is a different crisis. 2021 was a port jam: pressure, freight costs and ships waiting all spiked, and cargo moved east. 2026 is a cost shock: pressure and freight rates are up, ports are clear, and cargo is leaning west. That is a pattern from four episodes, so we call it worth watching, not proven."** On freight costs: the Shanghai to Los Angeles rate went from $1,730 in February 2020 (the series starts there) to $11,730 in August 2021. For why 2026 looks this way, see answers 12 to 14: that part is outside reporting and a theory, not something our data tests.
@@ -155,3 +155,23 @@ Both, for different jobs. **We use price to describe the shock, not to predict t
 - The earlier deck said "West Coast ports recovered in 2 to 3 months." That is true of Los Angeles (2) and Long Beach (3). **Oakland and Seattle-Tacoma each took 16 months, and Seattle-Tacoma then fell back to 78 by July 2026, the one port clearly below 2019.** The deck now says that.
 
 Catching and fixing our own errors is exactly the "integrity" story the professor asked about. Use it.
+
+## 16. The Tableau Story: plain answers
+
+**What is the "loaded imports index"?** A count of full containers arriving at a port, smoothed as a 3-month average, and compared with that same port's own 2019 average, which we set to 100. Above 100 means more containers than in 2019. Below 100 means fewer. Each port is compared with itself, so a small port and a big port can sit on the same chart.
+
+**Why 2019?** It is the last full year before the pandemic, so it is our picture of a normal year. We use it only as a yardstick.
+
+**Does a low index mean a port was congested?** No. A low index means fewer containers arrived. In our data the drop came in spring 2023, after the waiting had ended, and weaker import demand is part of it. We use the index to show how hard each port was hit, not how long ships waited.
+
+**Why do the West Coast and East and Gulf lines hide some detail?** Each line is a simple average of its ports' indexes. Every port counts equally, whatever its size. Inside a line the ports differ a lot (today Houston is at 176 and Charleston at 113). The map and its tooltips show each port on its own.
+
+**Why does the ships-waiting view show only two lines?** The Transportation Department counts ships waiting for a berth for three groups only: Los Angeles-Long Beach, Savannah, and all other ports together. "All other ports" mixes every coast, so it cannot be called East or West. We use Los Angeles-Long Beach as the West Coast stand-in and Savannah as the East stand-in, and say so in the caption.
+
+**Why is there a gap in the ships-waiting line?** No data was reported for October 2025. The chart labels it.
+
+**What is "cargo shift" on the scorecard?** The change in the East and Gulf share of China's container imports, in percentage points, from the three months before an episode to its last three months. A bar to the right means cargo moved east. A bar to the left means it moved west.
+
+**Why is the Panama drought's shift +0.0?** The share ended the episode exactly where it started (31.3%), so the drought alone did not move cargo.
+
+**Why does the ports map say "now" is July 2026 when pressure runs to September?** Port data arrives about three months late, and the lane data stops in August. Each series runs to its latest month.

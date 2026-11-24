@@ -1,6 +1,6 @@
-# Q&A prep sheet (v2)
+# Q&A prep sheet (v3)
 
-Questions can go to **any** of us, and everyone should be able to talk about the whole project. Skim this plus [`plain_english_faq.md`](plain_english_faq.md) before Dec 3. The sections follow the question types the professor said she would ask. Full chart-by-chart reasoning is in [`visualization_decisions.md`](visualization_decisions.md).
+Questions can go to **any** of us, and everyone should be able to talk about the whole project. Skim this plus [`plain_english_faq.md`](plain_english_faq.md) before your session (Dec 1 on Zoom or Dec 3 in person). The sections follow the question types the professor said she would ask. Full chart-by-chart reasoning is in [`visualization_decisions.md`](visualization_decisions.md).
 
 **Answer pattern that works:** (1) one-sentence answer, (2) the number or chart that backs it, (3) the honest limit. If you do not know, say what the data shows and say "we did not test why."
 
@@ -11,7 +11,7 @@ Questions can go to **any** of us, and everyone should be able to talk about the
 - **Q1 pressure:** One line, because the task is "how has this changed over time." Position is the most accurate way to show a number. All disruption windows are the same gray and labeled by name, so the trend leads and there is no color legend to decode.
 - **Q2 lanes:** Two lines on a shared axis, the same blue and orange and the same gray bands as Q1 on purpose, so the charts line up and can be compared directly.
 - **Q3 ports:** A line chart for ships waiting, plus a proportional-symbol map. On the map, circle area encodes only what the data supports, a throughput slump, not literal wait times, because wait counts exist for only 2 of the 9 ports.
-- **Q4 synthesis:** An episode scorecard (a table of bars). Rows are disruptions, columns are measures, so you read across a row and see whether pressure, cargo shift, and ship backlog moved together. The older stacked-strips chart is in the backup slides.
+- **Q4 synthesis:** An episode scorecard (a table of bars). Rows are disruptions, columns are measures, so you read across a row and see whether pressure, cargo shift, and ship backlog moved together. The older stacked-strips chart is in the backup slides of the web deck.
 
 ## "How do your visualizations support your analytical tasks?"
 
@@ -32,7 +32,7 @@ Questions can go to **any** of us, and everyone should be able to talk about the
 2. **An overclaimed statistic.** The pitch called the shipping-price link "the signal that predicts the reroute." The correlation is 0.48, which sounds like confirmation. Splitting it shows 0.82 through 2022 and 0.09 since. We rewrote the claim.
 3. **A misattributed cause.** A drop in lane share had been pinned on the Panama drought. The data shows the drought alone left no net change (the share swung between 30.6% and 32.9%, then ended where it started at 31.3%); the drop came later, in the Red Sea window. Fixed in the slide and the README.
 4. **An unsupported guess.** An early draft called a 2025 trade spike "likely tariff front-loading." We had no evidence, so the README says "that's a guess, not a finding."
-5. **A broken workbook.** A script generated a Tableau file that Tableau refused to open. We documented it as broken and built the workbook by hand from a step-by-step guide.
+5. **A broken workbook.** A script generated a Tableau file that Tableau refused to open. We deleted it and built the final workbook by hand in Tableau, from our own guides.
 6. **A recovery claim that was too broad.** "West Coast ports recovered in 2 to 3 months" was true of Los Angeles and Long Beach only. Oakland and Seattle-Tacoma each took 16 months, and Seattle-Tacoma then fell back to 78 by July 2026, the one port clearly below 2019.
 
 ## "What alternatives did you consider and reject?"
@@ -81,3 +81,22 @@ Questions can go to **any** of us, and everyone should be able to talk about the
 | Why is pressure high in 2026 but ports are clear? | **Our data:** the pressure score peaked at 1.81 in May 2026 and was 1.28 in September, the Shanghai to Los Angeles rate rose from $3.1k (Apr) to $7.8k (Sep), yet Los Angeles and Long Beach averaged under 1 ship waiting. So this is not a port queue. **Theory, from outside reporting, not tested by us:** the Middle East war raised fuel costs and lengthened routes, while tariffs cut China's cargo. The NY Fed did not say what drove the index ([Reuters, Oct 6 2026](https://finance.yahoo.com/economy/policy/articles/york-fed-says-supply-chain-143658302.html)). |
 | Do tariffs explain it? | **Partly, as a theory.** Our Census figures show US imports from China fell from $440.3B (2024) to $308.7B (2025) and $215.0B in Jan to Sep 2026, about 8% of US imports, down from 13% in 2024 ([Census, US trade with China](https://www.census.gov/foreign-trade/balance/c5700.html); [Census, top trading partners](https://www.census.gov/foreign-trade/statistics/highlights/topyr.html); PIIE puts it at about 9% by end of 2025, [PIIE, Mar 16 2026](https://www.piie.com/blogs/realtime-economics/2026/trump-china-trade-wars-five-takeaways-us-imports-2025)). Less China cargo fits clear West Coast ports. It does not explain higher pressure, and we did not test cause. |
 | What is the war's role? | **Outside reporting, a theory, not our result.** The war began Feb 28 2026 and effectively closed the Strait of Hormuz; bunker fuel roughly doubled and ships went around the Cape ([Sea Vantage timeline](https://www.seavantage.com/blog/strait-of-hormuz-crisis-2026-shipping-disruption-timeline)). Reuters tied April's jump (1.82 first reported; 1.78 in our revised data) to the war's timing but said the NY Fed gave no cause ([Reuters via PYMNTS, May 6 2026](https://www.pymnts.com/supply-chain/2026/fed-data-shows-global-supply-chain-pressure-hits-4-year-high/)). Xeneta reported Far East to US West Coast rates up 192% from Feb 28 to Jun 19 ([Xeneta, Jun 19 2026](https://www.xeneta.com/news/us-iran-deal-to-reopen-strait-of-hormuz-but-full-container-shipping-recovery-at-least-three-months-away)). Note: our pressure score was already 0.47 in Dec 2025, before the war. |
+
+---
+
+## Questions about the Tableau Story
+
+| Question | Answer |
+|---|---|
+| Why a Story and not one dashboard? | A story walks the audience through an argument: pressure, then lanes, then ports, then the scorecard, then the answer. A dashboard is for exploring. We kept interaction to one toggle and hover tooltips so the story reads without instructions. |
+| Why is the 2020 spike not one of your episodes? | It is the pandemic demand shock (3.47 in April 2020). Our question is about freight disruptions at ports and chokepoints, so we study four named episodes. The pressure chart labels 2020 so nobody wonders. |
+| What is the loaded imports index, and why is 2019 the benchmark? | Containers arriving at a port, 3-month average, compared with that port's own 2019 average (= 100). 2019 is the last full year before the pandemic. Comparing each port with itself lets small and large ports share one scale. |
+| Does a low index mean congestion? | No. It means fewer containers arrived, and weaker demand is part of that. In our data the slump came in spring 2023, after the waiting ended. We use it to show how hard each port was hit, not how long ships waited. |
+| Are the West and East lines weighted by port size? | No. Each is a simple average of its ports' indexes, so every port counts equally. The map and its tooltips show each port on its own (today Houston is at 176 and Charleston at 113). |
+| Why does the ships-waiting view only have Los Angeles-Long Beach and Savannah? | The Transportation Department publishes ships waiting only for those two and "all other ports" combined, from July 2021. "All other ports" mixes every coast, so we leave it out and call the two stand-ins for West and East. |
+| What is the gap in the ships-waiting line? | October 2025: no data reported. The chart labels it. |
+| What does "cargo shift" mean on the scorecard? | The change in the East and Gulf share of China's container imports, in points, from the three months before an episode to its last three months. Right is east, left is west. |
+| Why is the Panama drought's shift +0.0? | The share ended where it started (31.3%), so the drought alone did not move cargo. The 2.3-point drop west comes in the Red Sea window, and the two overlap. |
+| Why is "now" July 2026 on ports but September on pressure? | Port data arrives about three months late, and lane data runs to August. Each series shows its latest month. |
+| Where is the workbook? | On Tableau Public (https://public.tableau.com/views/SupplyChainResilience-Team/Story) and in the repo as `tableau/team/Supply Chain Resilience - Team.twbx`, with the data embedded so it opens without any setup. |
+| Who built which view? | Jason, pressure. Paven, lanes. Supriya, ports. Raul, the scorecard, the summary and the story. All four of us can explain every view. |

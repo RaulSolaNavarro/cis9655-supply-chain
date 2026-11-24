@@ -8,7 +8,7 @@ Each of us builds one or two views in Tableau, publishes them, and sends Raul th
 2. Make a free Tableau Public account when it asks (you need it to publish).
 3. Download the one data file for your piece (links in your guide). On GitHub: open the file, click the **download icon** (top right of the file view). Save it somewhere you can find, like your Desktop.
 
-**Do not open** `tableau/supply_chain_resilience.twbx`. It is a broken file. Start from a blank Tableau and your CSV.
+**The finished workbook** is `Supply Chain Resilience - Team.twbx` in this folder (also published at https://public.tableau.com/views/SupplyChainResilience-Team/Story). Open it to see the final result. To build your own piece, start from a blank Tableau and your CSV.
 
 ## Pick your guide
 

@@ -1,8 +1,8 @@
 # Building the project in Tableau Desktop
 
-> **The generated `supply_chain_resilience.twbx` / `.twb` is confirmed broken, not just untested.** Tableau Desktop refuses to load it (error D2E8DA72: schema errors on the `reference-line` elements and the storyboard `window` element), so don't use it or try to repair it; build from this guide.
+> **The final workbook is [`team/Supply Chain Resilience - Team.twbx`](team/Supply%20Chain%20Resilience%20-%20Team.twbx)**, built by hand in Tableau Public and published at https://public.tableau.com/views/SupplyChainResilience-Team/Story. This guide is the long reference for rebuilding the views; the shorter per-person guides are in [`team/`](team/).
 
-This guide rebuilds the project's four views, a linked dashboard, and a story in Tableau Desktop in about an hour. Use it if the course deliverable has to be a Tableau workbook. It doesn't depend on `supply_chain_resilience.twbx`, which is confirmed broken: Tableau Desktop refuses to load it (see [About the .twbx](#about-the-twbx)).
+This guide rebuilds the project's four views, a linked dashboard, and a story in Tableau Desktop in about an hour. Use it if the course deliverable has to be a Tableau workbook.
 
 **Inputs:** the four CSVs in `tableau/data/`, built by `python tableau/build_tableau_data.py` from the same loaders as the q1–q4 charts. The hard parts are precomputed (window labels, band helper, map coordinates, marker sizes), so the build below uses **no calculated fields**.
 
@@ -13,7 +13,7 @@ This guide rebuilds the project's four views, a linked dashboard, and a story in
 | 2 | Sheet "Lane share": two lines with bands | 10 min |
 | 3 | Sheet "Port map": symbol map from lat/lon | 10 min |
 | 4 | Sheet "Port series": backlog or throughput | 8 min |
-| 5 | Dashboard and filter action | 10 min |
+| 5 | Dashboards | 10 min |
 | 6 | Story | 5 min |
 
 Notation: **Columns** / **Rows** are the shelves; **Color**, **Size**, **Shape**, **Label**, **Detail**, and **Tooltip** are buttons on the Marks card. "Continuous month" means a green `MONTH(date)` pill: drag `date` to the shelf, right-click the pill, and pick **Month** from the *second* group (the one showing "May 2015"), not the first.
@@ -59,7 +59,7 @@ The windows are all the same gray, as in the matplotlib charts. They're told apa
 
 1. **Connect → To a File → Text file**, and pick `tableau/data/gscpi_tableau.csv`.
 2. In the data source grid, check that `date` shows a calendar icon (Date). If it shows "Abc", click the icon and choose **Date**.
-3. Repeat **Data → New Data Source** for `lane_share_tableau.csv`, `port_map_tableau.csv`, and `port_series_tableau.csv`. Keep them as **four separate data sources**. Don't join or relate them; the dashboard links them with a filter action instead.
+3. Repeat **Data → New Data Source** for `lane_share_tableau.csv`, `port_map_tableau.csv`, and `port_series_tableau.csv`. Keep them as **four separate data sources**. Don't join or relate them; each dashboard shows one view, so they never need to be linked.
 
 What the columns mean (all four files):
 
@@ -92,9 +92,9 @@ What the columns mean (all four files):
 9. Right-click the right-hand axis area → **Move marks to back**, so the line draws over the bands. If that option isn't there, drag `MAX(window_band)` to the *left* of `SUM(gscpi_value)` on Rows and redo steps 6–8 for the new right axis.
 10. Do **not** synchronize the axes. The band axis must stay 0–1.
 
-**Fields the filter action needs**
+**Window name in the tooltip**
 
-11. Open the **All** tab of the Marks card and drag `disruption_window` onto **Detail**. Also drag it onto **Tooltip**. Without it on Detail, clicking a mark can't pass the window to other sheets.
+11. Open the **All** tab of the Marks card and drag `disruption_window` onto **Detail**. Also drag it onto **Tooltip**, so hovering a band shows its name.
 
 **Reference lines and labels**
 
@@ -134,7 +134,7 @@ Use the `_3mo_pct` columns to match the Q2 chart. The monthly `_pct` columns are
 10. Los Angeles and Long Beach sit about 8 km apart, so their circles overlap at national zoom. Either leave it (the tooltip separates them), or add a caption: "LA and Long Beach overlap; hover to see each."
 11. Title: `2022–23 import slump by port`. Caption: "Circle area = points below 2019 at the 2022–23 low, a per-port proxy. BTS reports berth backlogs only for LA + Long Beach combined, Savannah, and all other ports."
 
-This map has no dates, so the disruption-window filter action doesn't apply to it (see step 5).
+This map has no dates, so it has no disruption bands.
 
 ---
 
@@ -153,50 +153,25 @@ For the throughput view, a reference line at **Constant `100`** (the 2019 level)
 
 ---
 
-## 5. Dashboard and filter action
+## 5. Dashboards
 
-**Layout**
+The final workbook ([`team/Supply Chain Resilience - Team.twbx`](team/Supply%20Chain%20Resilience%20-%20Team.twbx)) has one dashboard per story point: **Pressure**, **Lanes**, **Ports**, **Scorecard**, and **Summary**. The only interaction is the `metric_name` toggle on the ports view plus hover tooltips, so nobody needs instructions.
 
-1. **Dashboard → New Dashboard.** Size: **Fixed size, 1280 × 720**, the same as the pitch deck.
-2. Drag in a **Horizontal** container. Into its left side drag a **Vertical** container, and drop in **GSCPI**, **Lane share**, and **Port series**, top to bottom. They share the same month axis, so readers can scan down one date.
-3. Into the right side drag **Port map**, and below it the `metric_name` filter card (it appears automatically with Port series; move it).
-4. Set the left column to about 62% of the width. Hide the sheet titles that repeat the dashboard title, and keep the window annotations on GSCPI only.
-5. Dashboard title: `Global supply chain resilience, Jan 2019 – Sep 2026`.
-
-**Filter action on `disruption_window`**
-
-6. **Dashboard → Actions → Add Action → Filter.**
-   - Name: `Filter by disruption window`.
-   - Source Sheets: **GSCPI** only. Run action on: **Select**.
-   - Target Sheets: **Lane share** and **Port series**. Untick **Port map**, which has no `disruption_window`.
-   - Clearing the selection will: **Show all values**.
-   - Filter: **Selected Fields** → **Add Filter**:
-     - Source field `disruption_window` (gscpi_tableau) → Target data source `lane_share_tableau`, target field `disruption_window`.
-     - Add a second row: source `disruption_window` → target data source `port_series_tableau`, target field `disruption_window`.
-   - OK.
-7. Test it: click a West Coast band on GSCPI. Lane share and Port series should narrow to Jan 2021 – Dec 2022. Click empty space to reset.
-
-**What the action does with the overlap.** The window label is a single value per month, so clicking a Panama-only month keeps only Panama-only months (Jun–Oct 2023), and the overlap months have their own label. To show a whole window including the overlap, **Ctrl-click** a band month from each part (for Panama: one Panama-only month plus one overlap month). Alternatively, add `in_panama` / `in_red` as quick filters (show filter, Single Value list, select 1) instead of using the action.
+1. **Dashboard → New Dashboard.** Size: **Fixed size, 1560 × 660**.
+2. Drag in the one sheet that dashboard holds (GSCPI for Pressure, Lane share for Lanes, and so on). For **Ports**, put **Port map** and **Port series** side by side and keep the `metric_name` filter card next to the series.
+3. For **Summary**, stack **GSCPI** and **Lane share** on the left and add a **Text** object on the right with the takeaways.
+4. Give each dashboard a Title Case title and a one-line subtitle that states its finding.
+5. Repeat for each dashboard.
 
 ---
 
 ## 6. Story
 
-1. **Story → New Story.** Size: **Fixed 1280 × 800** (the extra height holds the navigator).
-2. Drag the dashboard onto the story. Caption point 1: **Four disruptions on one timeline**. Leave nothing selected.
-3. Click **Duplicate**. On the new point, click a West Coast band on GSCPI, then click **Update** above the caption. Caption: **West Coast congestion: cargo shifted east**.
-4. Duplicate again. Ctrl-click a Panama-only month, an overlap month, and a Red Sea-only month → **Update**. Caption: **Panama drought and Red Sea: small westward drift**.
-5. Duplicate again. Click a 2026 band → **Update**. Caption: **2026: pressure up, ports clear**.
-6. Optional fifth point: the dashboard with the Port map tooltip open on Seattle-Tacoma (labeled Sea-Tac in the data). Caption: **Pacific ports slumped hardest; Seattle-Tacoma recovered in Jul 2024, then fell back to 78 in Jul 2026, the one port clearly below 2019**.
+1. **Story → New Story.** Size: **Fixed 1600 × 850** (the extra height holds the navigator).
+2. Drag the **Pressure** dashboard onto the story. Caption: **2021 peaked; but there is still pressure.**
+3. Click **Blank**, drag **Lanes** in. Caption: **Congestion moved cargo east.**
+4. Blank, **Ports**. Caption: **West Coast ports slumped hardest.**
+5. Blank, **Scorecard**. Caption: **Port jams push cargo east. Chokepoints push it west.**
+6. Blank, **Summary**. Caption: **2026 is a cost shock with clear ports.**
 
 Keep the captions close to the findings in the q1–q4 READMEs. In particular, the Panama drought alone left the lane share flat; the westward drop came during the Red Sea window.
-
----
-
-## About the .twbx
-
-`tableau/supply_chain_resilience.twbx` is generated by `tableau/build_twbx.py`, which also writes the unzipped `supply_chain_resilience.twb` for review. It defines the same four sheets, the dashboard, the filter action, and a four-point story, packaged with the CSVs.
-
-**It is confirmed broken, not just untested.** Tableau Desktop refuses to load it with error D2E8DA72. The `reference-line` elements fail the workbook schema (the element and all its attributes are undeclared), and so does the storyboard `window` element (`'storyboard'` isn't an allowed window class, and its required child elements are missing). The file is kept only as a record of the attempt. Don't use it or try to repair it; build from this guide.
-
-The script's offline checks did pass: well-formed XML, every field declared in its data source, every named sheet present, and packaged CSV paths that resolve. That shows those checks can't catch schema errors, so a passing run of `build_twbx.py` says nothing about whether Tableau will load the file.

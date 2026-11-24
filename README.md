@@ -8,10 +8,10 @@ CIS 9655 (Data Visualization): team final project.
 
 | What | Link | What is there |
 |---|---|---|
-| Final presentation (web deck) | https://raulsolanavarro.github.io/cis9655-supply-chain/ | The 8-slide deck we present. Press S for speaker notes, F for full screen. |
+| Tableau Story (main deliverable) | https://public.tableau.com/views/SupplyChainResilience-Team/Story | The five-point Tableau Public Story we present. The workbook with its data is [tableau/team/Supply Chain Resilience - Team.twbx](tableau/team/Supply%20Chain%20Resilience%20-%20Team.twbx). |
+| Intro deck (web) | https://raulsolanavarro.github.io/cis9655-supply-chain/ | The short deck that sets up the question, the data definitions and the routes before the Story, then closes with our answer. Press S for speaker notes, F for full screen. |
 | Earlier pitch deck | https://raulsolanavarro.github.io/cis9655-supply-chain/pitch.html | The Oct 15 pitch, kept for history. |
-| Final presentation (Google Slides) | https://docs.google.com/presentation/d/1a68IT-oZYxsnWrZ2Whijz4o7LiLRtB-lV0DvrHOGjk8/edit | A Google Slides copy of the same deck, for the shared folder. |
-| Speaker script | [presentation/final_presentation_script.md](presentation/final_presentation_script.md) | Who says what, with timing, plus the in-person checklist. |
+| Speaker script | [presentation/final_presentation_script.md](presentation/final_presentation_script.md) | Who says what across the intro deck and the Story, with timing, click cues and the in-person checklist. |
 | Plain-English FAQ | [presentation/plain_english_faq.md](presentation/plain_english_faq.md) | Plain answers to the questions we expect, with sources. |
 | Q&A prep sheet | [presentation/qa_prep_sheet.md](presentation/qa_prep_sheet.md) | Answers to the professor's question types and likely audience questions. |
 | Visualization decisions | [presentation/visualization_decisions.md](presentation/visualization_decisions.md) | Why each chart is drawn the way it is, in course vocabulary. |
@@ -29,14 +29,14 @@ CIS 9655 (Data Visualization): team final project.
 
 | What | Link | What is there |
 |---|---|---|
-| Team start page | [tableau/team/README.md](tableau/team/README.md) | Setup and publishing steps for the four-person Tableau build. |
+| Final workbook | [tableau/team/Supply Chain Resilience - Team.twbx](tableau/team/Supply%20Chain%20Resilience%20-%20Team.twbx) | The combined workbook: five sheets, five dashboards, and the Story. Data is embedded, so it opens with no setup. |
+| Team start page | [tableau/team/README.md](tableau/team/README.md) | How the four-person Tableau build was split and combined. |
 | Jason's guide | [tableau/team/01_jason_gscpi.md](tableau/team/01_jason_gscpi.md) | Pressure line with disruption bands. |
 | Paven's guide | [tableau/team/02_paven_lane_share.md](tableau/team/02_paven_lane_share.md) | Two-line lane share chart. |
 | Supriya's guide | [tableau/team/03_supriya_ports.md](tableau/team/03_supriya_ports.md) | Port map and port series. |
-| Raul's guide | [tableau/team/04_raul_dashboard.md](tableau/team/04_raul_dashboard.md) | Combined dashboard, filter action, and story. |
+| Raul's guide | [tableau/team/04_raul_dashboard.md](tableau/team/04_raul_dashboard.md) | Combined dashboards and story. |
 | Full build guide | [tableau/BUILD_GUIDE.md](tableau/BUILD_GUIDE.md) | The long reference version of all Tableau steps. |
 | Tableau data | [tableau/data/](tableau/data/) | The four ready-to-use CSVs. |
-| Tableau Public dashboard | Link added when published | The combined interactive dashboard. |
 
 **Data and code**
 
@@ -74,11 +74,11 @@ data/processed/    cleaned, analysis-ready tables (committed)
 scripts/           shared data download / validation scripts
 q1-pressure/ … q4-synthesis/   per-question analysis, notebooks, figures
                    (q4-synthesis/ also holds episode_scorecard.png and rate_vs_share_scatter.png)
-tableau/           Tableau-ready CSVs, BUILD_GUIDE.md for building the workbook by hand, and a generated .twbx that is confirmed broken (Tableau won't load it)
-tableau/team/      one Tableau build guide per teammate, plus a start page (README.md)
-docs/index.html    the final presentation deck (reveal.js, served by GitHub Pages; press S for speaker notes)
+tableau/           Tableau-ready CSVs and BUILD_GUIDE.md (the long reference for rebuilding the views by hand)
+tableau/team/      the final workbook (Supply Chain Resilience - Team.twbx), each teammate's own workbook and build guide, and a start page (README.md)
+docs/index.html    the short intro deck that leads into the Tableau Story (reveal.js, served by GitHub Pages; press S for speaker notes)
 docs/pitch.html    the earlier pitch deck, kept for history
-docs/assets/       the chart and map images embedded in the final deck (copies of the q1–q4 figures)
+docs/assets/       the images embedded in the intro and backup slides (copies of the q1–q4 figures)
 presentation/      the full script with timing and speaker assignments, the Tableau team-build split, and the Q&A prep sheet
                    final_presentation_script.md   who says what on each slide, with timing and the in-person checklist
                    plain_english_faq.md           plain answers to the questions we expect

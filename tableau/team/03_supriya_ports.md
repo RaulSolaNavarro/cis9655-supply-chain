@@ -6,6 +6,7 @@
 - [`port_series_tableau.csv`](https://github.com/RaulSolaNavarro/cis9655-supply-chain/blob/main/tableau/data/port_series_tableau.csv)
 
 **Publish both sheets in one workbook as:** `Ports - Supriya`
+**Finished workbook:** [`tableau/team/Supply Chain Resilience - Team.twbx`](Supply%20Chain%20Resilience%20-%20Team.twbx). Open it to see how your sheet looks in the final story.
 
 Read [README.md](README.md) first if you have not installed Tableau Public. Do **Part A (map)** first. It is the one the deck uses.
 

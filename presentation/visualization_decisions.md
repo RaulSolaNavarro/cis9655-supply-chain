@@ -89,10 +89,13 @@ Course ideas used (short glossary):
 
 | Item | Decision |
 |---|---|
-| Structure | Linked views on one dashboard, tied together by a **filter action** on the disruption window. Click a gray band in the pressure line and the other views narrow to that window. This follows overview, then zoom and filter, then details on demand. |
-| Why these views | Pressure (how bad), lane share (where it went), ports (who got hit), all on the same month axis so the eye can scan down one date. |
-| Layout | Fixed size to control the layout. Time-series views stacked on a shared axis; the map has its own panel because it has no time axis. |
-| Story | A guided sequence that follows the narrative: four episodes on one timeline, then the West Coast jam, then the canal and Red Sea window, then 2026. Dashboards explore; stories guide. |
+| Structure | A five-point Tableau Story. Points 1 to 4 each hold one view or dashboard (pressure, lanes, ports, scorecard). Point 5 puts the pressure and lane views on one page with a takeaways panel. Dashboards explore; stories guide. The talk is a guided argument, so we use a story and keep interaction light. |
+| Headlines | Each story point carries its finding in one sentence ("2021 peaked; but there is still pressure.", "Congestion moved cargo east.", and so on), so the story reads even with the sound off. |
+| Why these views | Pressure (how bad), lanes (where cargo went), ports (who got hit and where they stand), scorecard (compare the four episodes), summary (the answer on one page). |
+| Shared encodings | One color system in every view: blue for the Pacific route, orange for the Panama route, dark gray for pressure, light gray bands for the four episodes. The bands sit at the same dates in every time view. |
+| Interaction | One toggle on the ports view (loaded imports index or ships waiting for a berth), and hover tooltips with each port's lowest point and current level. Nothing else, so nobody needs instructions. Details on demand live in tooltips, not on the map. |
+| Layout | Every dashboard is a fixed 1560 by 660 inside a 1600 by 850 story, so nothing scrolls. Titles are Title Case with a one-line subtitle. Captions with definitions stay on the individual sheets in the workbook. |
+
 
 ---
 

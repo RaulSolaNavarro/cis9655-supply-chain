@@ -3,6 +3,7 @@
 **What you are building:** two lines, one for the share of China imports landing at West Coast ports (blue), one for East and Gulf ports (orange), with the gray disruption bands behind them.
 **Your data file:** [`lane_share_tableau.csv`](https://github.com/RaulSolaNavarro/cis9655-supply-chain/blob/main/tableau/data/lane_share_tableau.csv) (click the download icon on that page).
 **Publish it as:** `Lane share - Paven`
+**Finished workbook:** [`tableau/team/Supply Chain Resilience - Team.twbx`](Supply%20Chain%20Resilience%20-%20Team.twbx). Open it to see how your sheet looks in the final story.
 
 Read [README.md](README.md) first if you have not installed Tableau Public.
 
