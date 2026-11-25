@@ -11,9 +11,10 @@ CIS 9655 (Data Visualization): team final project.
 | Tableau Story (main deliverable) | https://public.tableau.com/views/SupplyChainResilience-Team/Story | The five-point Tableau Public Story we present. The workbook with its data is [tableau/team/Supply Chain Resilience - Team.twbx](tableau/team/Supply%20Chain%20Resilience%20-%20Team.twbx). |
 | Intro deck (web) | https://raulsolanavarro.github.io/cis9655-supply-chain/ | The short deck that sets up the question, the data definitions and the routes before the Story, then closes with our answer. Press S for speaker notes, F for full screen. |
 | Earlier pitch deck | https://raulsolanavarro.github.io/cis9655-supply-chain/pitch.html | The Oct 15 pitch, kept for history. |
-| Speaker script | [presentation/final_presentation_script.md](presentation/final_presentation_script.md) | Who says what across the intro deck and the Story, with timing, click cues and the in-person checklist. |
+| Speaker script | [presentation/final_presentation_script.md](presentation/final_presentation_script.md) | Raul's deck lines, the hand-offs, timing, click cues and the in-person checklist. |
+| Tableau Story speaker notes | [presentation/story_speaker_notes.md](presentation/story_speaker_notes.md) | For each presenter: the analytical question, how the view answers it, the design decisions, numbers, and likely questions. |
 | Plain-English FAQ | [presentation/plain_english_faq.md](presentation/plain_english_faq.md) | Plain answers to the questions we expect, with sources. |
-| Q&A prep sheet | [presentation/qa_prep_sheet.md](presentation/qa_prep_sheet.md) | Answers to the professor's question types and likely audience questions. |
+| Q&A prep sheet | [presentation/qa_prep_sheet.md](presentation/qa_prep_sheet.md) | Key terms, data sources, how each metric is calculated, limitations, decisions, and likely questions. |
 | Visualization decisions | [presentation/visualization_decisions.md](presentation/visualization_decisions.md) | Why each chart is drawn the way it is, in course vocabulary. |
 
 **Analysis, one folder per question**
@@ -80,7 +81,8 @@ docs/index.html    the short intro deck that leads into the Tableau Story (revea
 docs/pitch.html    the earlier pitch deck, kept for history
 docs/assets/       the images embedded in the intro and backup slides (copies of the q1–q4 figures)
 presentation/      the full script with timing and speaker assignments, the Tableau team-build split, and the Q&A prep sheet
-                   final_presentation_script.md   who says what on each slide, with timing and the in-person checklist
+                   final_presentation_script.md   Raul's deck lines, hand-offs, timing and the in-person checklist
+                   story_speaker_notes.md         per-person Tableau Story notes: question, answer, design decisions
                    plain_english_faq.md           plain answers to the questions we expect
                    qa_prep_sheet.md               answers by question type
                    visualization_decisions.md     why each chart is drawn the way it is
