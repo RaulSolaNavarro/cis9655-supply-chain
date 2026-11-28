@@ -43,6 +43,8 @@ CIS 9655 (Data Visualization): team final project.
 
 | What | Link | What is there |
 |---|---|---|
+| Data definitions | [data/DATA_DEFINITIONS.md](data/DATA_DEFINITIONS.md) | Every source, metric and column: what it means, how it is calculated, where it comes from, and the known quirks. Start here to understand the data. |
+| Exploratory data analysis | [eda/CIS9655_EDA_Supply_Chain_Resilience.ipynb](eda/CIS9655_EDA_Supply_Chain_Resilience.ipynb) | Python notebook, commented line by line: data checks, distributions, lane share, ports, and the freight-rate lead. [Open in Colab](https://colab.research.google.com/github/RaulSolaNavarro/cis9655-supply-chain/blob/main/eda/CIS9655_EDA_Supply_Chain_Resilience.ipynb). No API key needed. |
 | Processed data snapshots | [data/processed/](data/processed/) | Frozen CSVs for exploring without an API key. |
 | Raw data | [data/raw/](data/raw/) | Source downloads. |
 | Scripts | [scripts/](scripts/) | Download, validation, and snapshot scripts. |
@@ -72,6 +74,8 @@ How have major disruptions (Red Sea rerouting, the Panama Canal drought, port co
 ```
 data/raw/          downloaded source files (committed, so EDA needs no API key; refresh with scripts/)
 data/processed/    cleaned, analysis-ready tables (committed)
+data/DATA_DEFINITIONS.md   sources, metric definitions, and a column dictionary for every file
+eda/               exploratory data analysis notebook (runs in Google Colab, reads the snapshots from GitHub)
 scripts/           shared data download / validation scripts
 q1-pressure/ … q4-synthesis/   per-question analysis, notebooks, figures
                    (q4-synthesis/ also holds episode_scorecard.png and rate_vs_share_scatter.png)
@@ -136,6 +140,8 @@ Census files keep monthly (`_MO`) fields only, renamed to `total_value_usd`, `ve
 **For a different country, a different date range, or fresher data, run the scripts yourself** with your own Census API key (see Setup). Run the `validate_*.py` scripts to pull, then `python scripts/export_snapshots.py` to write new dated snapshots. Don't overwrite or hand-edit the existing snapshot files.
 
 ## Data sources and known quirks
+
+The full column dictionary, metric formulas and glossary are in [data/DATA_DEFINITIONS.md](data/DATA_DEFINITIONS.md). The notes below are the short version.
 
 **NY Fed Global Supply Chain Pressure Index (GSCPI):** [download page](https://www.newyorkfed.org/research/policy/gscpi)
 - Monthly, Jan 1998 to present. One global value per month, with no regional breakdown.
